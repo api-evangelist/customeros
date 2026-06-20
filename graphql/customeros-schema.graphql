@@ -1,0 +1,513 @@
+# Representative GraphQL schema for the CustomerOS (Openline) customer-os-api server.
+# Distilled from the open-source schema files at
+# https://github.com/openline-ai/openline-customer-os
+#   packages/server/customer-os-api/graphql/schemas/*.graphqls
+# Operation names, types, enum values, and field shapes mirror the upstream source.
+# This is a representative subset (organization / contact / opportunity / interaction
+# domains), not the complete generated schema. Server directives (@hasRole, @hasTenant,
+# @goField, @deprecated) are omitted here for readability.
+
+scalar Time
+scalar Int64
+scalar Any
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# ---------------------------------------------------------------------------
+# Common
+# ---------------------------------------------------------------------------
+
+enum DataSource {
+  NA
+  OPENLINE
+  WEBSCRAPE
+  HUBSPOT
+  SALESFORCE
+  PIPEDRIVE
+  STRIPE
+  INTERCOM
+  ATTIO
+  CLOSE
+}
+
+type Metadata {
+  id: ID!
+  created: Time!
+  lastUpdated: Time!
+  source: DataSource!
+  appSource: String!
+}
+
+interface MetadataInterface {
+  metadata: Metadata!
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Pages {
+  totalPages: Int!
+  totalElements: Int64!
+}
+
+input Pagination {
+  page: Int!
+  limit: Int!
+}
+
+input SortBy {
+  by: String!
+  direction: SortingDirection
+}
+
+enum SortingDirection {
+  ASC
+  DESC
+}
+
+type Result {
+  result: Boolean!
+}
+
+type ActionResponse {
+  accepted: Boolean!
+  completed: Boolean!
+}
+
+enum EntityType {
+  ORGANIZATION
+  OPPORTUNITY
+  CONTACT
+  LOG_ENTRY
+  ISSUE
+  CONTRACT
+}
+
+# ---------------------------------------------------------------------------
+# Organization
+# ---------------------------------------------------------------------------
+
+enum Market {
+  B2B
+  B2C
+  B2B2C
+}
+
+enum OrganizationStage {
+  LEAD
+  TARGET
+  INTERESTED
+  ENGAGED
+  TRIAL
+  UNQUALIFIED
+  READY_TO_BUY
+  CUSTOMER
+}
+
+enum FundingRound {
+  PRE_SEED
+  SEED
+  SERIES_A
+  SERIES_B
+  SERIES_C
+  IPO
+}
+
+type LinkedOrganization {
+  organization: Organization!
+  type: String
+}
+
+type Organization implements MetadataInterface {
+  metadata: Metadata!
+  customerOsId: String!
+  name: String!
+  description: String
+  website: String
+  domains: [String!]!
+  employees: Int64
+  market: Market
+  stage: OrganizationStage
+  yearFounded: Int64
+  logoUrl: String
+  locations: [Location!]!
+  socialMedia: [Social!]!
+  subsidiaries: [LinkedOrganization!]!
+  parentCompanies: [LinkedOrganization!]!
+  contracts: [Contract!]
+  opportunities: [Opportunity!]
+  owner: User
+  tags: [Tag!]
+  timelineEvents(from: Time, size: Int!, timelineEventTypes: [TimelineEventType!]): [TimelineEvent!]!
+}
+
+type OrganizationPage implements Pages {
+  content: [Organization!]!
+  totalPages: Int!
+  totalElements: Int64!
+}
+
+input OrganizationSaveInput {
+  id: ID
+  name: String
+  description: String
+  website: String
+  employees: Int64
+  market: Market
+  stage: OrganizationStage
+}
+
+input LinkOrganizationsInput {
+  organizationId: ID!
+  subsidiaryId: ID!
+}
+
+# ---------------------------------------------------------------------------
+# Contact
+# ---------------------------------------------------------------------------
+
+type Contact implements MetadataInterface & Node {
+  metadata: Metadata!
+  id: ID!
+  prefix: String
+  name: String
+  username: String
+  description: String
+  timezone: String
+  profilePhotoUrl: String
+  createdAt: Time!
+  updatedAt: Time!
+  source: DataSource!
+  tags: [Tag!]
+  jobRoles: [JobRole!]!
+  organizations(pagination: Pagination, sort: [SortBy!]): OrganizationPage!
+  phoneNumbers: [PhoneNumber!]!
+  emails: [Email!]!
+  primaryEmail: Email
+}
+
+type ContactsPage implements Pages {
+  content: [Contact!]!
+  totalPages: Int!
+  totalElements: Int64!
+}
+
+input ContactInput {
+  prefix: String
+  name: String
+  description: String
+  timezone: String
+}
+
+input ContactUpdateInput {
+  id: ID!
+  prefix: String
+  name: String
+  description: String
+}
+
+type CreateContactBulkResponse {
+  createdIds: [String!]!
+  failedInputs: [String!]!
+}
+
+type JobRole {
+  id: ID!
+  jobTitle: String
+  primary: Boolean!
+  organization: Organization
+}
+
+type Email {
+  id: ID!
+  email: String
+  emailValidationDetails: EmailValidationDetails
+}
+
+type EmailValidationDetails {
+  verified: Boolean!
+  isReachable: String
+}
+
+type PhoneNumber {
+  id: ID!
+  e164: String
+  validated: Boolean
+}
+
+type Social {
+  id: ID!
+  url: String!
+}
+
+type Tag {
+  id: ID!
+  name: String!
+}
+
+type User {
+  id: ID!
+  name: String
+  firstName: String
+  lastName: String
+}
+
+# ---------------------------------------------------------------------------
+# Opportunity
+# ---------------------------------------------------------------------------
+
+enum InternalType {
+  NBO
+  UPSELL
+  CROSS_SELL
+  RENEWAL
+}
+
+enum InternalStage {
+  OPEN
+  CLOSED_WON
+  CLOSED_LOST
+}
+
+enum OpportunityRenewalLikelihood {
+  HIGH_RENEWAL
+  MEDIUM_RENEWAL
+  LOW_RENEWAL
+  ZERO_RENEWAL
+}
+
+type Opportunity implements MetadataInterface {
+  metadata: Metadata!
+  name: String!
+  amount: Float!
+  maxAmount: Float!
+  currency: Currency
+  likelihoodRate: Int64!
+  internalType: InternalType!
+  externalType: String!
+  internalStage: InternalStage!
+  externalStage: String!
+  estimatedClosedAt: Time
+  generalNotes: String!
+  nextSteps: String!
+  renewedAt: Time
+  renewalLikelihood: OpportunityRenewalLikelihood!
+  comments: String!
+  organization: Organization
+  owner: User
+}
+
+type OpportunityPage implements Pages {
+  content: [Opportunity!]!
+  totalPages: Int!
+  totalElements: Int64!
+}
+
+input OpportunitySaveInput {
+  opportunityId: ID
+  organizationId: ID
+  name: String
+  amount: Float
+  maxAmount: Float
+  currency: Currency
+  internalType: InternalType
+  externalType: String
+  externalStage: String
+  estimatedClosedDate: Time
+  generalNotes: String
+  nextSteps: String
+}
+
+input OpportunityRenewalUpdateInput {
+  opportunityId: ID!
+  amount: Float
+  comments: String
+  ownerUserId: ID
+  renewalLikelihood: OpportunityRenewalLikelihood
+  renewalAdjustedRate: Int64
+}
+
+input OpportunityRenewalUpdateAllForOrganizationInput {
+  organizationId: ID!
+  renewalLikelihood: OpportunityRenewalLikelihood
+}
+
+enum Currency {
+  USD
+  EUR
+  GBP
+  RON
+}
+
+# ---------------------------------------------------------------------------
+# Interaction / Timeline
+# ---------------------------------------------------------------------------
+
+union InteractionEventParticipant =
+    EmailParticipant
+  | PhoneNumberParticipant
+  | ContactParticipant
+  | UserParticipant
+  | OrganizationParticipant
+  | JobRoleParticipant
+
+type EmailParticipant {
+  emailParticipant: Email!
+  type: String
+}
+
+type PhoneNumberParticipant {
+  phoneNumberParticipant: PhoneNumber!
+  type: String
+}
+
+type ContactParticipant {
+  contactParticipant: Contact!
+  type: String
+}
+
+type UserParticipant {
+  userParticipant: User!
+  type: String
+}
+
+type OrganizationParticipant {
+  organizationParticipant: Organization!
+  type: String
+}
+
+type JobRoleParticipant {
+  jobRoleParticipant: JobRole!
+  type: String
+}
+
+type InteractionSession implements Node {
+  id: ID!
+  createdAt: Time!
+  updatedAt: Time!
+  identifier: String!
+  name: String!
+  status: String!
+  type: String
+  channel: String
+  source: DataSource!
+  events: [InteractionEvent!]!
+}
+
+type InteractionEvent implements Node {
+  id: ID!
+  createdAt: Time!
+  eventIdentifier: String
+  channel: String!
+  content: String
+  contentType: String
+  interactionSession: InteractionSession
+  meeting: Meeting
+  sentBy: [InteractionEventParticipant!]!
+  sentTo: [InteractionEventParticipant!]!
+  repliesTo: InteractionEvent
+  source: DataSource!
+  eventType: String
+}
+
+type Meeting {
+  id: ID!
+  name: String
+  createdAt: Time!
+  startedAt: Time
+  endedAt: Time
+}
+
+enum TimelineEventType {
+  PAGE_VIEW
+  INTERACTION_SESSION
+  NOTE
+  INTERACTION_EVENT
+  ISSUE
+  MEETING
+  LOG_ENTRY
+}
+
+union TimelineEvent =
+    InteractionSession
+  | InteractionEvent
+  | Meeting
+
+# ---------------------------------------------------------------------------
+# Placeholder reference types
+# ---------------------------------------------------------------------------
+
+type Contract {
+  id: ID!
+  name: String
+}
+
+type Location {
+  id: ID!
+  name: String
+  country: String
+  locality: String
+}
+
+input SocialInput {
+  url: String!
+}
+
+# ---------------------------------------------------------------------------
+# Root operations
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Organizations
+  organization(id: ID!): Organization
+  organizations(pagination: Pagination, sort: [SortBy!]): OrganizationPage!
+  organization_ByCustomerOsId(customerOsId: String!): Organization
+  organization_ByLinkedIn(linkedInUrl: String!): Organization
+
+  # Contacts
+  contact(id: ID!): Contact
+  contacts(pagination: Pagination, sort: [SortBy!]): ContactsPage!
+  contact_ByEmail(email: String!): Contact
+  contact_ByLinkedIn(linkedInUrl: String!): Contact
+  contact_ByPhone(e164: String!): Contact!
+
+  # Opportunities
+  opportunity(id: ID!): Opportunity
+  opportunities_LinkedToOrganizations(pagination: Pagination): OpportunityPage!
+
+  # Interactions
+  interactionEvent(id: ID!): InteractionEvent!
+}
+
+type Mutation {
+  # Organizations
+  organization_Save(input: OrganizationSaveInput!): Organization!
+  organization_Merge(primaryOrganizationId: ID!, mergedOrganizationIds: [ID!]!): Organization!
+  organization_AddSubsidiary(input: LinkOrganizationsInput!): Organization!
+  organization_AddSocial(organizationId: ID!, input: SocialInput!): Social!
+  organization_AddDomain(organizationId: ID!, domain: String!): ActionResponse!
+  organization_Hide(id: ID!): ID!
+  organization_Show(id: ID!): ID!
+
+  # Contacts
+  contact_Create(input: ContactInput!): ID!
+  contact_CreateForOrganization(input: ContactInput!, organizationId: ID!): Contact!
+  contact_Update(input: ContactUpdateInput!): Contact!
+  contact_Merge(primaryContactId: ID!, mergedContactIds: [ID!]!): Contact!
+  contact_CreateBulkByEmailV2(emails: [String!]!, flowId: String): CreateContactBulkResponse!
+  contact_CreateBulkByLinkedInV2(linkedInUrls: [String!]!, flowId: String): CreateContactBulkResponse!
+  contact_HardDelete(contactId: ID!): Result!
+
+  # Opportunities
+  opportunity_Save(input: OpportunitySaveInput!): Opportunity!
+  opportunity_Archive(id: ID!): ActionResponse!
+  opportunityRenewalUpdate(input: OpportunityRenewalUpdateInput!, ownerUserId: ID): Opportunity!
+  opportunityRenewal_UpdateAllForOrganization(input: OpportunityRenewalUpdateAllForOrganizationInput!): Organization!
+
+  # Interactions
+  interactionEvent_LinkAttachment(eventId: ID!, attachmentId: ID!): Result!
+}

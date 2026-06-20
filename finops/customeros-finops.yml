@@ -1,0 +1,84 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: CustomerOS
+providerId: customeros
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Revenue
+- Go-To-Market
+- GraphQL
+- Open Source
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of CustomerOS spend. CustomerOS has two cost models: (1) self-hosting
+  the open-source Apache-2.0 customer-os-api GraphQL stack, where cost is the
+  operator's own infrastructure (compute, PostgreSQL, Neo4j, networking) rather
+  than a per-call API charge; and (2) the sales-led customeros.ai cloud, billed via
+  a negotiated subscription with no public itemized API meters. Because pricing is
+  contact-sales / self-hosted, FOCUS cost columns are not reconciled here.
+notes: >-
+  No public usage-metered pricing exists; this artifact captures the cost
+  structure qualitatively. For self-hosted, track cloud-infrastructure spend for
+  the supporting services; for the cloud, track the negotiated subscription.
+  Verify against customeros.ai during reconciliation.
+sources:
+- https://customeros.ai
+- https://docs.customeros.ai
+- https://github.com/openline-ai/openline-customer-os
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: CustomerOS
+serviceCategory: Customer Relationship Management
+billingModel:
+  pricingCategory: Subscription / Self-Hosted
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: CustomerOS
+  ServiceCategory: Customer Relationship Management
+  ProviderName: CustomerOS
+  PublisherName: CustomerOS
+  InvoiceIssuerName: CustomerOS
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: self_hosted_infrastructure
+  description: Compute, database (PostgreSQL, Neo4j), and networking cost of running the open-source customer-os-api stack yourself. Not billed by CustomerOS.
+  unit: infrastructure-hours
+  aggregation: sum
+  dimensions:
+  - deployment
+  - service
+- name: cloud_subscription
+  description: Negotiated customeros.ai cloud subscription. No public per-call metering.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: For self-hosted, monitor infrastructure spend for the customer-os-api services and their PostgreSQL/Neo4j backends; for cloud, track the subscription invoice.
+- name: Allocation
+  description: Tag infrastructure (or cloud workspaces) per team/workload to map CustomerOS spend to cost centers.
+- name: Optimization
+  description: Self-host to avoid subscription cost where in-house ops capacity exists; right-size database and compute for the customer-os-api stack.
+- name: Accountability
+  description: Assign an owner for the CustomerOS deployment or cloud contract; review spend against budget on the billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

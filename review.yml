@@ -1,0 +1,106 @@
+aid: customeros
+name: CustomerOS
+review:
+  question: What is CustomerOS's documented public developer API surface and transport?
+  answer: GraphQL (open source) plus a limited cloud REST API
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. CustomerOS does not document any streaming,
+    WebSocket, or Server-Sent Events API surface. The GraphQL schema defines only
+    Query and Mutation root types - there is no Subscription type - so there is no
+    in-scope event-driven transport to model.
+findings:
+  summary: |
+    CustomerOS (formerly Openline) is an open-source go-to-market / revenue
+    platform for B2B SaaS. Its primary, real developer API is a GraphQL API served
+    by the open-source customer-os-api server (Go, gqlgen). It exposes a single
+    GraphQL endpoint, POST /query, plus an optional GET /playground, covering
+    organizations, contacts, opportunities, contracts, invoices, interaction
+    events, meetings, notes, and timeline events. Operations follow gqlgen naming
+    (e.g. organization_Save, contact_CreateForOrganization, opportunity_Save,
+    interactionEvent), and most fields are guarded by @hasRole and @hasTenant
+    directives. The full upstream schema spans 60+ .graphqls files; this catalog
+    ships a representative subset.
+
+    Separately, the commercial cloud at customeros.ai documents a small REST API
+    ("Customerbase", base https://api.customeros.ai/customerbase/v1) authenticated
+    with the X-CUSTOMER-OS-API-KEY header, of which the organizations endpoints
+    (e.g. POST /organizations) are publicly described. Per the docs, "access to
+    each API is currently provided on a per request basis" - so the cloud REST
+    surface is gated and thinly documented. The current customeros.ai product also
+    ships a client-side JavaScript website tracker (script tag behind a customer
+    CNAME reverse proxy), which is an integration rather than a public API endpoint.
+  transports:
+    - protocol: GraphQL
+      scheme: https
+      baseURL: https://api.customeros.ai/query
+      documented: true
+      note: >-
+        Single GraphQL endpoint (POST /query) served by the open-source
+        customer-os-api server; GraphQL Playground at /playground when enabled.
+        Self-hosted base path depends on deployment.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.customeros.ai/customerbase/v1
+      documented: true
+      note: >-
+        Cloud "Customerbase" REST API authenticated with X-CUSTOMER-OS-API-KEY.
+        Organizations endpoints documented; access granted per endpoint group on a
+        per-request basis. Thinly documented.
+    - protocol: JavaScript Tracker
+      scheme: https
+      documented: true
+      note: >-
+        Client-side website visitor tracker installed via a script tag behind a
+        customer-hosted reverse-proxy CNAME. Not a public REST/GraphQL endpoint.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket surface is documented; the GraphQL schema defines no Subscription type.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming surface is documented.
+  endpointsConfirmedGraphql:
+    - POST https://api.customeros.ai/query
+    - GET  https://api.customeros.ai/playground
+  endpointsConfirmedRest:
+    - POST https://api.customeros.ai/customerbase/v1/organizations
+  uncertainty: |
+    The exact production hostname for the open-source GraphQL endpoint on the
+    CustomerOS cloud is inferred (api.customeros.ai) and aligned with the documented
+    cloud REST host; self-hosted deployments expose /query on their own host/port
+    (default local port 10000). The GraphQL auth header name varies by deployment;
+    the source code validates an API-key header per tenant, while the documented
+    cloud REST API uses X-CUSTOMER-OS-API-KEY. The cloud Customerbase REST surface
+    is documented only partially (organizations) and is access-gated, so its full
+    endpoint list could not be enumerated from public docs.
+sources:
+  - url: https://github.com/openline-ai/openline-customer-os
+    type: GitHub
+    note: Open-source customer-os-api GraphQL server (Go, gqlgen); schemas under packages/server/customer-os-api/graphql/schemas/*.graphqls. Apache-2.0 except the ee/ directory.
+  - url: https://docs.customeros.ai
+    type: Documentation
+    note: Cloud product docs (Mintlify). Covers agents, data structure, integrations, website tracker; OpenAPI flowApiSpec referenced in llms.txt.
+  - url: https://docs.customeros.ai/api-overview
+    type: APIReference
+    note: States the API is organized around REST, authenticated with a custom API-key header, versioned via /v1/, with per-request access enablement.
+  - url: https://customeros.ai
+    type: Website
+    note: Marketing site for the customeros.ai cloud revenue platform.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    GraphQL is the real primary developer transport, so the catalog leads with the
+    GraphQL Core API plus domain sub-APIs (organizations, contacts, opportunities,
+    interactions) and a representative GraphQL schema and OpenAPI HTTP-transport
+    document for POST /query. The documented but access-gated cloud Customerbase
+    REST API and the JavaScript website tracker are captured as additional sub-APIs.
+    No AsyncAPI document was authored because no streaming/WebSocket/SSE surface and
+    no GraphQL Subscription type exist.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,159 @@
+{
+  "info": {
+    "name": "CustomerOS GraphQL API",
+    "description": "Representative Postman collection for the CustomerOS (Openline) customer-os-api GraphQL endpoint. All operations POST to the single /query endpoint. See graphql/customeros-graphql.md for the schema.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.customeros.ai"
+    },
+    {
+      "key": "apiKey",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Get organization by id",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"query($id: ID!) { organization(id: $id) { metadata { id } name website domains } }\",\n  \"variables\": { \"id\": \"org-123\" }\n}"
+            }
+          }
+        },
+        {
+          "name": "Save organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"mutation($input: OrganizationSaveInput!) { organization_Save(input: $input) { metadata { id } name website } }\",\n  \"variables\": { \"input\": { \"name\": \"Acme Inc\", \"website\": \"https://acme.com\" } }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "Get contact by email",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"query($email: String!) { contact_ByEmail(email: $email) { metadata { id } name jobRoles { jobTitle } } }\",\n  \"variables\": { \"email\": \"buyer@example.com\" }\n}"
+            }
+          }
+        },
+        {
+          "name": "Create contact for organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"mutation($organizationId: ID!, $input: ContactInput!) { contact_CreateForOrganization(organizationId: $organizationId, input: $input) { metadata { id } name } }\",\n  \"variables\": { \"organizationId\": \"org-123\", \"input\": { \"name\": \"Dana Buyer\", \"prefix\": \"Ms\" } }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Opportunities",
+      "item": [
+        {
+          "name": "Save opportunity",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"mutation($input: OpportunitySaveInput!) { opportunity_Save(input: $input) { metadata { id } name amount internalStage } }\",\n  \"variables\": { \"input\": { \"organizationId\": \"org-123\", \"name\": \"Acme Expansion\", \"amount\": 50000, \"internalType\": \"UPSELL\" } }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interactions",
+      "item": [
+        {
+          "name": "Get interaction event",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Openline-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query",
+              "host": ["{{baseUrl}}"],
+              "path": ["query"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"query\": \"query($id: ID!) { interactionEvent(id: $id) { id channel content contentType eventType createdAt } }\",\n  \"variables\": { \"id\": \"event-123\" }\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

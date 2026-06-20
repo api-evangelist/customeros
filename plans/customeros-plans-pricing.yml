@@ -1,0 +1,84 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: CustomerOS
+providerId: customeros
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Revenue
+- Go-To-Market
+- GraphQL
+- Open Source
+- Plans
+description: >-
+  CustomerOS (formerly Openline) is open source under Apache-2.0 (with a separate
+  enterprise `ee/` directory), so the customer-os-api GraphQL server can be
+  self-hosted at no license cost. The commercial cloud at customeros.ai is a
+  sales-led go-to-market product; public, itemized API pricing tiers are not
+  published. API access to the cloud Customerbase REST endpoints is granted on a
+  per-request basis by the CustomerOS team. Plan and price values below are not
+  reconciled because no public pricing table was found.
+notes: >-
+  No public pricing page with itemized tiers was found at the review date.
+  Self-hosting the open-source server is free (infrastructure costs only);
+  cloud pricing is contact-sales. Verify against customeros.ai during
+  reconciliation.
+sources:
+- https://customeros.ai
+- https://docs.customeros.ai
+- https://github.com/openline-ai/openline-customer-os
+plans:
+- id: customeros-open-source
+  name: Open Source (Self-Hosted)
+  type: free
+  description: >-
+    Self-host the customer-os-api GraphQL server and the rest of the CustomerOS
+    stack under Apache-2.0. No license fee; you operate your own infrastructure
+    (PostgreSQL, Neo4j, and supporting services). The `ee/` enterprise directory
+    is excluded from the open-source license.
+  entries:
+  - label: Self-Hosted License
+    name: self_hosted
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (Apache-2.0, self-hosted infrastructure costs apply)
+    userMultiplied: false
+  elements:
+  - name: GraphQL Core API
+  - name: Organizations
+  - name: Contacts
+  - name: Opportunities
+  - name: Interactions
+- id: customeros-cloud
+  name: Cloud
+  type: enterprise
+  description: >-
+    Managed CustomerOS cloud at customeros.ai. Sales-led; itemized public pricing
+    not published. API (Customerbase REST) access is enabled per endpoint group on
+    a per-request basis after contacting the team.
+  entries:
+  - label: Cloud Subscription
+    name: cloud
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Managed Hosting
+  - name: Customerbase REST API
+  - name: Website Tracker
+  - name: AI Agents
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

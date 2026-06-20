@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: CustomerOS
+providerId: customeros
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- CRM
+- Revenue
+- Go-To-Market
+- GraphQL
+- Open Source
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  CustomerOS does not publish documented numeric rate limits for either the
+  open-source customer-os-api GraphQL endpoint or the cloud Customerbase REST API.
+  The self-hosted GraphQL server enforces no inherent quota beyond the operator's
+  own infrastructure capacity. The cloud platform grants API access per endpoint
+  group on a per-request basis and uses standard HTTP status conventions (2xx
+  success, 4xx client error, 5xx server error). Specific RPM/RPD/concurrency
+  values are not reconciled in this artifact.
+notes: >-
+  No public rate-limit table was found at the review date. For self-hosted
+  deployments, limits are governed by the operator's infrastructure. Verify any
+  cloud throttling thresholds with the CustomerOS team during reconciliation.
+sources:
+- https://docs.customeros.ai/api-overview
+- https://github.com/openline-ai/openline-customer-os
+responseCodes:
+  throttled: 429
+limits:
+- name: GraphQL Endpoint (self-hosted)
+  scope: deployment
+  metric: requests
+  limit: governed by operator infrastructure
+  notes: The open-source customer-os-api /query endpoint imposes no documented quota; capacity is set by the self-hosted deployment.
+- name: Customerbase REST API (cloud)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Cloud REST access is enabled per endpoint group on a per-request basis; numeric limits are not published.
+policies:
+- name: Per-Request Access
+  description: Cloud API endpoint groups are enabled individually after contacting the CustomerOS team.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

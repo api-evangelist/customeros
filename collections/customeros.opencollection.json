@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS GraphQL API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Openline-API-KEY",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get organization by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"query($id: ID!) { organization(id: $id) { metadata { id } name website domains } }\",\"variables\":{\"id\":\"org-123\"}}"
+            }
+          },
+          "docs": "Fetch an organization by id via GraphQL."
+        },
+        {
+          "info": {
+            "name": "Save organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"mutation($input: OrganizationSaveInput!) { organization_Save(input: $input) { metadata { id } name website } }\",\"variables\":{\"input\":{\"name\":\"Acme Inc\",\"website\":\"https://acme.com\"}}}"
+            }
+          },
+          "docs": "Create or update an organization via GraphQL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contact by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"query($email: String!) { contact_ByEmail(email: $email) { metadata { id } name jobRoles { jobTitle } } }\",\"variables\":{\"email\":\"buyer@example.com\"}}"
+            }
+          },
+          "docs": "Look up a contact by email via GraphQL."
+        },
+        {
+          "info": {
+            "name": "Create contact for organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"mutation($organizationId: ID!, $input: ContactInput!) { contact_CreateForOrganization(organizationId: $organizationId, input: $input) { metadata { id } name } }\",\"variables\":{\"organizationId\":\"org-123\",\"input\":{\"name\":\"Dana Buyer\",\"prefix\":\"Ms\"}}}"
+            }
+          },
+          "docs": "Create a contact for an organization via GraphQL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Opportunities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Save opportunity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"mutation($input: OpportunitySaveInput!) { opportunity_Save(input: $input) { metadata { id } name amount internalStage } }\",\"variables\":{\"input\":{\"organizationId\":\"org-123\",\"name\":\"Acme Expansion\",\"amount\":50000,\"internalType\":\"UPSELL\"}}}"
+            }
+          },
+          "docs": "Create or update an opportunity via GraphQL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Interactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get interaction event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{\"query\":\"query($id: ID!) { interactionEvent(id: $id) { id channel content contentType eventType createdAt } }\",\"variables\":{\"id\":\"event-123\"}}"
+            }
+          },
+          "docs": "Fetch an interaction event by id via GraphQL."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+aid: customeros
+url: https://raw.githubusercontent.com/api-evangelist/customeros/refs/heads/main/apis.yml
+name: CustomerOS
+kind: company
+description: CustomerOS (formerly Openline) is an open-source go-to-market / revenue
+  platform for B2B SaaS. Its core open-source application server, customer-os-api,
+  exposes a single GraphQL endpoint (POST /query) covering organizations, contacts,
+  opportunities, contracts, invoices, interactions, and timeline events. The
+  commercial cloud (customeros.ai) adds a documented REST "Customerbase" API and a
+  JavaScript website visitor tracker, with broader access granted on a per-request
+  basis.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- CRM
+- Revenue
+- Go-To-Market
+- GraphQL
+- Open Source
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: customeros:customeros-graphql-core-api
+  name: CustomerOS GraphQL Core API
+  tags:
+  - GraphQL
+  - Organizations
+  - Contacts
+  - Opportunities
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://github.com/openline-ai/openline-customer-os
+  baseURL: https://api.customeros.ai/query
+  properties:
+  - url: https://docs.customeros.ai
+    type: Documentation
+  - url: https://github.com/openline-ai/openline-customer-os
+    type: GitHub
+  - url: graphql/customeros-graphql.md
+    type: GraphQL
+  - url: openapi/customeros-openapi.yml
+    type: OpenAPI
+  description: Single-endpoint GraphQL API (POST /query) served by the open-source
+    customer-os-api server. Exposes Query and Mutation operations across organizations,
+    contacts, opportunities, contracts, invoices, interactions, and timeline events,
+    authenticated per tenant with an API key. A GraphQL playground is exposed at
+    /playground when enabled.
+- aid: customeros:customeros-organizations-api
+  name: CustomerOS Organizations API
+  tags:
+  - GraphQL
+  - Organizations
+  - Companies
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.customeros.ai/data-structure
+  baseURL: https://api.customeros.ai/query
+  properties:
+  - url: https://docs.customeros.ai/data-structure
+    type: Documentation
+  - url: graphql/customeros-graphql.md
+    type: GraphQL
+  - url: openapi/customeros-openapi.yml
+    type: OpenAPI
+  description: GraphQL queries and mutations for company / organization records -
+    organization, organizations, organization_Save, organization_Merge, subsidiaries,
+    domains, social media, and onboarding status - over the customer-os-api /query
+    endpoint.
+- aid: customeros:customeros-contacts-api
+  name: CustomerOS Contacts API
+  tags:
+  - GraphQL
+  - Contacts
+  - People
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.customeros.ai/contacts
+  baseURL: https://api.customeros.ai/query
+  properties:
+  - url: https://docs.customeros.ai/contacts
+    type: Documentation
+  - url: graphql/customeros-graphql.md
+    type: GraphQL
+  - url: openapi/customeros-openapi.yml
+    type: OpenAPI
+  description: GraphQL queries and mutations for contacts (people) - contact,
+    contacts, contact_ByEmail, contact_ByLinkedIn, contact_Create,
+    contact_CreateForOrganization, job roles, emails, phone numbers, and social
+    profiles - over the customer-os-api /query endpoint.
+- aid: customeros:customeros-opportunities-api
+  name: CustomerOS Opportunities API
+  tags:
+  - GraphQL
+  - Opportunities
+  - Pipeline
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://github.com/openline-ai/openline-customer-os
+  baseURL: https://api.customeros.ai/query
+  properties:
+  - url: https://github.com/openline-ai/openline-customer-os
+    type: GitHub
+  - url: graphql/customeros-graphql.md
+    type: GraphQL
+  - url: openapi/customeros-openapi.yml
+    type: OpenAPI
+  description: GraphQL queries and mutations for sales opportunities and renewals -
+    opportunity, opportunities_LinkedToOrganizations, opportunity_Save,
+    opportunity_Archive, and renewal likelihood / forecast updates - over the
+    customer-os-api /query endpoint.
+- aid: customeros:customeros-interactions-api
+  name: CustomerOS Interactions API
+  tags:
+  - GraphQL
+  - Interactions
+  - Timeline
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://github.com/openline-ai/openline-customer-os
+  baseURL: https://api.customeros.ai/query
+  properties:
+  - url: https://github.com/openline-ai/openline-customer-os
+    type: GitHub
+  - url: graphql/customeros-graphql.md
+    type: GraphQL
+  - url: openapi/customeros-openapi.yml
+    type: OpenAPI
+  description: GraphQL queries and mutations for interaction events, interaction
+    sessions, meetings, notes, log entries, issues, and the per-organization
+    timeline of touchpoints - over the customer-os-api /query endpoint.
+- aid: customeros:customeros-customerbase-rest-api
+  name: CustomerOS Customerbase REST API
+  tags:
+  - REST
+  - Customerbase
+  - Organizations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.customeros.ai/api-overview
+  baseURL: https://api.customeros.ai/customerbase/v1
+  properties:
+  - url: https://docs.customeros.ai/api-overview
+    type: Documentation
+  - url: https://docs.customeros.ai/api-descriptions
+    type: APIReference
+  description: Documented synchronous REST API on the customeros.ai cloud
+    (api.customeros.ai/customerbase/v1), authenticated with the X-CUSTOMER-OS-API-KEY
+    header. Includes organization endpoints such as POST /organizations. Access to
+    each endpoint group is granted on a per-request basis by the CustomerOS team.
+- aid: customeros:customeros-website-tracker
+  name: CustomerOS Website Tracker
+  tags:
+  - Tracking
+  - Visitor Identification
+  - JavaScript
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.customeros.ai/website-tracker
+  baseURL: https://docs.customeros.ai/tracker
+  properties:
+  - url: https://docs.customeros.ai/website-tracker
+    type: Documentation
+  - url: https://docs.customeros.ai/tracker/custom-events
+    type: Documentation
+  description: Client-side JavaScript tracker, installed via a script tag behind a
+    customer-hosted reverse-proxy CNAME, that captures page views and custom events
+    and matches visitor IPs to companies. It is a script integration rather than a
+    public REST/GraphQL endpoint; custom events are emitted from the browser.
+common:
+- type: GitHubOrganization
+  url: https://github.com/openline-ai
+- type: GitHubOrganization
+  url: https://github.com/customeros
+- type: LinkedIn
+  url: https://www.linkedin.com/company/customeros
+- type: Website
+  url: https://customeros.ai
+- type: Documentation
+  url: https://docs.customeros.ai
+- type: Plans
+  url: plans/customeros-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/customeros-rate-limits.yml
+- type: FinOps
+  url: finops/customeros-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
