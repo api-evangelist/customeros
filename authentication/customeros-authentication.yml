@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/customeros-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-Openline-API-KEY
+  description: Per-tenant API key. The open-source customer-os-api validates an API key header
+    and resolves the tenant before applying @hasRole / @hasTenant directives. Header name and
+    exact auth flow depend on deployment; the documented customeros.ai cloud REST surface uses
+    X-CUSTOMER-OS-API-KEY.
+  sources:
+  - openapi/customeros-openapi.yml

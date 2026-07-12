@@ -160,6 +160,10 @@ apis:
     and matches visitor IPs to companies. It is a script integration rather than a
     public REST/GraphQL endpoint; custom events are emitted from the browser.
 common:
+- type: DomainSecurity
+  url: security/customeros-domain-security.yml
+- type: Authentication
+  url: authentication/customeros-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/openline-ai
 - type: GitHubOrganization
