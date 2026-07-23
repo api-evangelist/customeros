@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  title: CustomerOS GraphQL API
+  description: HTTP transport definition for the CustomerOS (formerly Openline) customer-os-api GraphQL server. CustomerOS exposes a single GraphQL endpoint - POST /query - that handles all queries and mutations across organizations, contacts, opportunities, contracts, invoices, and interactions. This OpenAPI document models the HTTP envelope (request/response of the /query endpoint); the field-level operation surface is defined by the GraphQL schema, not by per-resource REST paths. See graphql/customeros-graphql.md and graphql/customeros-schema.graphql for the operation and type surface. The server is open source under Apache-2.0 (https://github.com/openline-ai/openline-customer-os).
+  termsOfService: https://customeros.ai
+  contact:
+    name: CustomerOS
+    url: https://customeros.ai
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://api.customeros.ai
+  description: CustomerOS cloud (customer-os-api GraphQL endpoint)
+- url: http://localhost:10000
+  description: Self-hosted customer-os-api (default local port)
+tags:
+- name: GraphQL
+  description: Single GraphQL endpoint for all CustomerOS operations.
+paths:
+  /query:
+    post:
+      operationId: graphqlQuery
+      tags:
+      - GraphQL
+      summary: Execute a GraphQL query or mutation.
+      description: Single GraphQL endpoint served by gqlgen. Accepts a standard GraphQL POST body (query, optional operationName, optional variables) and returns a GraphQL response envelope with `data` and/or `errors`. Authenticated per tenant with an API key header. Most fields are protected by @hasRole and @hasTenant directives in the schema.
+      security:
+      - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+            examples:
+              getOrganization:
+                summary: Fetch an organization by id
+                value:
+                  query: "query($id: ID!) {\n  organization(id: $id) {\n    metadata { id }\n    name\n    website\n  }\n}\n"
+                  variables:
+                    id: org-123
+              saveOpportunity:
+                summary: Save an opportunity
+                value:
+                  query: "mutation($input: OpportunitySaveInput!) {\n  opportunity_Save(input: $input) {\n    metadata { id }\n    name\n    amount\n  }\n}\n"
+                  variables:
+                    input:
+                      name: Acme Expansion
+                      amount: 50000
+                      internalType: UPSELL
+      responses:
+        '200':
+          description: GraphQL response. Note that GraphQL returns HTTP 200 even when the response contains field-level `errors`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '401':
+          description: Missing or invalid API key.
+        '403':
+          description: Authenticated but not authorized for the requested tenant or role.
+  /playground:
+    get:
+      operationId: graphqlPlayground
+      tags:
+      - GraphQL
+      summary: GraphQL Playground UI.
+      description: Interactive GraphQL Playground served by the customer-os-api server when enabled in configuration. Returns an HTML page.
+      responses:
+        '200':
+          description: Playground HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          nullable: true
+          description: Result data keyed by the requested root fields.
+        errors:
+          type: array
+          description: Field- or request-level errors, if any.
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+    GraphQLError:
+      type: object
+      properties:
+        message:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        extensions:
+          type: object
+          additionalProperties: true
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The GraphQL query or mutation document.
+        operationName:
+          type: string
+          description: Name of the operation to execute when the document defines several.
+        variables:
+          type: object
+          additionalProperties: true
+          description: Variable values for the operation.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Openline-API-KEY
+      description: Per-tenant API key. The open-source customer-os-api validates an API key header and resolves the tenant before applying @hasRole / @hasTenant directives. Header name and exact auth flow depend on deployment; the documented customeros.ai cloud REST surface uses X-CUSTOMER-OS-API-KEY.
