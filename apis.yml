@@ -2,55 +2,119 @@ aid: customeros
 url: https://raw.githubusercontent.com/api-evangelist/customeros/refs/heads/main/apis.yml
 name: CustomerOS
 kind: company
-description: CustomerOS (formerly Openline) is an open-source go-to-market / revenue
-  platform for B2B SaaS. Its core open-source application server, customer-os-api,
-  exposes a single GraphQL endpoint (POST /query) covering organizations, contacts,
-  opportunities, contracts, invoices, interactions, and timeline events. The
-  commercial cloud (customeros.ai) adds a documented REST "Customerbase" API and a
-  JavaScript website visitor tracker, with broader access granted on a per-request
-  basis.
+description: CustomerOS (formerly Openline) is a London-based revenue-intelligence platform
+  for B2B go-to-market teams. It identifies anonymous website visitors, scores them against
+  an ideal customer profile, infers buying stage from page engagement, and attributes content
+  and ad spend to real pipeline. The developer surface spans a first-party JavaScript website
+  tracker installed behind a customer-owned reverse-proxy CNAME, a set of key-authenticated
+  REST APIs published as OpenAPI in the company monorepo (CustomerBASE contacts and
+  organizations, person and organization enrichment, email verification and IP intelligence,
+  Mailstack sending domains and mailboxes, billing invoices, outreach tracking), a 34-operation
+  Flow API for outbound sequencing, and the open-source customer-os-api GraphQL server that
+  predates the pivot. CustomerOS also runs a live anonymous MCP server and serves an A2A agent
+  card from its documentation host.
 accessModel:
-  pricing: freemium
-  onboarding: self-serve
+  pricing: paid
+  onboarding: sales-assisted
   trial: false
-  try_now: true
+  try_now: false
   public: false
-  label: Freemium · Self-serve signup
+  label: Paid · Sales-assisted onboarding · API access granted on request
   confidence: high
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-08-13'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/customeros.png
 tags:
 - CRM
 - Revenue
 - Go-To-Market
+- Lead Intelligence
+- Visitor Identification
+- Attribution
+- Email Verification
+- Enrichment
 - GraphQL
 - Open Source
 created: '2026-06-20'
-modified: '2026-06-20'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
 - aid: customeros:customeros-customerbase-rest-api
-  name: CustomerOS Customerbase REST API
+  name: CustomerOS REST API
   tags:
   - REST
-  - Customerbase
+  - CustomerBase
   - Organizations
+  - Enrichment
+  - Email Verification
+  - Mailstack
+  - Billing
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.customeros.ai/api-overview
-  baseURL: https://api.customeros.ai/customerbase/v1
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
   properties:
-  - url: https://docs.customeros.ai/api-overview
+  - url: openapi/customeros-customerbase-openapi.yml
+    type: OpenAPI
+    name: CustomerBASE (contacts + organizations)
+  - url: openapi/customeros-enrich-openapi.yml
+    type: OpenAPI
+    name: Enrichment
+  - url: openapi/customeros-verify-openapi.yml
+    type: OpenAPI
+    name: Email verification + IP intelligence
+  - url: openapi/customeros-domains-openapi.yml
+    type: OpenAPI
+    name: Mailstack domains + mailboxes
+  - url: openapi/customeros-billing-openapi.yml
+    type: OpenAPI
+    name: Billing invoices
+  - url: openapi/customeros-outreach-openapi.yml
+    type: OpenAPI
+    name: Outreach email tracking
+  - url: openapi/_original/customeros-swagger.json
+    type: Swagger
+    name: Source Swagger 2.0 (verbatim)
+  - url: https://github.com/customeros/customeros
+    type: SourceCode
+  - url: https://docs.customeros.ai
     type: Documentation
-  - url: https://docs.customeros.ai/api-descriptions
-    type: APIReference
   description: >-
-    Documented synchronous REST API on the customeros.ai cloud (api.customeros.ai/customerbase/v1), authenticated
-    with the X-CUSTOMER-OS-API-KEY header. Includes organization endpoints such as POST /organizations.
-    Access to each endpoint group is granted on a per-request basis by the CustomerOS team.
+    Key-authenticated REST surface for the customeros.ai cloud, published as six OpenAPI 3.0.1
+    documents (one per tag) plus the source Swagger 2.0 in github.com/customeros/customeros. All
+    six declare the same ApiKeyAuth scheme, an X-CUSTOMER-OS-API-KEY header, and the same
+    servers[] host https://api.customeros.ai. Access to each endpoint group is granted on a
+    per-request basis by the CustomerOS team. NOTE: as of 2026-08-13 api.customeros.ai has no DNS
+    address record, and the docs pages that used to document this API (docs.customeros.ai/api-overview
+    and /api-descriptions) now return 404 — see lifecycle/customeros-lifecycle.yml.
+- aid: customeros:customeros-flow-api
+  name: CustomerOS Flow API
+  tags:
+  - REST
+  - Outbound
+  - Sequences
+  - Email
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.customeros.ai
+  baseURL: https://api.customeros.ai/flow/{version}
+  properties:
+  - url: openapi/customeros-flow-api-openapi.yml
+    type: OpenAPI
+    name: Flow API
+  - url: openapi/_original/customeros-flow-openapi.json
+    type: OpenAPI
+    name: Flow API (verbatim, as served)
+  - url: https://docs.customeros.ai
+    type: Documentation
+  description: >-
+    34-operation REST API for outbound sequencing — flows, sequences, steps (email, LinkedIn or
+    manual), senders with warming state and daily send limits, sending schedules, opt-out and
+    analytics config, and per-sequence contacts. Server is templated as
+    https://api.customeros.ai/flow/{version} with version defaulting to v1. The spec is advertised
+    in the docs llms.txt as flowApiSpec.yaml but every HTTP path for it 404s; it was harvested from
+    the documentation MCP server's virtual filesystem, which is the only surface that serves it.
 - aid: customeros:customeros-website-tracker
   name: CustomerOS Website Tracker
   tags:
@@ -59,59 +123,140 @@ apis:
   - JavaScript
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://docs.customeros.ai/website-tracker
-  baseURL: https://docs.customeros.ai/tracker
+  baseURL: https://{customer-reverse-proxy-domain}/analytics-0.1.js
   properties:
   - url: https://docs.customeros.ai/website-tracker
     type: Documentation
   - url: https://docs.customeros.ai/tracker/custom-events
     type: Documentation
+    name: Custom events (Alpha)
+  - url: components/customeros-components.yml
+    type: Components
   description: >-
-    Client-side JavaScript tracker, installed via a script tag behind a customer-hosted reverse-proxy
-    CNAME, that captures page views and custom events and matches visitor IPs to companies. It is a script
-    integration rather than a public REST/GraphQL endpoint; custom events are emitted from the browser.
+    Client-side JavaScript tracker that captures page views and custom events, exposes
+    window.cos.identify() for attaching identity and properties, and matches visitor IPs to
+    companies. Since the 2025-09-08 change CustomerOS supports it ONLY when served from a
+    reverse proxy on the customer's own domain, so the base URL is templated by design — there
+    is no CustomerOS-hosted CDN URL to record and no version-pinned build.
 - aid: customeros:customeros-graphql-api
   name: CustomerOS GraphQL API
-  description: Single GraphQL endpoint for all CustomerOS operations.
-  humanURL: https://github.com/openline-ai/openline-customer-os
+  description: >-
+    Single GraphQL endpoint served by the open-source customer-os-api (Go, gqlgen) covering
+    organizations, contacts, opportunities, contracts, invoices, interactions and timeline
+    events. The repository moved with the rename: github.com/openline-ai/openline-customer-os
+    now 301s to github.com/customeros/customeros, where 69 .graphqls schema files are published.
+    Introspection could not be run — the published endpoint host does not resolve.
+  humanURL: https://github.com/customeros/customeros
   baseURL: https://api.customeros.ai/query
   tags:
   - GraphQL
   properties:
   - type: OpenAPI
     url: openapi/customeros-graphql-api-openapi.yml
-  - type: Documentation
-    url: https://docs.customeros.ai
-  - type: GitHub
-    url: https://github.com/openline-ai/openline-customer-os
+    name: HTTP envelope for POST /query
   - type: GraphQL
     url: graphql/customeros-graphql.md
+  - type: GraphQL
+    url: graphql/customeros-schema.graphql
+    name: Representative schema
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
   - type: Documentation
     url: https://docs.customeros.ai/data-structure
   - type: Documentation
     url: https://docs.customeros.ai/contacts
 common:
-- type: AgenticAccess
-  url: agentic-access/customeros-agentic-access.yml
-- type: DomainSecurity
-  url: security/customeros-domain-security.yml
-- type: Authentication
-  url: authentication/customeros-authentication.yml
-- type: GitHubOrganization
-  url: https://github.com/openline-ai
-- type: GitHubOrganization
-  url: https://github.com/customeros
-- type: LinkedIn
-  url: https://www.linkedin.com/company/customeros
 - type: Website
   url: https://customeros.ai
 - type: Documentation
   url: https://docs.customeros.ai
+- type: GettingStarted
+  url: https://docs.customeros.ai/quickstart
+- type: Blog
+  url: https://customeros.ai/gtm-guides
+- type: Pricing
+  url: https://customeros.ai/pricing
+- type: Login
+  url: https://app.customeros.ai/signin
+- type: TermsOfService
+  url: https://customeros.ai/standard-agreement/tos
+- type: PrivacyPolicy
+  url: https://customeros.ai/policies/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/customeros
+- type: LinkedIn
+  url: https://www.linkedin.com/company/customeros
+- type: StatusPage
+  url: https://status.customeros.ai/
+- type: Compliance
+  url: https://docs.customeros.ai/security-and-compliance
+- type: ChangeLog
+  url: https://customeros.ai/updates
+- type: ChangeLog
+  url: changelog/customeros-changelog.yml
+- type: AgentCard
+  url: a2a/customeros-a2a.yml
+- type: MCPServer
+  url: mcp/customeros-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/customeros-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/customeros-llms.txt
+- type: WellKnown
+  url: well-known/customeros-well-known.yml
+- type: AgenticAccess
+  url: agentic-access/customeros-agentic-access.yml
+- type: Authentication
+  url: authentication/customeros-authentication.yml
+- type: Conventions
+  url: conventions/customeros-conventions.yml
+- type: ErrorCatalog
+  url: errors/customeros-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/customeros-lifecycle.yml
+- type: Conformance
+  url: conformance/customeros-conformance.yml
+- type: DataModel
+  url: data-model/customeros-data-model.yml
+- type: Components
+  url: components/customeros-components.yml
+- type: Packages
+  url: packages/customeros-packages.yml
+- type: Protobuf
+  url: grpc/_index.yml
+- type: TrustCenter
+  url: security/customeros-trust-center.yml
+- type: DomainSecurity
+  url: security/customeros-domain-security.yml
 - type: Plans
   url: plans/customeros-plans-pricing.yml
 - type: RateLimits
   url: rate-limits/customeros-rate-limits.yml
 - type: FinOps
   url: finops/customeros-finops.yml
+- type: Overlay
+  url: overlays/customeros-customerbase-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-enrich-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-verify-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-domains-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-billing-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-outreach-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-flow-api-overlay.yaml
+- type: Overlay
+  url: overlays/customeros-graphql-api-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 32
+  pass: local-v1
