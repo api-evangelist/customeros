@@ -40,7 +40,7 @@ tags:
 - Open Source
 created: '2026-06-20'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: customeros:customeros-customerbase-rest-api
   name: CustomerOS REST API
