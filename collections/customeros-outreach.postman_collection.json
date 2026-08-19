@@ -1,0 +1,315 @@
+{
+  "item": [
+    {
+      "id": "4d8f499d-ceb8-40a5-91ef-3f5750971754",
+      "name": "Outreach",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed0ecbef-92c2-4799-918c-4a25dedc43c8",
+          "name": "Generate email tracking URLs",
+          "request": {
+            "name": "Generate email tracking URLs",
+            "description": {
+              "content": "Generates tracking pixels, click tracking URLs, and unsubscribe links for email campaigns",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "outreach",
+                "v1",
+                "email",
+                "tracking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaignId\": \"<string>\",\n  \"generateUnsubscribeLink\": \"<boolean>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"messageId\": \"<string>\",\n  \"recipientId\": \"<string>\",\n  \"trackClicks\": \"<boolean>\",\n  \"trackOpens\": \"<boolean>\",\n  \"trackerDomain\": \"<string>\",\n  \"unsubscribeLink\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2172f1c5-aa24-4871-8a64-de2499741f71",
+              "name": "Tracking URLs generated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outreach",
+                    "v1",
+                    "email",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaignId\": \"<string>\",\n  \"generateUnsubscribeLink\": \"<boolean>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"messageId\": \"<string>\",\n  \"recipientId\": \"<string>\",\n  \"trackClicks\": \"<boolean>\",\n  \"trackOpens\": \"<boolean>\",\n  \"trackerDomain\": \"<string>\",\n  \"unsubscribeLink\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"trackedLinks\": [\n    {\n      \"original\": \"https://example.com/page1\",\n      \"tracked\": \"https://track.example.com/r/abc123\"\n    },\n    {\n      \"original\": \"https://example.com/page1\",\n      \"tracked\": \"https://track.example.com/r/abc123\"\n    }\n  ],\n  \"trackingId\": \"msg_123456\",\n  \"trackingPixel\": \"https://track.example.com/p/abc123\",\n  \"unsubscribeLink\": \"https://track.example.com/u/abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "035aa8e9-6c47-4bd2-bf10-8d85b1e60261",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outreach",
+                    "v1",
+                    "email",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaignId\": \"<string>\",\n  \"generateUnsubscribeLink\": \"<boolean>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"messageId\": \"<string>\",\n  \"recipientId\": \"<string>\",\n  \"trackClicks\": \"<boolean>\",\n  \"trackOpens\": \"<boolean>\",\n  \"trackerDomain\": \"<string>\",\n  \"unsubscribeLink\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afbb66bd-1747-4268-b157-2e8df78b0cd4",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outreach",
+                    "v1",
+                    "email",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaignId\": \"<string>\",\n  \"generateUnsubscribeLink\": \"<boolean>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"messageId\": \"<string>\",\n  \"recipientId\": \"<string>\",\n  \"trackClicks\": \"<boolean>\",\n  \"trackOpens\": \"<boolean>\",\n  \"trackerDomain\": \"<string>\",\n  \"unsubscribeLink\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a1623a4-c136-4008-b5bf-2abf40d7c618",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "outreach",
+                    "v1",
+                    "email",
+                    "tracking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"campaignId\": \"<string>\",\n  \"generateUnsubscribeLink\": \"<boolean>\",\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"messageId\": \"<string>\",\n  \"recipientId\": \"<string>\",\n  \"trackClicks\": \"<boolean>\",\n  \"trackOpens\": \"<boolean>\",\n  \"trackerDomain\": \"<string>\",\n  \"unsubscribeLink\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "45923b82-e9a7-4cfa-9607-8ebeb18166a3",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}

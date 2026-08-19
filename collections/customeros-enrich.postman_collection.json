@@ -1,0 +1,1121 @@
+{
+  "item": [
+    {
+      "id": "f18d226d-9e1c-4366-883f-3a444d9d6b3d",
+      "name": "Enrichment API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c99c7b4-9422-4c8a-b87a-bd1a51dcb042",
+          "name": "Enrich organization information",
+          "request": {
+            "name": "Enrich organization information",
+            "description": {
+              "content": "Enriches organization information using either domain or LinkedIn URL",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrich",
+                "v1",
+                "organization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "linkedinUrl",
+                  "value": "<string>",
+                  "description": "Organization's LinkedIn URL"
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Organization's domain"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c587a819-5027-4c6e-929a-952da403a9a6",
+              "name": "Organization not found (status: warning)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "812d0faf-79e0-44e6-8f8b-836a8f1be829",
+              "name": "Missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "beb18b0a-25e2-4738-ae8f-f4ed70376b4b",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18001863-9d35-4240-a7aa-086886f78918",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c17ac26c-7bfb-410b-b1cb-031ea7659ce6",
+          "name": "Enrich person information",
+          "request": {
+            "name": "Enrich person information",
+            "description": {
+              "content": "Enriches person information using LinkedIn URL, email, and other optional details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrich",
+                "v1",
+                "person"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "linkedinUrl",
+                  "value": "<string>",
+                  "description": "LinkedIn profile URL"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Email address"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstName",
+                  "value": "<string>",
+                  "description": "First name"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastName",
+                  "value": "<string>",
+                  "description": "Last name"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMobileNumber",
+                  "value": "false",
+                  "description": "Include mobile number in results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7d0a0608-44e5-4836-8bbc-e00fc0a0fc96",
+              "name": "Person not found (status: warning)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMobileNumber",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fe3c324-6a70-4ef7-996b-e1621032f29b",
+              "name": "Processing initiated, check ResultURL for final data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMobileNumber",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"emails\": [\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      },\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      }\n    ],\n    \"jobs\": [\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      },\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      }\n    ],\n    \"location\": {\n      \"city\": \"San Francisco\",\n      \"country\": \"United States\",\n      \"region\": \"California\",\n      \"timezone\": \"PST\"\n    },\n    \"name\": {\n      \"firstName\": \"John\",\n      \"fullName\": \"John Doe\",\n      \"lastName\": \"Doe\"\n    },\n    \"phoneNumbers\": [\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      },\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      }\n    ],\n    \"profilePic\": \"https://example.com/profile.jpg\",\n    \"social\": {\n      \"discord\": {\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"github\": {\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"linkedin\": {\n        \"followerCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"publicId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"x\": {\n        \"handle\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"isComplete\": true,\n  \"message\": \"Enrichment completed\",\n  \"pendingFields\": [\n    \"email\",\n    \"phone number\"\n  ],\n  \"resultUrl\": \"https://api.customeros.ai/enrich/v1/person/results/550e8400-e29b-41d4-a716-446655440000\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06aff2a3-8d12-4010-9120-d998bbad7cfe",
+              "name": "Missing linkedinUrl or email",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMobileNumber",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "977abbc4-a7e3-4796-ab0d-d53f4d4255c0",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMobileNumber",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4006bd95-57a9-4927-99af-362dc1ea4587",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "linkedinUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMobileNumber",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb183b98-a13e-44bc-b5a1-67d440052b6f",
+          "name": "Retrieve enrichment results",
+          "request": {
+            "name": "Retrieve enrichment results",
+            "description": {
+              "content": "Retrieves the results of an asynchronous person enrichment operation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrich",
+                "v1",
+                "person",
+                "results",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Result ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a95acf30-df72-4ec5-bbb4-c5d00ca1cb5d",
+              "name": "Successfully retrieved enriched data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"emails\": [\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      },\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      }\n    ],\n    \"jobs\": [\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      },\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      }\n    ],\n    \"location\": {\n      \"city\": \"San Francisco\",\n      \"country\": \"United States\",\n      \"region\": \"California\",\n      \"timezone\": \"PST\"\n    },\n    \"name\": {\n      \"firstName\": \"John\",\n      \"fullName\": \"John Doe\",\n      \"lastName\": \"Doe\"\n    },\n    \"phoneNumbers\": [\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      },\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      }\n    ],\n    \"profilePic\": \"https://example.com/profile.jpg\",\n    \"social\": {\n      \"discord\": {\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"github\": {\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"linkedin\": {\n        \"followerCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"publicId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"x\": {\n        \"handle\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"isComplete\": true,\n  \"message\": \"Enrichment completed\",\n  \"pendingFields\": [\n    \"email\",\n    \"phone number\"\n  ],\n  \"resultUrl\": \"https://api.customeros.ai/enrich/v1/person/results/550e8400-e29b-41d4-a716-446655440000\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e4deee3-c0b9-430c-86df-0856cb02ce65",
+              "name": "Still processing, check again later",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"emails\": [\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      },\n      {\n        \"address\": \"john.doe@example.com\",\n        \"deliverable\": \"true\",\n        \"isRisky\": false,\n        \"type\": \"work\"\n      }\n    ],\n    \"jobs\": [\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      },\n      {\n        \"company\": \"Tech Corp\",\n        \"companyLinkedin\": \"https://linkedin.com/company/techcorp\",\n        \"companyWebsite\": \"https://techcorp.com\",\n        \"duration\": {\n          \"endMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startMonth\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"startYear\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"isCurrent\": true,\n        \"seniority\": \"Senior\",\n        \"title\": \"Software Engineer\"\n      }\n    ],\n    \"location\": {\n      \"city\": \"San Francisco\",\n      \"country\": \"United States\",\n      \"region\": \"California\",\n      \"timezone\": \"PST\"\n    },\n    \"name\": {\n      \"firstName\": \"John\",\n      \"fullName\": \"John Doe\",\n      \"lastName\": \"Doe\"\n    },\n    \"phoneNumbers\": [\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      },\n      {\n        \"number\": \"+14155552671\",\n        \"type\": \"mobile\"\n      }\n    ],\n    \"profilePic\": \"https://example.com/profile.jpg\",\n    \"social\": {\n      \"discord\": {\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"github\": {\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"username\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"linkedin\": {\n        \"followerCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"publicId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"x\": {\n        \"handle\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"isComplete\": true,\n  \"message\": \"Enrichment completed\",\n  \"pendingFields\": [\n    \"email\",\n    \"phone number\"\n  ],\n  \"resultUrl\": \"https://api.customeros.ai/enrich/v1/person/results/550e8400-e29b-41d4-a716-446655440000\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64097970-36f3-4272-8dc0-ffeeb6c043d9",
+              "name": "Invalid result ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5df1c47d-bacb-4f26-9192-5e7d96a965d2",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d76dd059-a990-49e5-a900-1a8b2dd1ee64",
+              "name": "Result not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "979167a2-c213-4d9e-b9c9-13af231cb411",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrich",
+                    "v1",
+                    "person",
+                    "results",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Result ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a1d1aa3b-5996-4f2a-a7d3-e946d71030d1",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}

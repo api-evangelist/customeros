@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Enrichment API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enrich organization information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/enrich/v1/organization",
+            "params": [
+              {
+                "name": "linkedinUrl",
+                "value": "",
+                "type": "query",
+                "description": "Organization's LinkedIn URL"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Organization's domain"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enriches organization information using either domain or LinkedIn URL"
+        },
+        {
+          "info": {
+            "name": "Enrich person information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/enrich/v1/person",
+            "params": [
+              {
+                "name": "linkedinUrl",
+                "value": "",
+                "type": "query",
+                "description": "LinkedIn profile URL"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Email address"
+              },
+              {
+                "name": "firstName",
+                "value": "",
+                "type": "query",
+                "description": "First name"
+              },
+              {
+                "name": "lastName",
+                "value": "",
+                "type": "query",
+                "description": "Last name"
+              },
+              {
+                "name": "includeMobileNumber",
+                "value": "",
+                "type": "query",
+                "description": "Include mobile number in results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enriches person information using LinkedIn URL, email, and other optional details"
+        },
+        {
+          "info": {
+            "name": "Retrieve enrichment results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/enrich/v1/person/results/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Result ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the results of an asynchronous person enrichment operation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

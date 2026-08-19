@@ -1,0 +1,1667 @@
+{
+  "item": [
+    {
+      "id": "f3e5af24-67f6-4bcc-8ce3-a6cf0ae04e6a",
+      "name": "Email Verification",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc2d9faa-b31d-4d4e-a060-2c2d7cf8751d",
+          "name": "Verify single email address",
+          "request": {
+            "name": "Verify single email address",
+            "description": {
+              "content": "Performs comprehensive validation of a single email address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "v1",
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<email>",
+                  "description": "(Required) Email address to verify"
+                },
+                {
+                  "disabled": false,
+                  "key": "verifyCatchAll",
+                  "value": "true",
+                  "description": "Verify catch-all domain"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c0e1c09e-5ae0-4602-8dda-68e4f27c0245",
+              "name": "Email verification results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "verifyCatchAll",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": {\n    \"alternateEmail\": \"alternate@example.com\",\n    \"deliverable\": \"true\",\n    \"emailAddress\": \"example@example.com\",\n    \"isCatchAll\": false,\n    \"isRisky\": false,\n    \"provider\": \"gmail\",\n    \"risk\": {\n      \"isFirewalled\": false,\n      \"isFreeProvider\": true,\n      \"isMailboxFull\": false,\n      \"isPrimaryDomain\": true,\n      \"isRoleMailbox\": false,\n      \"isSystemGenerated\": false\n    },\n    \"secureGatewayProvider\": \"Proofpoint\",\n    \"syntax\": {\n      \"domain\": \"example.com\",\n      \"isValid\": true,\n      \"user\": \"example\"\n    }\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d749ce8-8dd0-4257-a761-7ca20167f3e3",
+              "name": "Invalid email format or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "verifyCatchAll",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40bd981d-7eb5-46ad-bf50-d519863cbcf9",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "verifyCatchAll",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74f7ff53-db3f-4a29-93a2-d50358081ea1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "verifyCatchAll",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "809f89cc-19ad-4a0e-aa01-8c6651767d44",
+          "name": "Upload emails for bulk verification",
+          "request": {
+            "name": "Upload emails for bulk verification",
+            "description": {
+              "content": "Initiates bulk verification process for emails from CSV file",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "v1",
+                "email",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) CSV file containing email addresses"
+                },
+                {
+                  "key": "emailColumn",
+                  "value": "first column",
+                  "type": "text",
+                  "description": "CSV column containing emails"
+                },
+                {
+                  "key": "verifyCatchAll",
+                  "value": "true",
+                  "type": "text",
+                  "description": "Verify catch-all domains"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1626e1ec-f2b2-49e2-af79-4f8aca6c2c9a",
+              "name": "Bulk verification initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file containing email addresses",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "CSV column containing emails",
+                        "type": "text/plain"
+                      },
+                      "key": "emailColumn",
+                      "value": "first column",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Verify catch-all domains",
+                        "type": "text/plain"
+                      },
+                      "key": "verifyCatchAll",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"estimatedCompletionTs\": 1694030400,\n  \"jobId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"message\": \"File uploaded successfully\",\n  \"resultUrl\": \"https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92de711f-c2df-4130-93b0-6754ef6f561a",
+              "name": "Invalid file format or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file containing email addresses",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "CSV column containing emails",
+                        "type": "text/plain"
+                      },
+                      "key": "emailColumn",
+                      "value": "first column",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Verify catch-all domains",
+                        "type": "text/plain"
+                      },
+                      "key": "verifyCatchAll",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6224c48-29d9-484a-8599-33be867f7b29",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file containing email addresses",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "CSV column containing emails",
+                        "type": "text/plain"
+                      },
+                      "key": "emailColumn",
+                      "value": "first column",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Verify catch-all domains",
+                        "type": "text/plain"
+                      },
+                      "key": "verifyCatchAll",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a25e25bf-bc2e-4478-8028-d444812c29c6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file containing email addresses",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "CSV column containing emails",
+                        "type": "text/plain"
+                      },
+                      "key": "emailColumn",
+                      "value": "first column",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Verify catch-all domains",
+                        "type": "text/plain"
+                      },
+                      "key": "verifyCatchAll",
+                      "value": "true",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57e047cd-d131-49c3-a872-9c6845f3fd25",
+          "name": "Get bulk verification results",
+          "request": {
+            "name": "Get bulk verification results",
+            "description": {
+              "content": "Retrieves results or status of bulk verification job",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "v1",
+                "email",
+                "bulk",
+                "results",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "requestId",
+                  "description": "(Required) Bulk verification job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "582d2259-b8b3-47b2-9d25-ac73cee34eb9",
+              "name": "Verification results or status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"estimatedCompletionTs\": 1694030400,\n  \"fileName\": \"emails.csv\",\n  \"jobId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"message\": \"Completed 1000 of 1000 emails\",\n  \"results\": {\n    \"deliverable\": 950,\n    \"downloadUrl\": \"https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000/download\",\n    \"totalEmails\": 1000,\n    \"undeliverable\": 45\n  },\n  \"status\": \"completed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78ea690c-112e-473a-8b3d-4baae4990c47",
+              "name": "Invalid job ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfd79524-be5c-4321-8aa4-9841a2a82acb",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92194ed3-e9f5-4f47-bf34-31c5f255f6cd",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786bc755-0def-46b3-af15-b5e3d6db1a9e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a8e5ff8-c8a5-49f0-9384-2a03d991bd16",
+          "name": "Download bulk verification results",
+          "request": {
+            "name": "Download bulk verification results",
+            "description": {
+              "content": "Downloads CSV file containing detailed verification results",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "v1",
+                "email",
+                "bulk",
+                "results",
+                ":requestId",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "requestId",
+                  "description": "(Required) Bulk verification job ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d429d18-7bf9-4ddb-8a57-184b5a42d417",
+              "name": "CSV file containing verification results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb610163-0435-43ea-a7f4-09538cf4710b",
+              "name": "Invalid job ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b6ee306-9eac-424f-8a78-23d2d6f727b3",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbca86f7-da26-407f-b39f-086feb69992e",
+              "name": "Results not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ad56644c-d0bf-43c0-bd42-10c1b1bfe576",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "email",
+                    "bulk",
+                    "results",
+                    ":requestId",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) Bulk verification job ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2c7d45ce-4bba-464c-89a7-278d5eba256c",
+      "name": "IP Intelligence",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "abe35c5c-5440-491d-b87e-13002bbacb77",
+          "name": "Get IP intelligence data",
+          "request": {
+            "name": "Get IP intelligence data",
+            "description": {
+              "content": "Retrieves comprehensive information about an IP address including threats, geolocation, and network details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verify",
+                "v1",
+                "ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) IP address to analyze"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2f8914a-6fa7-4aab-ac85-0ccef829a61b",
+              "name": "IP intelligence data retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ip\": {\n    \"geolocation\": {\n      \"city\": \"Berlin\",\n      \"country\": \"Germany\",\n      \"countryIso\": \"DE\",\n      \"isEuropeanUnion\": true\n    },\n    \"ipAddress\": \"192.168.1.1\",\n    \"network\": {\n      \"asn\": \"AS12345\",\n      \"domain\": \"isp.com\",\n      \"name\": \"ISP Name\",\n      \"route\": \"192.168.0.0/16\",\n      \"type\": \"business\"\n    },\n    \"organization\": {\n      \"domain\": \"company.com\",\n      \"linkedin\": \"https://linkedin.com/company/company\",\n      \"name\": \"Company Name\"\n    },\n    \"threats\": {\n      \"isCloudRelay\": false,\n      \"isDatacenter\": false,\n      \"isMobile\": false,\n      \"isProxy\": false,\n      \"isTor\": false,\n      \"isUnallocated\": false,\n      \"isVpn\": false\n    },\n    \"time_zone\": {\n      \"abbr\": \"string\",\n      \"current_time\": \"2024-09-10T14:00:00+01:00\",\n      \"is_dst\": true,\n      \"name\": \"string\",\n      \"offset\": \"+0100\"\n    }\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a51503d8-b4ae-4160-95a0-19720eddbf14",
+              "name": "Invalid IP address format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d09e188-5aa5-4c70-b73b-11a5a3acf674",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "931a8036-8dc0-4e6d-bfaa-e6f483abbca2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verify",
+                    "v1",
+                    "ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c37734b8-a901-457e-904f-b334a8cec23e",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}

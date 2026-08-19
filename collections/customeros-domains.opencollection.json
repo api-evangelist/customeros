@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List active domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/domains",
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all active domains for the authenticated tenant"
+        },
+        {
+          "info": {
+            "name": "Register new domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Registers and configures a new domain for mail services, including DNS setup"
+        },
+        {
+          "info": {
+            "name": "Configure domain DNS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/domains/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets up DNS records and mail services for an existing domain"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mailboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List mailboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/domains/:domain/mailboxes",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "Domain name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all mailboxes configured for the specified domain"
+        },
+        {
+          "info": {
+            "name": "Create mailbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/domains/:domain/mailboxes",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path",
+                "description": "Domain name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new mailbox for the specified domain with optional forwarding and webmail access"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,114 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/customeros-mcp.yml, mcp/customeros-mcp-tools.json, openapi/, graphql/customeros-schema.graphql
+description: >-
+  Binding of the CustomerOS MCP tool set to the CustomerOS machine-readable contracts. The headline
+  finding is a total disjunction: CustomerOS runs a real, anonymous remote MCP server, but every one
+  of its three tools operates on the DOCUMENTATION corpus, and none of them is backed by a
+  CustomerOS API operation. Coverage of the 55 published REST operations by MCP tools is 0%.
+surfaces:
+  openapi:
+    files:
+    - openapi/customeros-billing-openapi.yml
+    - openapi/customeros-customerbase-openapi.yml
+    - openapi/customeros-domains-openapi.yml
+    - openapi/customeros-enrich-openapi.yml
+    - openapi/customeros-flow-api-openapi.yml
+    - openapi/customeros-outreach-openapi.yml
+    - openapi/customeros-verify-openapi.yml
+    operations: 55
+    gated: false
+    note: >-
+      All seven specs are provider-published (six in github.com/customeros/customeros, one served
+      through the docs MCP filesystem). None declares an operationId, so operations below are
+      identified by METHOD + path — the only stable identifier the specs actually carry.
+  graphql:
+    endpoint: https://api.customeros.ai/query
+    schema: graphql/customeros-schema.graphql
+    introspection: unavailable
+    gated: true
+    note: >-
+      Introspection could not be attempted — api.customeros.ai has no A record (NOERROR/NODATA,
+      MX only), so no GraphQL endpoint is reachable at the published host.
+  mcp:
+    url: https://docs.customeros.ai/mcp
+    tools: 3
+    gated: false
+    note: tools/list returned 200 anonymously with complete inputSchema per tool.
+crosswalk: []
+mcp_only:
+- tool: search_customer_os_docs
+  reason: >-
+    Documentation search over the Mintlify-indexed docs corpus. No CustomerOS API operation backs it;
+    there is no /search endpoint in any published spec.
+- tool: query_docs_filesystem_customer_os_docs
+  reason: >-
+    Read-only virtual filesystem over the docs pages and the bundled OpenAPI. Server-side docs
+    platform capability, not a product API projection.
+- tool: submit_feedback
+  reason: >-
+    Docs-site feedback channel. No REST or GraphQL equivalent in any CustomerOS contract.
+rest_only:
+- capability: CustomerBASE (contacts + organizations)
+  spec: openapi/customeros-customerbase-openapi.yml
+  operations:
+  - POST /customerbase/v1/contacts
+  - POST /customerbase/v1/contacts/bulk
+  - POST /customerbase/v1/contacts/import
+  - POST /customerbase/v1/organizations
+  - GET /customerbase/v1/organizations/{id}
+  - PUT /customerbase/v1/organizations/{id}/links/{externalSystem}/primary
+- capability: Enrichment
+  spec: openapi/customeros-enrich-openapi.yml
+  operations:
+  - GET /enrich/v1/organization
+  - GET /enrich/v1/person
+  - GET /enrich/v1/person/results/{id}
+- capability: Email verification + IP intelligence
+  spec: openapi/customeros-verify-openapi.yml
+  operations:
+  - GET /verify/v1/email
+  - POST /verify/v1/email/bulk
+  - GET /verify/v1/email/bulk/results/{requestId}
+  - GET /verify/v1/email/bulk/results/{requestId}/download
+  - GET /verify/v1/ip
+- capability: Mailstack (domains + mailboxes)
+  spec: openapi/customeros-domains-openapi.yml
+  operations:
+  - GET /domains
+  - POST /domains
+  - POST /domains/configure
+  - GET /domains/{domain}/mailboxes
+  - POST /domains/{domain}/mailboxes
+- capability: Billing
+  spec: openapi/customeros-billing-openapi.yml
+  operations:
+  - GET /billing/v1/organizations/{id}/invoices
+- capability: Outreach
+  spec: openapi/customeros-outreach-openapi.yml
+  operations:
+  - POST /outreach/v1/email/tracking
+- capability: Flows, sequences, steps, senders, sequence contacts
+  spec: openapi/customeros-flow-api-openapi.yml
+  operation_count: 34
+  note: >-
+    Full CRUD over /flows and nested /sequences, /steps, /senders, /contacts, /schedule and /config.
+    Enumerated in the spec; not repeated here.
+graphql_only:
+- capability: The customer-os-api GraphQL root
+  reason: >-
+    The GraphQL surface (organizations, contacts, opportunities, contracts, invoices, interactions,
+    timeline events) is far wider than the REST slices and has no MCP tool at all. Recorded as a
+    divergence, not enumerated, because the endpoint is unreachable and the local schema is an
+    explicitly representative trim rather than a full introspection dump.
+coverage:
+  tools_named: 3
+  tools_bound_to_rest: 0
+  mcp_only: 3
+  rest_operations_total: 55
+  rest_operations_with_a_tool: 0
+  rest_coverage_pct: 0
+  confidence: high
+  note: >-
+    Zero coverage is measured, not assumed: the full tools/list was retrieved anonymously and read
+    directly, so there is no gated-schema uncertainty on the MCP side of this crosswalk.

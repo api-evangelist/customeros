@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.customeros.ai/tracker, https://docs.customeros.ai/tracker/custom-events
+description: >-
+  CustomerOS ships one client-side component: a first-party website tracker loaded as a script tag.
+  Its distinguishing property is that it is served from a domain the CUSTOMER controls — a
+  reverse-proxy CNAME the customer configures — rather than from a CustomerOS CDN, which is how it
+  survives tracker blocking. There is no npm package and no version-pinned CDN URL, so a consumer
+  cannot tell which build they are loading.
+families:
+- name: Website Tracker
+  kind: script-tag
+  loader: analytics-0.1.js
+  distribution: cdn
+  registry: cdn
+  url_pattern: https://{customer-reverse-proxy-domain}/analytics-0.1.js
+  version: null
+  published: null
+  version_note: >-
+    The loader filename carries a `0.1` marker but the URL is otherwise unpinned and the host is
+    customer-specific, so there is no registry or CDN metadata endpoint to query and no way to
+    resolve which build is live. Recorded as null deliberately: checked, nothing publishable to
+    record.
+  install_forms:
+  - form: HTML script tag
+    note: >-
+      Self-executing IIFE appended to document.body or document.head; the exact reverse-proxied
+      domain is issued to each workspace inside the CustomerOS app.
+  - form: JavaScript snippet
+    note: >-
+      Guarded injector keyed on element id `customeros-metrics-loader`, run on DOMContentLoaded.
+  global: window.cos
+  api:
+  - method: window.cos.identify(properties)
+    description: >-
+      Attach identity and custom properties to the current visitor profile. Documented call sites are
+      after login, after signup, on profile update, and on page load for authenticated users.
+    documented_properties: [email, name, user_id, plan]
+  - setting: c.__disableCosEvents__ / window.__disableCosEvents__
+    type: boolean
+    description: >-
+      Set true to disable automatic page-view and event capture and track manually only. Documented
+      as the control for applications where PII would otherwise be collected automatically.
+  automatic_capture: [page views, events]
+  custom_events:
+    status: alpha
+    source: https://docs.customeros.ai/tracker/custom-events
+    note: >-
+      Custom (Signal) event tracking is documented as Alpha with a contact-us gate; no event names,
+      payload schema or call signature is published.
+platform_guides:
+- {platform: Webflow, url: 'https://docs.customeros.ai/tracker/webflow'}
+- {platform: Framer, url: 'https://docs.customeros.ai/tracker/framer'}
+- {platform: Google Tag Manager, url: 'https://docs.customeros.ai/tracker/google-tag-manager', note: documented as not recommended}
+- {platform: Mintlify, url: 'https://docs.customeros.ai/tracker/mintlify'}
+- {platform: GitBook, url: 'https://docs.customeros.ai/tracker/gitbook'}
+- {platform: Docusaurus, url: 'https://docs.customeros.ai/tracker/docusaurus'}
+- {platform: Fern, url: 'https://docs.customeros.ai/tracker/fern'}
+- {platform: Scalar, url: 'https://docs.customeros.ai/tracker/scalar'}

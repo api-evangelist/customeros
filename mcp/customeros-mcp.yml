@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://docs.customeros.ai/mcp
+description: >-
+  CustomerOS runs a live, anonymous, remote MCP server on its documentation host. It is a
+  DOCUMENTATION server (search + a read-only virtual filesystem over the docs pages and the
+  published OpenAPI), not a server over the CustomerOS product API — none of its three tools
+  create, read or mutate CustomerOS data. It is nevertheless a real, reachable agent surface:
+  tools/list returned HTTP 200 anonymously with full JSON Schema input contracts.
+deployment:
+  mode: remote
+  endpoint: https://docs.customeros.ai/mcp
+  auth: none
+  verified: probed
+server:
+  name: customer_os_docs
+  transport: http
+  url: https://docs.customeros.ai/mcp
+  platform: Mintlify hosted docs MCP
+  advertised_at: https://docs.customeros.ai/.well-known/mcp.json
+  advertised_url: https://customeros-eff6c53f.main-kill-isr.mintlify.me/mcp
+  notes: >-
+    /.well-known/mcp.json advertises the Mintlify-internal origin
+    (customeros-eff6c53f.main-kill-isr.mintlify.me/mcp) rather than the branded docs host. Both
+    answer; the branded https://docs.customeros.ai/mcp is the endpoint recorded here because it is
+    the one on a domain CustomerOS controls.
+tools:
+- name: search_customer_os_docs
+  title: Search documentation
+  description: >-
+    Search across the CustomerOS Docs knowledge base to find relevant information, code examples,
+    API references and guides. Returns contextual content with titles and direct links.
+  input_schema:
+    query: {type: string, required: true, description: Search query}
+  annotations: {read_only: true, destructive: false, idempotent: true, open_world: false}
+- name: query_docs_filesystem_customer_os_docs
+  description: >-
+    Read-only shell-like query against a virtualized in-memory filesystem containing only the
+    CustomerOS documentation pages and OpenAPI specs. Supports ls/cat/head/tail/grep/find/wc.
+  input_schema:
+    command: {type: string, required: true, description: Shell-like read-only command}
+- name: submit_feedback
+  description: >-
+    Report a problem with the documentation site so the docs team can fix it.
+  input_schema:
+    path: {type: string, required: true}
+    feedback: {type: string, required: true}
+tool_count: 3
+verbatim: mcp/customeros-mcp-tools.json
+finding: >-
+  The docs MCP filesystem is what surfaced the CustomerOS Flow API OpenAPI. /openapi/flowApiSpec.yaml
+  is listed in the docs llms.txt and mounted in the MCP virtual filesystem, but every HTTP path for it
+  (docs.customeros.ai/flowApiSpec.yaml, /flowApiSpec.json, /openapi/flowApiSpec.yaml) returns 404 —
+  the spec is reachable through the agent surface and not through the browser one.
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://docs.customeros.ai/mcp
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  http_status: 200
+  content_type: text/event-stream
+  auth_required: false
+  misses:
+  - {url: 'https://mcp.customeros.ai/', http_status: 0, note: no DNS record}
+  - {url: 'https://docs.customeros.ai/sse', http_status: 405}

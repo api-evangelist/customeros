@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Outreach",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate email tracking URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/outreach/v1/email/tracking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates tracking pixels, click tracking URLs, and unsubscribe links for email campaigns"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

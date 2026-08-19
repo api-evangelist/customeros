@@ -1,71 +1,88 @@
+generated: '2026-08-13'
+method: searched
+source: https://customeros.ai/pricing
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: CustomerOS
 providerId: customeros
 created: '2026-06-20'
-modified: '2026-06-20'
-reconciled: false
+modified: '2026-08-13'
+reconciled: true
+plan_count: 2
 tags:
 - CRM
 - Revenue
 - Go-To-Market
-- GraphQL
-- Open Source
+- Lead Intelligence
 - Plans
 description: >-
-  CustomerOS (formerly Openline) is open source under Apache-2.0 (with a separate
-  enterprise `ee/` directory), so the customer-os-api GraphQL server can be
-  self-hosted at no license cost. The commercial cloud at customeros.ai is a
-  sales-led go-to-market product; public, itemized API pricing tiers are not
-  published. API access to the cloud Customerbase REST endpoints is granted on a
-  per-request basis by the CustomerOS team. Plan and price values below are not
-  reconciled because no public pricing table was found.
+  CustomerOS publishes a real, itemized price on customeros.ai/pricing: one named tier, Growth, at
+  $2,999 per month on a twelve-month commitment, with unlimited seats, plus an Enterprise tier at a
+  custom price. Both are subscriptions to the product; NEITHER is an API plan. There is no API price,
+  no metered call price, and no self-serve API key — access to each API endpoint group is granted by
+  the CustomerOS team on request. A 30-day money-back guarantee is advertised across both tiers.
 notes: >-
-  No public pricing page with itemized tiers was found at the review date.
-  Self-hosting the open-source server is free (infrastructure costs only);
-  cloud pricing is contact-sales. Verify against customeros.ai during
-  reconciliation.
+  This supersedes the 2026-06-20 record, which described an "Open Source (Self-Hosted)" free tier and
+  a contact-sales cloud. That framing is no longer accurate: the openline-ai GitHub organization has
+  been deleted, the repository now lives at github.com/customeros/customeros under a NOASSERTION
+  license, and self-hosting is no longer presented as a product option anywhere on the site. The
+  pricing page now names a price.
 sources:
-- https://customeros.ai
-- https://docs.customeros.ai
-- https://github.com/openline-ai/openline-customer-os
+- https://customeros.ai/pricing
+- https://docs.customeros.ai/quickstart
+guarantee:
+  name: Zero-risk pricing
+  terms: 30 day money-back guarantee
+  applies_to: [customeros-growth, customeros-enterprise]
+onboarding:
+  self_serve: false
+  note: >-
+    The documented first step of the quickstart is "Book Your Setup Call" — an onboarding session
+    with the CustomerOS team, booked via cal.com/mbrown/20min or the in-app link. Sign-in is at
+    app.customeros.ai/signin; there is no public self-serve signup URL (customeros.ai/signup 404s).
 plans:
-- id: customeros-open-source
-  name: Open Source (Self-Hosted)
-  type: free
+- id: customeros-growth
+  name: Growth
+  type: paid
+  price: 2999
+  currency: USD
+  billing_period: month
+  commitment: 12 months
+  seats: unlimited
   description: >-
-    Self-host the customer-os-api GraphQL server and the rest of the CustomerOS
-    stack under Apache-2.0. No license fee; you operate your own infrastructure
-    (PostgreSQL, Neo4j, and supporting services). The `ee/` enterprise directory
-    is excluded from the open-source license.
+    Named tier with a published price. Includes full pipeline analysis and reports, automatic ICP
+    matching, zero implementation, and unlimited seats.
   entries:
-  - label: Self-Hosted License
-    name: self_hosted
+  - label: Growth Subscription
+    name: growth
     type: flat
-    metric: license
+    metric: subscription
     limit: -1
     timeFrame: month
     geo: global
     unit: 1
-    price: free (Apache-2.0, self-hosted infrastructure costs apply)
+    price: 2999
+    currency: USD
     userMultiplied: false
   elements:
-  - name: GraphQL Core API
-  - name: Organizations
-  - name: Contacts
-  - name: Opportunities
-  - name: Interactions
-- id: customeros-cloud
-  name: Cloud
+  - name: Full pipeline analysis & reports
+  - name: Automatic ICP matching
+  - name: Zero implementation required
+  - name: Unlimited seats forever
+- id: customeros-enterprise
+  name: Enterprise
   type: enterprise
+  price: null
+  currency: USD
+  billing_period: custom
   description: >-
-    Managed CustomerOS cloud at customeros.ai. Sales-led; itemized public pricing
-    not published. API (Customerbase REST) access is enabled per endpoint group on
-    a per-request basis after contacting the team.
+    Everything in Growth, plus weekly coaching with the founders, support for complex data models,
+    priority support over Slack Connect, and terms tailored to use case and company size. Priced on
+    application — the page's call to action is "Talk to our CEO".
   entries:
-  - label: Cloud Subscription
-    name: cloud
+  - label: Enterprise Subscription
+    name: enterprise
     type: flat
     metric: contract
     limit: -1
@@ -75,10 +92,17 @@ plans:
     price: contact sales
     userMultiplied: false
   elements:
-  - name: Managed Hosting
-  - name: Customerbase REST API
-  - name: Website Tracker
-  - name: AI Agents
+  - name: Everything in Growth
+  - name: Weekly coaching with Founders
+  - name: Support complex data models
+  - name: Priority support via Slack Connect
+  - name: Tailored to your use case and size
+api_pricing:
+  published: false
+  note: >-
+    No plan on the pricing page mentions API access, an API call allowance, or an overage rate. The
+    published OpenAPI documents describe endpoint groups that CustomerOS enables per customer on
+    request, so API entitlement is negotiated rather than purchased.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

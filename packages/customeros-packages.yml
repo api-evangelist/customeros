@@ -1,0 +1,73 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, proxy.golang.org, pypi.org, github.com/customeros — probed 2026-08-13
+description: >-
+  CustomerOS publishes no client SDK for its own REST or GraphQL API in any language. What it does
+  publish are two installable Go tools (mailsherpa, mailwatcher) and two npm packages left over from
+  the Openline era. Nothing here wraps the CustomerOS API, so `official: true` is recorded where the
+  publisher is first-party, but `api_client: false` is recorded on every entry — the distinction
+  matters, because a first-party package is not the same thing as a first-party API client.
+packages:
+- language: go
+  registry: pkg.go.dev
+  name: github.com/customeros/mailsherpa
+  url: https://pkg.go.dev/github.com/customeros/mailsherpa
+  repository: https://github.com/customeros/mailsherpa
+  install: go install github.com/customeros/mailsherpa@latest
+  official: true
+  api_client: false
+  version: v0.3.9
+  published: '2025-03-10'
+  description: >-
+    CLI and Go library that verifies whether an email address is deliverable, over SMTP, without
+    sending an email. Standalone tool; it does not call the CustomerOS API.
+- language: go
+  registry: pkg.go.dev
+  name: github.com/customeros/mailwatcher
+  url: https://pkg.go.dev/github.com/customeros/mailwatcher
+  repository: https://github.com/customeros/mailwatcher
+  install: go install github.com/customeros/mailwatcher@latest
+  official: true
+  api_client: false
+  version: v0.1.6
+  published: '2024-12-07'
+  description: Monitors the reputation of email domains and IPs. Standalone tool.
+- language: javascript
+  registry: npm
+  name: '@openline-ai/openline-web-chat'
+  url: https://www.npmjs.com/package/@openline-ai/openline-web-chat
+  repository: https://github.com/openline-ai/openline-web-chat
+  install: npm install @openline-ai/openline-web-chat
+  official: true
+  api_client: false
+  legacy: true
+  version: 1.3.9
+  published: '2023-02-15'
+  description: >-
+    Openline-era embeddable web chat widget. Last published 2023-02-15, more than three years before
+    this probe, and the publishing GitHub organization (openline-ai) no longer exists — it now 404s
+    and its repositories redirect to github.com/customeros. Recorded as abandoned.
+- language: javascript
+  registry: npm
+  name: '@openline-ai/ui-kit'
+  url: https://www.npmjs.com/package/@openline-ai/ui-kit
+  repository: https://github.com/openline-ai/openline-ui-kit
+  install: npm install @openline-ai/ui-kit
+  official: true
+  api_client: false
+  legacy: true
+  version: 1.3.1
+  published: '2023-05-05'
+  description: >-
+    Openline-era React UI kit. Last published 2023-05-05; npm description is still the literal
+    string "TODO". Recorded as abandoned, same organization as above.
+absent:
+- {registry: pypi, query: customeros, status: 404}
+- {registry: npm, query: '@customeros', result: no packages under this scope}
+- {registry: npm, query: customeros, result: no first-party matches}
+currency_finding: >-
+  Every first-party package CustomerOS publishes predates the API it would have to wrap. The newest
+  is mailsherpa v0.3.9 from 2025-03-10; the two npm packages are from 2023 and were published by an
+  organization that has since been deleted. No package was published in the twelve months before
+  this probe.

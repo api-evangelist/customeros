@@ -1,0 +1,40 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+source: https://docs.customeros.ai/security-and-compliance
+description: >-
+  CustomerOS has no trust center in the usual sense — trust.customeros.ai and security.customeros.ai
+  do not resolve, and customeros.ai/security and /trust return 404. What it does publish is a single
+  Security & Compliance page inside the documentation, which names one real third-party certification
+  and states a GDPR position. That page is the trust surface, so it is recorded as such.
+url: https://docs.customeros.ai/security-and-compliance
+dedicated_trust_center: false
+certifications:
+- name: CASA Type 2
+  issuer: Google — Cloud Application Security Assessment
+  scope: >-
+    Audited because of the depth of the Google integrations; the certification includes code
+    vulnerability scanning.
+  recertification: annual
+regulatory:
+- {regime: GDPR, position: 'Fully compliant; data-removal requests handled in-workspace and company-wide.'}
+- {regime: CCPA, position: 'Compliance asserted in customeros.ai/llms.txt and on the comparison pages.'}
+access_management:
+- {method: Magic link, note: Email one-time login link. Default.}
+- {method: SSO, providers: [Google, Microsoft], note: 'Recommended; inherits the identity provider''s 2FA/biometrics. Enabled by support request.'}
+- {method: OpenID Connect, note: 'Customer-supplied IdP (Keycloak named as supported). Requires discovery URL, client id and client secret, configured by support.'}
+data_processing:
+  dpa_url: https://customeros.ai/standard-agreement/dpa
+  statements:
+  - European-based company
+  - All data stored encrypted
+  - Third-party processors vetted for their own data-security policies and listed in the DPA
+not_claimed: [SOC 2 Type I, SOC 2 Type II, ISO 27001, ISO 27017, ISO 27018, PCI DSS, HIPAA, FedRAMP, CSA STAR]
+evidence:
+- {url: 'https://docs.customeros.ai/security-and-compliance', status: 200, content_type: text/html, keywords: [security, compliance, certifications, CASA Type 2, GDPR, encrypted]}
+- {url: 'https://docs.customeros.ai/security-and-compliance.md', status: 200, content_type: text/markdown, note: 'Markdown twin; text quoted above read from this copy.'}
+misses:
+- {url: 'https://trust.customeros.ai/', status: 0, note: no DNS record}
+- {url: 'https://security.customeros.ai/', status: 0, note: no DNS record}
+- {url: 'https://customeros.ai/trust', status: 404}
+- {url: 'https://customeros.ai/security', status: 404}

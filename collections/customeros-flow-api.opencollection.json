@@ -1,0 +1,753 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List all flows",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows"
+      },
+      "docs": "List all flows"
+    },
+    {
+      "info": {
+        "name": "Create a new flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a new flow"
+    },
+    {
+      "info": {
+        "name": "Get details of a specific flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get details of a specific flow"
+    },
+    {
+      "info": {
+        "name": "Update details of a specific flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update details of a specific flow"
+    },
+    {
+      "info": {
+        "name": "Delete a specific flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete a specific flow"
+    },
+    {
+      "info": {
+        "name": "Enable a flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/enable",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Enable a flow"
+    },
+    {
+      "info": {
+        "name": "Disable a flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/disable",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Disable a flow"
+    },
+    {
+      "info": {
+        "name": "Get stats for a flow",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/stats",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get stats for a flow"
+    },
+    {
+      "info": {
+        "name": "List all sequences",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "List all sequences"
+    },
+    {
+      "info": {
+        "name": "Create new sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create new sequence"
+    },
+    {
+      "info": {
+        "name": "Get details of a specific sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get details of a specific sequence"
+    },
+    {
+      "info": {
+        "name": "Update details of a specific sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update details of a specific sequence"
+    },
+    {
+      "info": {
+        "name": "Delete a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete a sequence"
+    },
+    {
+      "info": {
+        "name": "Enable a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/enable",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Enable a sequence"
+    },
+    {
+      "info": {
+        "name": "Disable a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/disable",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Disable a sequence"
+    },
+    {
+      "info": {
+        "name": "Get statistics for a specific sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/stats",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get statistics for a specific sequence"
+    },
+    {
+      "info": {
+        "name": "Get details of a specific sequence schedule",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/schedule",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get details of a specific sequence schedule"
+    },
+    {
+      "info": {
+        "name": "Update details of a specific sequence schedule",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/schedule",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update details of a specific sequence schedule"
+    },
+    {
+      "info": {
+        "name": "Delete details of a specific sequence schedule",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/schedule",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete details of a specific sequence schedule"
+    },
+    {
+      "info": {
+        "name": "Get details of a specific sequence configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/config",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get details of a specific sequence configuration"
+    },
+    {
+      "info": {
+        "name": "Update details of a specific sequence configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/config",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update details of a specific sequence configuration"
+    },
+    {
+      "info": {
+        "name": "Delete details of a specific sequence configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/config",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete details of a specific sequence configuration"
+    },
+    {
+      "info": {
+        "name": "List all steps for a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/steps",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "List all steps for a sequence"
+    },
+    {
+      "info": {
+        "name": "Add a step to a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/steps",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Add a step to a sequence"
+    },
+    {
+      "info": {
+        "name": "List details for a step in a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/steps/:step_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "step_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "List details for a step in a sequence"
+    },
+    {
+      "info": {
+        "name": "Update a step in a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/steps/:step_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "step_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update a step in a sequence"
+    },
+    {
+      "info": {
+        "name": "Delete a step in a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/steps/:step_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "step_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete a step in a sequence"
+    },
+    {
+      "info": {
+        "name": "List all senders for a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/senders",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "List all senders for a sequence"
+    },
+    {
+      "info": {
+        "name": "Add a sender to a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/senders",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Add a sender to a sequence"
+    },
+    {
+      "info": {
+        "name": "Remove sender from a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/senders/:sender_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sender_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Remove sender from a sequence"
+    },
+    {
+      "info": {
+        "name": "List all contacts for a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/contacts",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "List all contacts for a sequence"
+    },
+    {
+      "info": {
+        "name": "Add contacts to a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/contacts",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Add contacts to a sequence"
+    },
+    {
+      "info": {
+        "name": "Get details of a specific contact in a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/contacts/:contact_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "contact_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Get details of a specific contact in a sequence"
+    },
+    {
+      "info": {
+        "name": "Remove a contact from a sequence",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://api.customeros.ai/flow/{version}/flows/:flow_id/sequences/:sequence_id/contacts/:contact_id",
+        "params": [
+          {
+            "name": "flow_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "sequence_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "contact_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Remove a contact from a sequence"
+    }
+  ],
+  "bundled": true
+}

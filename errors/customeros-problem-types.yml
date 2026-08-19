@@ -1,0 +1,107 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/customeros-billing-openapi.yml, openapi/customeros-customerbase-openapi.yml,
+  openapi/customeros-domains-openapi.yml, openapi/customeros-enrich-openapi.yml,
+  openapi/customeros-outreach-openapi.yml, openapi/customeros-verify-openapi.yml,
+  openapi/customeros-graphql-api-openapi.yml
+description: >-
+  Error catalogue derived from the 4xx/5xx responses declared across every published CustomerOS
+  OpenAPI. CustomerOS does NOT use RFC 9457 problem+json — it uses a flat JSON envelope of its own
+  (`rest.ErrorResponse`) returned as application/json. There is no published error-code registry and
+  no machine-readable error identifier: the only discriminators an agent gets are the HTTP status and
+  a human-readable `message` string, so retry logic has to key on status alone.
+format: custom-json
+problem_media_type: application/json
+rfc9457: false
+envelope:
+  schema: rest.ErrorResponse
+  fields:
+  - {name: status, type: string, description: '"success" or "error"'}
+  - {name: message, type: string, description: Human-readable error text. Not enumerated anywhere.}
+  - {name: requestId, type: string, example: 1234567890abcdef, description: Correlation id echoed on every response, success or error.}
+  note: >-
+    The success envelope (`rest.BaseResponse`) carries the same status/requestId pair, so requestId
+    is usable for support correlation on both paths.
+machine_readable_codes: false
+codes_gap: >-
+  No `code`, `type`, `errorCode` or URI field exists on the error envelope. Two different 400s —
+  "Invalid organization ID format" and "Missing required fields" — are indistinguishable to a client
+  without string-matching English prose. This is the single largest error-semantics gap in the API.
+problems:
+- status: 400
+  title: Bad request
+  meanings:
+  - Invalid organization ID format
+  - Invalid request - Missing required fields
+  - Invalid request data / Invalid request parameters
+  - Invalid file format or data (CSV import)
+  retryable: false
+  source_operations: [billing, customerbase, domains, enrich, outreach, verify]
+- status: 401
+  title: Unauthorized
+  meanings:
+  - Missing or invalid API key
+  retryable: false
+  remediation: Send a valid X-CUSTOMER-OS-API-KEY request header.
+  source_operations: [billing, customerbase, domains, enrich, outreach, verify, graphql]
+- status: 403
+  title: Forbidden
+  meanings:
+  - Authenticated but not authorized for the requested tenant or role
+  retryable: false
+  source_operations: [graphql]
+  note: >-
+    Declared only on the GraphQL envelope, where @hasRole / @hasTenant directives enforce it. No REST
+    operation declares a 403.
+- status: 404
+  title: Not found
+  meanings:
+  - Organization not found
+  - Organization or external system not found
+  - Domain not found / not owned by tenant
+  - Result not found (enrichment result id)
+  retryable: false
+  source_operations: [billing, customerbase, domains, enrich]
+- status: 406
+  title: Not acceptable
+  meanings:
+  - Domain TLD not supported, or the domain is premium
+  retryable: false
+  source_operations: [domains]
+- status: 409
+  title: Conflict
+  meanings:
+  - Organization already exists with the provided identifiers
+  - Domain already registered
+  - Mailbox already exists
+  retryable: false
+  remediation: >-
+    Treat as an idempotency signal — the resource exists. CustomerOS publishes no idempotency key, so
+    409 is the only duplicate-suppression mechanism the API offers.
+  source_operations: [customerbase, domains]
+- status: 415
+  title: Unsupported media type
+  meanings:
+  - Unsupported content type on a contact import
+  retryable: false
+  source_operations: [customerbase]
+- status: 500
+  title: Internal server error
+  meanings:
+  - Internal server error
+  - Configuration failed or service unavailable (domain configure)
+  - Unable to retrieve domains
+  retryable: true
+  remediation: Retry with exponential backoff and jitter; quote requestId when contacting support.
+  source_operations: [billing, customerbase, domains, enrich, outreach, verify]
+partial_success:
+  statuses: [206, 207]
+  note: >-
+    The bulk contact operations declare 206 (partial content) and 207 (multi-status) alongside 201,
+    with `customerbase.BulkResponse` / `customerbase.BulkResponseMultipleErrors` /
+    `customerbase.BulkErrorDetails` schemas. A client that only branches on 2xx-vs-4xx will silently
+    treat a partial bulk failure as a success.
+not_found:
+  rate_limit_status: >-
+    No operation in any published spec declares a 429, and no Retry-After behaviour is documented.

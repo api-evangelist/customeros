@@ -1,0 +1,44 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/customeros/customeros/tree/otter/packages/server/proto
+description: >-
+  Twenty proto3 files harvested verbatim from the CustomerOS monorepo. They define MESSAGE schemas
+  only — there is not a single `service` block in the set — so this is an internal event-payload
+  vocabulary rather than a gRPC API. Filenames are kept exactly as published because the files
+  `import` one another by name (webtracker_event.proto imports enum_webtracker_event_type.proto) and
+  renaming would break resolution.
+syntax: proto3
+go_package: ./pb
+package: pb
+services: 0
+messages: 20
+customer_facing: false
+note: >-
+  No gRPC endpoint is published or documented. These describe the events flowing through the
+  CustomerOS event store between its own services.
+files:
+- {file: company_created.proto, message: CompanyCreated}
+- {file: tenant_created.proto, message: TenantCreated}
+- {file: enum_webtracker_event_type.proto, message: 'WebTrackerEventType (enum)'}
+- {file: webtracker_created.proto, message: WebTrackerCreated}
+- {file: webtracker_event.proto, message: WebTrackerEvent}
+- {file: webtracker_session_created.proto, message: WebTrackerSessionCreated}
+- {file: webtracker_session_closed.proto, message: WebTrackerSessionClosed}
+- {file: webtracker_visitor_identified.proto, message: WebTrackerVisitorIdentified}
+- {file: proxy_webtracker_cname_configured.proto, message: ProxyWebTrackerCnameConfigured}
+- {file: website_crawled.proto, message: WebsiteCrawled}
+- {file: webpage_scraped.proto, message: WebpageScraped}
+- {file: webpage_classified.proto, message: WebpageClassified}
+- {file: webpage_profiled.proto, message: WebpageProfiled}
+- {file: icp_fit_determined.proto, message: IcpFitDetermined}
+- {file: request_icp_fit_analysis.proto, message: RequestIcpFitAnalysis}
+- {file: request_identify_ipaddress.proto, message: RequestIdentifyIpaddress}
+- {file: request_verify_ipaddress.proto, message: RequestVerifyIpaddress}
+- {file: request_webpage_classification.proto, message: RequestWebpageClassification}
+- {file: request_webpage_intent.proto, message: RequestWebpageIntent}
+- {file: errors.proto, message: error types}
+x-evidence:
+  fetched: '2026-08-13'
+  base_url: https://raw.githubusercontent.com/customeros/customeros/otter/packages/server/proto/
+  http_status: 200
+  files_fetched: 20

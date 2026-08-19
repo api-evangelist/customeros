@@ -1,0 +1,57 @@
+# CustomerOS Docs
+
+## Docs
+
+- [CustomerOS](https://docs.customeros.ai/index.md): Turn anonymous traffic into qualified pipeline. CustomerOS identifies ICP-fit, in-market accounts and delivers the insights sales needs to win.
+- [Quickstart](https://docs.customeros.ai/quickstart.md): Get started with CustomerOS in four simple steps — from setup to seeing your first leads.
+- [Use Cases](https://docs.customeros.ai/use-cases.md): See how CustomerOS helps sales and marketing teams identify, engage, and measure pipeline that actually matters.
+- [Track Website Visitors](https://docs.customeros.ai/website-tracker.md): Track your website visitors using our simple tracker
+- [Meetings](https://docs.customeros.ai/meetings.md): Track the complete buyer journey behind every meeting booking—see which marketing efforts actually drive demos and sales calls
+- [Meeting Intelligence](https://docs.customeros.ai/meeting-transcripts.md): Automatically extract marketing insights from customer conversations—discover messaging that resonates, content gaps to fill, and positioning opportunities hidden in every call
+- [Buyer's Journey](https://docs.customeros.ai/buyers-journey.md): Understand how CustomerOS classifies leads by stage and what content moves them forward.
+- [Leads](https://docs.customeros.ai/leads.md): Learn how CustomerOS defines and manages leads, and how they connect to your ICP and the global company graph.
+- [Touchpoints](https://docs.customeros.ai/touchpoints.md): Understand how CustomerOS tracks meaningful engagement events that drive buyer journey progression.
+- [Briefs](https://docs.customeros.ai/briefs.md): Understand how CustomerOS generates dynamic sales briefs and research for every lead.
+- [Contacts](https://docs.customeros.ai/contacts.md): Understand how CustomerOS identifies and manages key people associated with each lead.
+- [Insights](https://docs.customeros.ai/insights.md): Get real pipeline-level insights and reporting: content, campaigns, contracts, and more
+- [Workspace & Users](https://docs.customeros.ai/workspaces-and-users.md): Learn how CustomerOS organizes your company into workspaces and how users are automatically added.
+- [Notifications](https://docs.customeros.ai/notifications.md): Stay on top of leads and pipeline health with automated daily and weekly updates from CustomerOS.
+- [Data Structure](https://docs.customeros.ai/data-structure.md): Learn how CustomerOS organizes data with global company records, workspace-specific leads, and their connected insights.
+- [Security & Compliance](https://docs.customeros.ai/security-and-compliance.md): CustomerOS maintains a strong security posture as one of it\'s highest values
+- [Website Tracker](https://docs.customeros.ai/tracker/index.md): Track visitor behavior and identify users on your website
+- [Troubleshooting](https://docs.customeros.ai/tracker/troubleshooting.md)
+- [Custom Events](https://docs.customeros.ai/tracker/custom-events.md)
+- [Framer](https://docs.customeros.ai/tracker/framer.md): Install the CustomerOS tracker on your Framer website
+- [Webflow](https://docs.customeros.ai/tracker/webflow.md): Install the CustomerOS tracker on your Webflow website
+- [Google Tag Manager](https://docs.customeros.ai/tracker/google-tag-manager.md): Install the CustomerOS tracker via Google Tag Manager (not recommended)
+- [Mintlify](https://docs.customeros.ai/tracker/mintlify.md): Install the CustomerOS tracker on your Mintlify documentation site
+- [Fern](https://docs.customeros.ai/tracker/fern.md): Install the CustomerOS tracker on your Fern documentation site
+- [Scalar](https://docs.customeros.ai/tracker/scalar.md): Install the CustomerOS tracker on your Scalar API documentation
+- [Docusaurus](https://docs.customeros.ai/tracker/docusaurus.md): Install the CustomerOS tracker on your Docusaurus documentation site
+- [GitBook](https://docs.customeros.ai/tracker/gitbook.md): CustomerOS tracker integration for GitBook documentation
+- [Agents](https://docs.customeros.ai/agents/index.md)
+- [Company Enricher](https://docs.customeros.ai/agents/company-enricher.md): Automatically enrich company data with comprehensive business information
+- [Company Researcher](https://docs.customeros.ai/agents/company-researcher.md): Conduct deep research on companies to uncover strategic insights and opportunities
+- [Contact Enricher](https://docs.customeros.ai/agents/contact-enricher.md): Automatically enrich contact records with comprehensive personal and professional information
+- [Ideal Customer Profiler](https://docs.customeros.ai/agents/ideal-customer-profiler.md): Analyze your best customers to create detailed ideal customer profiles
+- [Lead Qualifier](https://docs.customeros.ai/agents/lead-qualifier.md): Automatically qualify leads using intelligent stage classification and engagement analysis
+- [Campaign Strategizer](https://docs.customeros.ai/agents/campaign-strategizer.md): Design and optimize marketing campaigns with AI-powered strategic insights
+- [Campaign Analyst](https://docs.customeros.ai/agents/campaign-analyst.md): Monitor and analyze marketing campaign performance with AI-powered insights
+- [AI Search Analyst](https://docs.customeros.ai/agents/ai-search-analyst.md): Analyze search behavior and optimize content for better discovery and engagement
+- [Content Analyst](https://docs.customeros.ai/agents/content-analyst.md): Analyze content performance and optimize your content strategy with AI insights
+- [Advertising Analyst](https://docs.customeros.ai/agents/advertising-analyst.md): Optimize advertising campaigns with AI-powered performance analysis and insights
+- [Integrations](https://docs.customeros.ai/integrations/index.md): Connect CustomerOS to your existing tools
+- [HubSpot](https://docs.customeros.ai/integrations/crms/hubspot.md): Import HubSpot company and deal data into CustomerOS
+- [Salesforce](https://docs.customeros.ai/integrations/crms/salesforce.md): Bi-directional sync between CustomerOS and Salesforce
+- [HubSpot Meetings](https://docs.customeros.ai/integrations/meetings/hubspot.md): Track buyer journeys and marketing attribution for HubSpot Scheduler bookings
+- [Calendly](https://docs.customeros.ai/integrations/meetings/calendly.md): Track buyer journeys and marketing attribution for every Calendly meeting booking
+- [Cal.com](https://docs.customeros.ai/integrations/meetings/calcom.md): Track buyer journeys and marketing attribution for Cal.com bookings—works with both Cal.com cloud and self-hosted instances
+- [Fathom](https://docs.customeros.ai/integrations/meeting-transcripts/fathom.md): Automatically extract marketing insights from Fathom recordings—discover content gaps, messaging that works, and positioning opportunities from every customer conversation
+- [Grain](https://docs.customeros.ai/integrations/meeting-transcripts/grain.md): Automatically extract marketing insights from Grain recordings—discover buying committee language, positioning gaps, and content opportunities from multi-participant conversations
+- [Apollo.io](https://docs.customeros.ai/integrations/outreach/apollo.md): Push qualified leads to Apollo for prospecting
+- [Google Ads](https://docs.customeros.ai/integrations/ads/google-ads.md): Import campaign data and costs for attribution
+- [LinkedIn Ads](https://docs.customeros.ai/integrations/ads/linkedin-ads.md): Import campaign data and costs for B2B attribution
+
+## OpenAPI Specs
+
+- [flowApiSpec](https://docs.customeros.ai/flowApiSpec.yaml)

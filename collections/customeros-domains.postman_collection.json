@@ -1,0 +1,1684 @@
+{
+  "item": [
+    {
+      "id": "d024eb46-6e62-4c92-a3cf-58e522fa8fca",
+      "name": "Domains",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afb8e812-64e5-47ec-9094-c41f3535d666",
+          "name": "List active domains",
+          "request": {
+            "name": "List active domains",
+            "description": {
+              "content": "Retrieves all active domains for the authenticated tenant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84f17ce6-9a99-4c52-8fa5-14e011de6651",
+              "name": "Successfully retrieved domain list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domains\": [\n    {\n      \"createdDate\": \"string\",\n      \"domain\": \"string\",\n      \"expiredDate\": \"string\",\n      \"nameservers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"createdDate\": \"string\",\n      \"domain\": \"string\",\n      \"expiredDate\": \"string\",\n      \"nameservers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34480993-1d4b-44de-a4c9-8b3d6e0e0589",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f99ebdc4-399a-47eb-9e4c-382d160cd6f6",
+              "name": "Internal server error - Unable to retrieve domains",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c30eefb-a9f2-454f-9bdb-2f6dd4d7c244",
+          "name": "Register new domain",
+          "request": {
+            "name": "Register new domain",
+            "description": {
+              "content": "Registers and configures a new domain for mail services, including DNS setup",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eabac373-38a7-4008-ab88-43e0cf922753",
+              "name": "Domain registered and configured successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain\": {\n    \"createdDate\": \"string\",\n    \"domain\": \"string\",\n    \"expiredDate\": \"string\",\n    \"nameservers\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00bf9501-4761-40a0-bab1-970855ac4f81",
+              "name": "Invalid request - Missing required fields or invalid format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e266be8e-d131-4a8b-860a-b78fb91c201e",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8e828c-5f29-4bf8-80da-b42d122c41f6",
+              "name": "Not Acceptable - Domain TLD not supported or premium domain",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Acceptable",
+              "code": 406,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30f20df1-d66e-4d85-9df7-44cb0c6fea47",
+              "name": "Conflict - Domain already registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b976c37e-90d6-4c40-9d0e-2c7aeb7d2d09",
+              "name": "Internal server error - Configuration failed or service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ee48ecc-1a72-4359-a45b-ce3139c97c5d",
+          "name": "Configure domain DNS",
+          "request": {
+            "name": "Configure domain DNS",
+            "description": {
+              "content": "Sets up DNS records and mail services for an existing domain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains",
+                "configure"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb3ed432-749e-4506-930e-69e411b5c702",
+              "name": "Domain configured successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"domain\": {\n    \"createdDate\": \"string\",\n    \"domain\": \"string\",\n    \"expiredDate\": \"string\",\n    \"nameservers\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e616cae-8949-4310-abef-df985e4659a1",
+              "name": "Invalid request - Missing required fields or invalid format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e7e3270-60ca-4305-a2cb-28b9b2a8675f",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cce6c36a-4b5d-47a3-9904-50ddf015b806",
+              "name": "Not Found - Domain not found or not owned by tenant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14a6291a-f9f7-4aa8-b351-97fd23b40f9f",
+              "name": "Internal server error - Configuration failed or service unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    "configure"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "28badde6-3740-4777-825d-46ad01aec653",
+      "name": "Mailboxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa54a9b3-5a92-4da8-b6e1-02dbd77f0ed7",
+          "name": "List mailboxes",
+          "request": {
+            "name": "List mailboxes",
+            "description": {
+              "content": "Retrieves all mailboxes configured for the specified domain",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains",
+                ":domain",
+                "mailboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) Domain name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a2ba929-11b1-476a-86b6-4077539eae2e",
+              "name": "Successfully retrieved mailboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mailboxes\": [\n    {\n      \"email\": \"string\",\n      \"forwardingEnabled\": false,\n      \"forwardingTo\": [\n        \"string\",\n        \"string\"\n      ],\n      \"password\": \"string\",\n      \"webmailEnabled\": true\n    },\n    {\n      \"email\": \"string\",\n      \"forwardingEnabled\": true,\n      \"forwardingTo\": [\n        \"string\",\n        \"string\"\n      ],\n      \"password\": \"string\",\n      \"webmailEnabled\": true\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cace6f43-96fe-454b-980a-059743e63a96",
+              "name": "Missing domain parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbc4bc29-88c5-41e5-bdb3-a033a675e2a8",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73448db8-6097-4ae2-b405-65b80e7d6ec2",
+              "name": "Domain not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bff9e19-33e3-4d74-b407-e104b9024c01",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b537378a-c865-4cac-8d42-023c5b028f3b",
+          "name": "Create mailbox",
+          "request": {
+            "name": "Create mailbox",
+            "description": {
+              "content": "Creates a new mailbox for the specified domain with optional forwarding and webmail access",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domains",
+                ":domain",
+                "mailboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "domain",
+                  "description": "(Required) Domain name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8419369-e7db-45cc-9f8e-bce8d0632ccd",
+              "name": "Mailbox created successfully with generated password",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mailbox\": {\n    \"email\": \"string\",\n    \"forwardingEnabled\": true,\n    \"forwardingTo\": [\n      \"string\",\n      \"string\"\n    ],\n    \"password\": \"string\",\n    \"webmailEnabled\": false\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "204d2832-7a05-4755-a1da-20e4837fd7c4",
+              "name": "Invalid request - Missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bf1b86f-78f6-44fc-9155-ce442f913340",
+              "name": "Unauthorized - Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2caf9bad-91ed-4980-a087-d242d341d8bb",
+              "name": "Domain not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "195529a4-5bb0-4e40-bc7a-771ccc3829b0",
+              "name": "Mailbox already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dba0440-fce4-4eac-93f1-9011f72d9a35",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domains",
+                    ":domain",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "domain",
+                      "description": "(Required) Domain name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forwardingTo\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"linkedUser\": \"<string>\",\n  \"password\": \"<string>\",\n  \"username\": \"<string>\",\n  \"webmailEnabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "302caaea-9e8f-43b4-90c4-130829bfc3b7",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}

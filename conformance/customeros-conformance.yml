@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/ (seven specs), grpc/ (20 proto files), docs.customeros.ai/security-and-compliance,
+  mcp/customeros-mcp.yml, a2a/customeros-a2a.yml
+description: >-
+  Standards conformance for CustomerOS, derived from the published contracts and confirmed against
+  the documentation where the provider makes a claim. Two agent-era standards are genuinely
+  implemented (MCP and A2A, both by way of the documentation platform); the REST core implements
+  almost none of the cross-cutting HTTP conventions.
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: >-
+    Seven documents parse as OpenAPI 3.0.1 (six) and 3.0.0 (the Flow API). Source swagger.json is
+    Swagger 2.0 and is retained at openapi/_original/customeros-swagger.json.
+- id: openapi-3.1
+  conforms: false
+  evidence: No 3.1 document published.
+- id: graphql
+  conforms: true
+  evidence: >-
+    The open-source customer-os-api is a gqlgen GraphQL server; 69 .graphqls schema files are
+    published in github.com/customeros/customeros. Live introspection could not be run — the
+    published endpoint host does not resolve.
+- id: protobuf-proto3
+  conforms: true
+  evidence: >-
+    20 proto3 files published at packages/server/proto/. Message schemas only — no `service`
+    definitions, so this is an event-payload vocabulary, not a gRPC API.
+- id: grpc
+  conforms: false
+  evidence: No gRPC service definitions in any published .proto file.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document published on any host or in the repository.
+- id: mcp
+  conforms: true
+  evidence: >-
+    Live remote MCP server at https://docs.customeros.ai/mcp; tools/list returns 200 anonymously with
+    three tools carrying draft-07 JSON Schema inputSchema. Scope is documentation, not the product API.
+- id: a2a
+  conforms: partial
+  evidence: >-
+    Agent card served at docs.customeros.ai/.well-known/agent-card.json; graded `flavored` against
+    A2A 1.0.0 (protocolVersion 0.3, supportedInterfaces rather than additionalInterfaces, empty
+    skills array). See a2a/customeros-a2a.yml.
+- id: llmstxt
+  conforms: true
+  evidence: >-
+    /llms.txt served on both customeros.ai and docs.customeros.ai, content-type text/plain, control
+    path returns 404. The docs copy is saved at llms/customeros-llms.txt.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    No oauth2 securityScheme in any published spec. OAuth 2.0 appears only as the INBOUND mechanism
+    CustomerOS uses to connect to third parties (HubSpot, Grain), not as a way to authorize a
+    CustomerOS API client.
+- id: oidc
+  conforms: partial
+  evidence: >-
+    OpenID Connect is supported for workspace SIGN-IN — the customer supplies a discovery URL, client
+    id and client secret, enabled by support request (docs.customeros.ai/security-and-compliance).
+    It does not authorize API calls, and no /.well-known/openid-configuration is served.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are a flat custom JSON envelope (status/message/requestId) returned as application/json;
+    no application/problem+json anywhere. See errors/customeros-problem-types.yml.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every CustomerOS host.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support documented; no deprecation policy published.
+- id: idempotency-key
+  conforms: false
+  evidence: >-
+    No idempotency key header or parameter in any spec or doc. Duplicate creation surfaces only as
+    HTTP 409.
+- id: pagination
+  conforms: partial
+  evidence: >-
+    The Flow API returns a Pagination object (totalCount/page/perPage/totalPages) but declares no
+    request parameter to page with. No other spec paginates.
+- id: json-api
+  conforms: false
+  evidence: Responses are bespoke JSON envelopes, not JSON:API documents.
+- id: odata
+  conforms: false
+- id: scim
+  conforms: false
+  evidence: No /Users or /Groups SCIM 2.0 endpoints; workspace users are provisioned from SSO.
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false
+- id: psd2
+  conforms: false
+compliance_program:
+  published: true
+  url: https://docs.customeros.ai/security-and-compliance
+  certifications:
+  - name: CASA Type 2
+    issuer: Google (Cloud Application Security Assessment)
+    scope: Google integrations; includes code vulnerability scanning
+    recertification: annual
+  regulatory:
+  - {regime: GDPR, claim: 'Fully compliant; data-removal requests supported in-workspace and company-wide.'}
+  - {regime: CCPA, claim: 'Compliance asserted on customeros.ai comparison pages and in llms.txt.'}
+  data_processing:
+    dpa_url: https://customeros.ai/standard-agreement/dpa
+    statement: >-
+      European-based company; data stored encrypted; third-party processors vetted and listed in the
+      Data Processing Agreement.
+  absent: [SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP]
+  absent_note: >-
+    None of these is claimed anywhere on the site or docs. CASA Type 2 is the only named certification.

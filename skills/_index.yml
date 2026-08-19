@@ -1,0 +1,68 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/ (seven published CustomerOS OpenAPI documents)
+description: >-
+  Packaged Agent Skills for the CustomerOS REST surfaces, one per marquee flow. Every step is
+  grounded in an operation that exists verbatim in a provider-published spec. Because no CustomerOS
+  spec declares an operationId, operations are addressed by METHOD + path throughout — that is the
+  only stable identifier the contracts carry, and inventing ids would have been fabrication.
+  Each skill opens with the same warning: the published API host does not currently resolve.
+provider_published_skills: none-found
+provider_published_skills_note: >-
+  Probed for provider-authored skills before generating these — https://docs.customeros.ai/.well-known/agent-skills/
+  returns 404, the agent card's skills array is empty, and there is no AGENTS.md in
+  github.com/customeros/customeros.
+skills:
+- file: customeros-enrich-and-verify.md
+  name: Enrich and verify with CustomerOS
+  api: openapi/customeros-enrich-openapi.yml, openapi/customeros-verify-openapi.yml
+  operations:
+  - GET /enrich/v1/organization
+  - GET /enrich/v1/person
+  - GET /enrich/v1/person/results/{id}
+  - GET /verify/v1/email
+  - POST /verify/v1/email/bulk
+  - GET /verify/v1/email/bulk/results/{requestId}
+  - GET /verify/v1/email/bulk/results/{requestId}/download
+  - GET /verify/v1/ip
+- file: customeros-manage-customerbase.md
+  name: Manage CustomerBASE organizations and contacts
+  api: openapi/customeros-customerbase-openapi.yml, openapi/customeros-billing-openapi.yml
+  operations:
+  - POST /customerbase/v1/organizations
+  - GET /customerbase/v1/organizations/{id}
+  - PUT /customerbase/v1/organizations/{id}/links/{externalSystem}/primary
+  - POST /customerbase/v1/contacts
+  - POST /customerbase/v1/contacts/bulk
+  - POST /customerbase/v1/contacts/import
+  - GET /billing/v1/organizations/{id}/invoices
+- file: customeros-build-outbound-flow.md
+  name: Build a CustomerOS outbound flow
+  api: openapi/customeros-flow-api-openapi.yml
+  operations:
+  - POST /flows
+  - POST /flows/{flow_id}/sequences
+  - POST /flows/{flow_id}/sequences/{sequence_id}/steps
+  - POST /flows/{flow_id}/senders
+  - PUT /flows/{flow_id}/schedule
+  - PUT /flows/{flow_id}/config
+  - POST /flows/{flow_id}/sequences/{sequence_id}/contacts
+  - POST /flows/{flow_id}/sequences/{sequence_id}/enable
+  - GET /flows/{flow_id}/enable
+  - GET /flows/{flow_id}/stats
+- file: customeros-manage-mailstack-domains.md
+  name: Manage Mailstack domains and mailboxes
+  api: openapi/customeros-domains-openapi.yml
+  operations:
+  - GET /domains
+  - POST /domains
+  - POST /domains/configure
+  - GET /domains/{domain}/mailboxes
+  - POST /domains/{domain}/mailboxes
+cross_cutting_rules_embedded_in_every_skill:
+- Resolve api.customeros.ai before blaming a credential — it has no A record as of 2026-08-13.
+- Authenticate with the X-CUSTOMER-OS-API-KEY header; keys are issued per request by CustomerOS.
+- No idempotency key exists anywhere; HTTP 409 is the only duplicate suppression.
+- Errors are a flat {status, message, requestId} JSON envelope, not RFC 9457, with no error codes.
+- Bulk operations return 206/207 — a 2xx is not proof the whole batch landed.
+- No rate limits are published and no 429 is declared; retry 5xx only, with backoff and jitter.

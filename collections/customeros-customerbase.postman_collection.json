@@ -1,0 +1,2298 @@
+{
+  "item": [
+    {
+      "id": "29e03ddf-7713-42a7-a87a-e4b2d8908f0c",
+      "name": "CustomerBASE API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8299d218-137e-456e-8d5b-f43ccc3e7571",
+          "name": "Create a new contact",
+          "request": {
+            "name": "Create a new contact",
+            "description": {
+              "content": "Creates a contact from either JSON or CSV upload",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "CSV file with contact data"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3848feb4-2a32-4657-8ae2-4fadbdd35413",
+              "name": "Successfully created single contact",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV file with contact data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contact\": {\n    \"contactId\": \"string\",\n    \"email\": \"string\",\n    \"linkedinUrl\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c730bc6f-3bfe-4ce1-ae8d-8485297ffad9",
+              "name": "Successfully processed CSV file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV file with contact data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contacts\": [\n    {\n      \"contactId\": \"string\",\n      \"email\": \"string\",\n      \"linkedinUrl\": \"string\"\n    },\n    {\n      \"contactId\": \"string\",\n      \"email\": \"string\",\n      \"linkedinUrl\": \"string\"\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d5dc65d-ef90-4683-9edd-52c18072be40",
+              "name": "Invalid request data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV file with contact data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81639516-bef2-48e9-b1a7-0e6931ab29ad",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV file with contact data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e4c85a7-7515-4104-8a90-683b0929a6c7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "CSV file with contact data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c03db7b1-6b44-4887-bdd6-e807c6461889",
+          "name": "Create multiple contacts",
+          "request": {
+            "name": "Create multiple contacts",
+            "description": {
+              "content": "Creates multiple contacts from JSON input",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "contacts",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b6f8615-bb63-4c08-8a56-2a2e31171366",
+              "name": "All contacts created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": {\n    \"description\": \"string\",\n    \"value\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\",\n  \"summary\": {\n    \"failed\": 6499,\n    \"success\": 7033,\n    \"total\": 2875\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf548bce-8bc1-4e24-8b99-f5fe45ae472f",
+              "name": "Contacts created with some failures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"description\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\",\n  \"summary\": {\n    \"failed\": 8408,\n    \"success\": 1480,\n    \"total\": 8005\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "735be5f5-9c62-4690-8cc8-a227c7fbb88c",
+              "name": "Invalid request data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "605bdedf-bdfb-46ca-8869-7f9393d57247",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d19c018f-86b9-4f3a-87d3-b3ab1d362aa2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"linkedinUrl\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97d50fcd-169c-4ea3-b219-89d8d41f7b33",
+          "name": "Import contacts from CSV",
+          "request": {
+            "name": "Import contacts from CSV",
+            "description": {
+              "content": "Creates multiple contacts from CSV file upload",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "contacts",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) CSV file with contact data (required headers: email, linkedin_url)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3163ef08-3832-4b3e-b106-37fbde0007d3",
+              "name": "All contacts imported successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": {\n    \"description\": \"string\",\n    \"value\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\",\n  \"summary\": {\n    \"failed\": 6499,\n    \"success\": 7033,\n    \"total\": 2875\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61b7503d-6d53-4b99-86c2-0002d458964d",
+              "name": "Contacts imported with some failures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Multi-Status (WebDAV) (RFC 4918)",
+              "code": 207,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"description\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\",\n  \"summary\": {\n    \"failed\": 5054,\n    \"success\": 4641,\n    \"total\": 7391\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74d050f7-b577-4b73-a8ac-1e25ee716758",
+              "name": "Invalid file format or data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aede6f3f-93f6-4e97-9aad-db52e26ac86c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7aec8cd3-bcc1-4d7b-bb16-9f0f018f3b4b",
+              "name": "Unsupported content type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f23fee30-74f8-4a45-af0e-ea39b9b86673",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "contacts",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) CSV file with contact data (required headers: email, linkedin_url)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c93078d-3f04-4596-bde2-d0153aa762e1",
+          "name": "Create a new organization",
+          "request": {
+            "name": "Create a new organization",
+            "description": {
+              "content": "Creates an organization if it doesn't exist based on website, custom ID, or LinkedIn URL. Returns existing organization if found.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3271ecb7-f298-4286-aaa3-155bfb2d972a",
+              "name": "Organization created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization\": {\n    \"cosId\": \"string\",\n    \"customId\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalLinks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"icpFit\": true,\n    \"id\": \"string\",\n    \"leadSource\": \"string\",\n    \"name\": \"string\",\n    \"relationship\": \"string\",\n    \"stage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f77d27f3-b366-4db9-9aeb-63c0f8b749d8",
+              "name": "Organization created with partial data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization\": {\n    \"cosId\": \"string\",\n    \"customId\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalLinks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"icpFit\": false,\n    \"id\": \"string\",\n    \"leadSource\": \"string\",\n    \"name\": \"string\",\n    \"relationship\": \"string\",\n    \"stage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a656258-fe97-44af-a760-9d1581496ff6",
+              "name": "Invalid request - Missing required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7b6b665-5744-449d-9eaa-9423e5edf8ed",
+              "name": "Unauthorized - Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f5535bd-124a-4b55-8b77-17ddf33344c1",
+              "name": "Conflict - Organization already exists with provided identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36496d75-4ee4-4315-8a59-4fc22a50d8a6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customId\": \"<string>\",\n  \"icpFit\": \"<boolean>\",\n  \"leadSource\": \"<string>\",\n  \"linkedinUrl\": \"<string>\",\n  \"name\": \"<string>\",\n  \"relationship\": \"<string>\",\n  \"website\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eeb4001f-296a-48a8-b189-f167613d0d30",
+          "name": "Get organization details",
+          "request": {
+            "name": "Get organization details",
+            "description": {
+              "content": "Retrieves detailed organization information by ID or COS ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Organization ID or COS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a310af35-6211-4a6b-b688-f988d2090bb9",
+              "name": "Organization found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization\": {\n    \"cosId\": \"string\",\n    \"customId\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalLinks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"icpFit\": false,\n    \"id\": \"string\",\n    \"leadSource\": \"string\",\n    \"name\": \"string\",\n    \"relationship\": \"string\",\n    \"stage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "577c4c6f-ab39-4aa2-8d2e-a3edb5d1e0b5",
+              "name": "Organization found with partial data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization\": {\n    \"cosId\": \"string\",\n    \"customId\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"externalLinks\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": true\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"primary\": false\n      }\n    ],\n    \"icpFit\": false,\n    \"id\": \"string\",\n    \"leadSource\": \"string\",\n    \"name\": \"string\",\n    \"relationship\": \"string\",\n    \"stage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51c10fe9-0b9a-4761-ba6e-e1eeef9c8dea",
+              "name": "Invalid organization ID format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61d5c563-17be-4636-94c0-f55864609320",
+              "name": "Unauthorized - Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "283599c8-1be9-4781-83c7-5c0335327b5f",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b3c21f5-a20a-48e6-a63a-e90f7ad6cf35",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0a9a561-e98d-44d4-abbb-b58088f97e12",
+          "name": "Set primary external system ID",
+          "request": {
+            "name": "Set primary external system ID",
+            "description": {
+              "content": "Sets or updates the primary external system identifier for an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customerbase",
+                "v1",
+                "organizations",
+                ":id",
+                "links",
+                ":externalSystem",
+                "primary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Organization ID or COS ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalSystem",
+                  "description": "(Required) External system name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7a6f48f-3cf3-4f86-92cc-6ffb318ea53d",
+              "name": "Primary ID set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "links",
+                    ":externalSystem",
+                    "primary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalSystem",
+                      "description": "(Required) External system name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization\": {\n    \"externalId\": \"string\",\n    \"externalSystem\": \"string\",\n    \"organizationId\": \"string\",\n    \"primary\": true\n  },\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3c01a0e-309f-49b1-9dca-dbbc1aa5ba39",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "links",
+                    ":externalSystem",
+                    "primary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalSystem",
+                      "description": "(Required) External system name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "454bb32f-9b3c-4b6a-bb3f-9b084f18e20b",
+              "name": "Unauthorized - Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "links",
+                    ":externalSystem",
+                    "primary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalSystem",
+                      "description": "(Required) External system name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1888c3da-4e8b-4dcc-827e-09be7187fc1d",
+              "name": "Organization or external system not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "links",
+                    ":externalSystem",
+                    "primary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalSystem",
+                      "description": "(Required) External system name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2286e69b-e213-4083-9924-1f5f679ff7cb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customerbase",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "links",
+                    ":externalSystem",
+                    "primary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalSystem",
+                      "description": "(Required) External system name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c974d5a5-a06f-4095-b251-6b3c2bb71005",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}

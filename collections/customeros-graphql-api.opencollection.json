@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS GraphQL API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a GraphQL query or mutation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-Openline-API-KEY",
+              "value": "{{X-Openline-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Single GraphQL endpoint served by gqlgen. Accepts a standard GraphQL POST body (query, optional operationName, optional variables) and returns a GraphQL response envelope with `data` and/or `errors`. Authenticated per tenant with an API key header. Most fields are protected by @hasRole and @hasTenant directives in the schema."
+        },
+        {
+          "info": {
+            "name": "GraphQL Playground UI.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/playground"
+          },
+          "docs": "Interactive GraphQL Playground served by the customer-os-api server when enabled in configuration. Returns an HTML page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3996 @@
+{
+  "item": [
+    {
+      "id": "239dd00b-a2a9-4f6a-8fff-bd25cf134b92",
+      "name": "List all flows",
+      "request": {
+        "name": "List all flows",
+        "description": {},
+        "url": {
+          "path": [
+            "flows"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "8fcf9c4e-2f76-4724-b32e-1b9972e37d34",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flows\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1994-12-04T22:02:53.203Z\",\n      \"updatedAt\": \"2007-07-28T04:37:17.369Z\",\n      \"status\": \"active\",\n      \"sequenceCount\": 8614\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"1968-07-12T01:58:51.343Z\",\n      \"updatedAt\": \"1956-05-02T20:06:19.208Z\",\n      \"status\": \"active\",\n      \"sequenceCount\": 6034\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 6230,\n    \"page\": 6245,\n    \"perPage\": 7932,\n    \"totalPages\": 5741\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a46919df-1f1e-4262-9fb4-08b1e17ee0d9",
+      "name": "Create a new flow",
+      "request": {
+        "name": "Create a new flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f0b166dc-dd5f-4c55-b6ba-f4d7275952c2",
+          "name": "Successfully created flow",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1970-02-20T01:56:58.067Z\",\n  \"updatedAt\": \"2024-06-11T22:29:53.112Z\",\n  \"status\": \"active\",\n  \"sequenceCount\": 5583\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3cc697ac-f01a-4980-98c4-182cb3543398",
+      "name": "Get details of a specific flow",
+      "request": {
+        "name": "Get details of a specific flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "a6a58887-3993-46fb-a98f-63e2dc3e170f",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1970-02-20T01:56:58.067Z\",\n  \"updatedAt\": \"2024-06-11T22:29:53.112Z\",\n  \"status\": \"active\",\n  \"sequenceCount\": 5583\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1d5658ff-4d51-426c-9a00-35fa6a18d5ba",
+      "name": "Update details of a specific flow",
+      "request": {
+        "name": "Update details of a specific flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "be730af8-8d8f-4d15-8840-d673bf338b14",
+          "name": "Successfully updated flow",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"1970-02-20T01:56:58.067Z\",\n  \"updatedAt\": \"2024-06-11T22:29:53.112Z\",\n  \"status\": \"active\",\n  \"sequenceCount\": 5583\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6d58fb76-c1bf-45b1-b9b2-002a844844d9",
+      "name": "Delete a specific flow",
+      "request": {
+        "name": "Delete a specific flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "011437c0-c37b-4952-9eb4-30b187043f19",
+          "name": "Successfully deleted flow",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ddae3d10-46c2-4125-8131-f6d749d9ddf5",
+      "name": "Enable a flow",
+      "request": {
+        "name": "Enable a flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "enable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "96658690-b67b-4113-9c78-8369a78f3c49",
+          "name": "Successfully enabled flow",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ecfdc5a1-ef39-46fe-8c56-ed5b90564e08",
+      "name": "Disable a flow",
+      "request": {
+        "name": "Disable a flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "disable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "bca4e58a-a938-4785-8efd-54f246900e13",
+          "name": "Successfully disabled flow",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4f74f1ff-d2a4-428e-8b57-8e369056f97e",
+      "name": "Get stats for a flow",
+      "request": {
+        "name": "Get stats for a flow",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "stats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1a6534f5-553f-4718-a4e6-f6f1bcf73cc8",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a674b63b-3d49-43ba-ba23-e7577accf651",
+      "name": "List all sequences",
+      "request": {
+        "name": "List all sequences",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "3c330dcf-5b9f-4a16-8ef7-a21bb4639c5b",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"sequences\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2016-10-17T21:57:16.385Z\",\n      \"updatedAt\": \"1967-06-04T20:25:41.729Z\",\n      \"status\": \"disabled\",\n      \"personas\": [\n        \"string\",\n        \"string\"\n      ],\n      \"stepCount\": 2936\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"createdAt\": \"2007-08-10T23:35:02.079Z\",\n      \"updatedAt\": \"2019-05-12T01:29:51.446Z\",\n      \"status\": \"enabled\",\n      \"personas\": [\n        \"string\",\n        \"string\"\n      ],\n      \"stepCount\": 743\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 538,\n    \"page\": 2573,\n    \"perPage\": 7443,\n    \"totalPages\": 8499\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ab085a5f-c2a6-498e-85e6-93be83d6ae11",
+      "name": "Create new sequence",
+      "request": {
+        "name": "Create new sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"personas\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5d5d7a57-6b25-4213-a334-7ea3a4f898f7",
+          "name": "Successfully created sequence",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"personas\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-06-24T19:27:42.536Z\",\n  \"updatedAt\": \"2000-05-26T06:42:42.303Z\",\n  \"status\": \"enabled\",\n  \"personas\": [\n    \"string\",\n    \"string\"\n  ],\n  \"stepCount\": 6127\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b3131a15-7ae7-4c57-83e9-ffbfb22b16dd",
+      "name": "Get details of a specific sequence",
+      "request": {
+        "name": "Get details of a specific sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "ce693ad8-9c5a-4ea9-9002-1ff9eeb95a52",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-06-24T19:27:42.536Z\",\n  \"updatedAt\": \"2000-05-26T06:42:42.303Z\",\n  \"status\": \"enabled\",\n  \"personas\": [\n    \"string\",\n    \"string\"\n  ],\n  \"stepCount\": 6127\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ef62f13a-0a6c-4dbb-827a-6996a06ac4cb",
+      "name": "Update details of a specific sequence",
+      "request": {
+        "name": "Update details of a specific sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PATCH",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"personas\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6b41c672-19c2-45e4-b457-23f8ea8edc28",
+          "name": "Successfully updated sequence",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"personas\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"createdAt\": \"2022-06-24T19:27:42.536Z\",\n  \"updatedAt\": \"2000-05-26T06:42:42.303Z\",\n  \"status\": \"enabled\",\n  \"personas\": [\n    \"string\",\n    \"string\"\n  ],\n  \"stepCount\": 6127\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cfe923cb-2f43-4372-85a3-803c1a855fcd",
+      "name": "Delete a sequence",
+      "request": {
+        "name": "Delete a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f4c926a7-b62c-4ea2-8813-80e821c870c2",
+          "name": "Successfully deleted sequence",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d5f8681b-5e44-49e1-b6ba-bc87664c53c3",
+      "name": "Enable a sequence",
+      "request": {
+        "name": "Enable a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "enable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "30e175a4-f04b-474c-8e30-90bf014b0158",
+          "name": "Successfully enabled sequence",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e3b23414-4fe3-4226-a2e4-658cf4b78ba2",
+      "name": "Disable a sequence",
+      "request": {
+        "name": "Disable a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "disable"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "POST",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "1b0e4fc0-6a8f-4e44-ae96-481518b2fecc",
+          "name": "Successfully disabled sequence",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "075262f3-153e-4613-826a-aa0fa0120a09",
+      "name": "Get statistics for a specific sequence",
+      "request": {
+        "name": "Get statistics for a specific sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "stats"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "32b7bfba-7920-4151-b75f-bbc092bcddb0",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "96b1a234-4b39-4dab-9747-953e46074039",
+      "name": "Get details of a specific sequence schedule",
+      "request": {
+        "name": "Get details of a specific sequence schedule",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "schedule"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "da24e581-cca0-42ec-8806-c38e67097090",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flowId\": \"string\",\n  \"schedule\": {\n    \"activeDays\": [\n      \"tuesday\",\n      \"saturday\"\n    ],\n    \"activeTimeWindow\": {\n      \"start\": \"03:30:49.482Z\",\n      \"end\": \"09:33:29.481Z\"\n    },\n    \"pauseOnHolidays\": true,\n    \"respectRecipientTimezone\": true,\n    \"rules\": {\n      \"minutesDelayBetweenEmails\": 2249\n    },\n    \"limits\": {\n      \"emailsPerMailboxPerHour\": 1113,\n      \"emailsPerMailboxPerDay\": 5803\n    }\n  },\n  \"lastUpdated\": \"2009-12-30T18:51:37.209Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ea4af7a9-0b1e-4f4a-8579-744e947f87bb",
+      "name": "Update details of a specific sequence schedule",
+      "request": {
+        "name": "Update details of a specific sequence schedule",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "schedule"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"schedule\": {\n    \"activeDays\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activeTimeWindow\": {\n      \"start\": \"<time>\",\n      \"end\": \"<time>\"\n    },\n    \"pauseOnHolidays\": \"<boolean>\",\n    \"respectRecipientTimezone\": \"<boolean>\",\n    \"rules\": {\n      \"minutesDelayBetweenEmails\": \"<integer>\"\n    },\n    \"limits\": {\n      \"emailsPerMailboxPerHour\": \"<integer>\",\n      \"emailsPerMailboxPerDay\": \"<integer>\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "312529fc-e7c9-4d47-a886-ff12965e261a",
+          "name": "Successfully updated schedule",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": {\n    \"activeDays\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activeTimeWindow\": {\n      \"start\": \"<time>\",\n      \"end\": \"<time>\"\n    },\n    \"pauseOnHolidays\": \"<boolean>\",\n    \"respectRecipientTimezone\": \"<boolean>\",\n    \"rules\": {\n      \"minutesDelayBetweenEmails\": \"<integer>\"\n    },\n    \"limits\": {\n      \"emailsPerMailboxPerHour\": \"<integer>\",\n      \"emailsPerMailboxPerDay\": \"<integer>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flowId\": \"string\",\n  \"schedule\": {\n    \"activeDays\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activeTimeWindow\": {\n      \"start\": \"<time>\",\n      \"end\": \"<time>\"\n    },\n    \"pauseOnHolidays\": \"<boolean>\",\n    \"respectRecipientTimezone\": \"<boolean>\",\n    \"rules\": {\n      \"minutesDelayBetweenEmails\": \"<integer>\"\n    },\n    \"limits\": {\n      \"emailsPerMailboxPerHour\": \"<integer>\",\n      \"emailsPerMailboxPerDay\": \"<integer>\"\n    }\n  },\n  \"lastUpdated\": \"1993-08-11T22:57:19.453Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4e40e018-addd-4939-9c6d-38ff619482c0",
+      "name": "Delete details of a specific sequence schedule",
+      "request": {
+        "name": "Delete details of a specific sequence schedule",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "schedule"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "390b1c9c-0b00-46af-a0bf-23941748e11a",
+          "name": "Successfully deleted schedule",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1f41db2d-06f3-456a-81ec-18a3544b7662",
+      "name": "Get details of a specific sequence configuration",
+      "request": {
+        "name": "Get details of a specific sequence configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "config"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "54379f2c-2a91-4bb1-b959-936069e5db70",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flowId\": \"string\",\n  \"config\": {\n    \"optOut\": {\n      \"enabled\": true,\n      \"text\": \"string\"\n    },\n    \"analytics\": {\n      \"trackEmailOpens\": false,\n      \"trackLinkClicks\": {\n        \"enabled\": true,\n        \"useCustomDomain\": false,\n        \"customDomain\": \"string\"\n      }\n    }\n  },\n  \"lastUpdated\": \"2022-10-08T22:29:26.261Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "125220dd-f225-4392-bd1d-e57c35569b72",
+      "name": "Update details of a specific sequence configuration",
+      "request": {
+        "name": "Update details of a specific sequence configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "config"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"config\": {\n    \"optOut\": {\n      \"enabled\": \"<boolean>\",\n      \"text\": \"<string>\"\n    },\n    \"analytics\": {\n      \"trackEmailOpens\": \"<boolean>\",\n      \"trackLinkClicks\": {\n        \"enabled\": \"<boolean>\",\n        \"useCustomDomain\": \"<boolean>\",\n        \"customDomain\": \"<string>\"\n      }\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3b081064-6a3f-4ea3-bcf3-4100be1cf1d1",
+          "name": "Successfully updated configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"config\": {\n    \"optOut\": {\n      \"enabled\": \"<boolean>\",\n      \"text\": \"<string>\"\n    },\n    \"analytics\": {\n      \"trackEmailOpens\": \"<boolean>\",\n      \"trackLinkClicks\": {\n        \"enabled\": \"<boolean>\",\n        \"useCustomDomain\": \"<boolean>\",\n        \"customDomain\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flowId\": \"string\",\n  \"config\": {\n    \"optOut\": {\n      \"enabled\": \"<boolean>\",\n      \"text\": \"<string>\"\n    },\n    \"analytics\": {\n      \"trackEmailOpens\": \"<boolean>\",\n      \"trackLinkClicks\": {\n        \"enabled\": \"<boolean>\",\n        \"useCustomDomain\": \"<boolean>\",\n        \"customDomain\": \"<string>\"\n      }\n    }\n  },\n  \"lastUpdated\": \"2021-12-24T12:07:31.082Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3a0b7e16-74c5-4e98-9a7d-7d79a16ecbec",
+      "name": "Delete details of a specific sequence configuration",
+      "request": {
+        "name": "Delete details of a specific sequence configuration",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "config"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "32c26e9d-64a4-41fd-874e-02f45a15c78f",
+          "name": "Successfully deleted configuration",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "781157e3-6898-4582-acc8-e1f0c5999633",
+      "name": "List all steps for a sequence",
+      "request": {
+        "name": "List all steps for a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "steps"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "58339a4b-67cc-4bef-bc2b-38bd931e8d2a",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"sequenceId\": \"string\",\n  \"sequenceName\": \"string\",\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"email\",\n      \"order\": 9799,\n      \"status\": \"enabled\",\n      \"details\": {\n        \"subject\": \"string\",\n        \"body\": \"string\"\n      },\n      \"waitTime\": {\n        \"duration\": 8542,\n        \"unit\": \"days\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"email\",\n      \"order\": 6474,\n      \"status\": \"disabled\",\n      \"details\": {\n        \"subject\": \"string\",\n        \"body\": \"string\"\n      },\n      \"waitTime\": {\n        \"duration\": 1104,\n        \"unit\": \"hours\"\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "83218c2e-d6de-48a8-b561-a34d65e17e81",
+      "name": "Add a step to a sequence",
+      "request": {
+        "name": "Add a step to a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "steps"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "02ccfe0d-b587-447e-a634-06851028a8a0",
+          "name": "Successfully created step",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"type\": \"linkedin\",\n  \"order\": 6759,\n  \"status\": \"enabled\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9648065b-0475-413f-9064-a2e66fe0411d",
+      "name": "List details for a step in a sequence",
+      "request": {
+        "name": "List details for a step in a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "steps",
+            ":step_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "step_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d8cc98b5-8601-4891-a35a-ad1b13360b7a",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "steps",
+                ":step_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "step_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"type\": \"linkedin\",\n  \"order\": 6759,\n  \"status\": \"enabled\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6ecb5332-3e66-4ab0-9bca-dd5028871fcc",
+      "name": "Update a step in a sequence",
+      "request": {
+        "name": "Update a step in a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "steps",
+            ":step_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "step_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "42a83f1e-3768-4417-bfdc-6011a548bb1e",
+          "name": "Successfully updated step",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "steps",
+                ":step_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "step_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"order\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"type\": \"linkedin\",\n  \"order\": 6759,\n  \"status\": \"enabled\",\n  \"details\": {\n    \"subject\": \"<string>\",\n    \"body\": \"<string>\"\n  },\n  \"waitTime\": {\n    \"duration\": \"<integer>\",\n    \"unit\": \"<string>\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "105b1dbf-1c5e-45db-adc3-5d6b0c215d66",
+      "name": "Delete a step in a sequence",
+      "request": {
+        "name": "Delete a step in a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "steps",
+            ":step_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "step_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "16607ba7-8cb5-4a73-be20-c6fd42f21af4",
+          "name": "Successfully deleted step",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "steps",
+                ":step_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "step_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "454dd3b0-ad7c-4ffd-940d-78a5c03a65f4",
+      "name": "List all senders for a sequence",
+      "request": {
+        "name": "List all senders for a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "senders"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "856b4d79-45be-41a9-bd2d-828aafb9b5be",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "senders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"flowId\": \"string\",\n  \"senders\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"replyTo\": \"string\",\n      \"bcc\": \"string\",\n      \"status\": \"disabled\",\n      \"createdAt\": \"1989-05-31T00:15:08.539Z\",\n      \"updatedAt\": \"2014-04-09T21:09:12.857Z\",\n      \"dailySendLimit\": 6076,\n      \"warmingStatus\": \"maintain\",\n      \"emailSignature\": {\n        \"enabled\": true,\n        \"content\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"replyTo\": \"string\",\n      \"bcc\": \"string\",\n      \"status\": \"enabled\",\n      \"createdAt\": \"1969-09-07T01:57:38.719Z\",\n      \"updatedAt\": \"1957-09-16T17:44:23.816Z\",\n      \"dailySendLimit\": 985,\n      \"warmingStatus\": \"maintain\",\n      \"emailSignature\": {\n        \"enabled\": false,\n        \"content\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 6723,\n    \"page\": 951,\n    \"perPage\": 5737,\n    \"totalPages\": 5375\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "19ab5ce9-0d64-4b7a-84a2-462bfe617a85",
+      "name": "Add a sender to a sequence",
+      "request": {
+        "name": "Add a sender to a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "senders"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"replyTo\": \"<string>\",\n  \"bcc\": \"<string>\",\n  \"status\": \"<string>\",\n  \"dailySendLimit\": \"<integer>\",\n  \"warmingStatus\": \"<string>\",\n  \"emailSignature\": {\n    \"enabled\": \"<boolean>\",\n    \"content\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b1fe9822-a197-4d46-a6c0-0909cea89a09",
+          "name": "Successfully created sender",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "senders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"replyTo\": \"<string>\",\n  \"bcc\": \"<string>\",\n  \"status\": \"<string>\",\n  \"dailySendLimit\": \"<integer>\",\n  \"warmingStatus\": \"<string>\",\n  \"emailSignature\": {\n    \"enabled\": \"<boolean>\",\n    \"content\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"replyTo\": \"string\",\n  \"bcc\": \"string\",\n  \"status\": \"disabled\",\n  \"createdAt\": \"1953-01-06T16:58:02.142Z\",\n  \"updatedAt\": \"2024-02-17T01:06:38.531Z\",\n  \"dailySendLimit\": 2279,\n  \"warmingStatus\": \"maintain\",\n  \"emailSignature\": {\n    \"enabled\": true,\n    \"content\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d0e70f53-511b-47c3-84ff-1c8265dad9e8",
+      "name": "Remove sender from a sequence",
+      "request": {
+        "name": "Remove sender from a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "senders",
+            ":sender_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sender_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "250b727b-cd0f-4c54-9e07-7feda0ce841c",
+          "name": "Successfully removed sender",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "senders",
+                ":sender_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sender_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bf4366e6-274b-49ba-a88b-3de3ba69c67e",
+      "name": "List all contacts for a sequence",
+      "request": {
+        "name": "List all contacts for a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "contacts"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "f6488f91-e773-48da-aff5-6ac98a17eb5b",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"contacts\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"completed\",\n      \"currentStep\": 2696,\n      \"addedAt\": \"2016-08-27T09:38:54.213Z\",\n      \"lastUpdated\": \"2023-11-04T04:35:43.813Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"status\": \"completed\",\n      \"currentStep\": 3533,\n      \"addedAt\": \"2008-04-26T23:26:40.041Z\",\n      \"lastUpdated\": \"1999-06-30T04:29:27.615Z\"\n    }\n  ],\n  \"pagination\": {\n    \"totalCount\": 4961,\n    \"page\": 6068,\n    \"perPage\": 4580,\n    \"totalPages\": 6842\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "70caa20f-6697-4da2-88cf-2ee5b0eef9b0",
+      "name": "Add contacts to a sequence",
+      "request": {
+        "name": "Add contacts to a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "contacts"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "cb773533-dfff-4ad7-b127-071780d58c3a",
+          "name": "Successfully added contacts",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"completed\",\n  \"currentStep\": 7269,\n  \"addedAt\": \"1997-10-29T08:44:26.161Z\",\n  \"lastUpdated\": \"1955-08-03T22:17:33.933Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "51cbccab-04c6-4f33-9580-d72d99fd48a4",
+      "name": "Get details of a specific contact in a sequence",
+      "request": {
+        "name": "Get details of a specific contact in a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "contacts",
+            ":contact_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "contact_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "fc24ffc2-b30d-41c2-8d15-9551c90b0b95",
+          "name": "Successful response",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "contacts",
+                ":contact_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contact_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"company\": \"string\",\n  \"status\": \"completed\",\n  \"currentStep\": 7269,\n  \"addedAt\": \"1997-10-29T08:44:26.161Z\",\n  \"lastUpdated\": \"1955-08-03T22:17:33.933Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "963a3745-5bee-44c2-a480-634661e3e696",
+      "name": "Remove a contact from a sequence",
+      "request": {
+        "name": "Remove a contact from a sequence",
+        "description": {},
+        "url": {
+          "path": [
+            "flows",
+            ":flow_id",
+            "sequences",
+            ":sequence_id",
+            "contacts",
+            ":contact_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "flow_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "sequence_id",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "contact_id",
+              "description": "(Required) "
+            },
+            {
+              "description": {
+                "content": "",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "{{version}}",
+              "key": "version"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "d8d59d52-a0aa-4ade-9100-489354cd4c42",
+          "name": "Successfully removed contact",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "flows",
+                ":flow_id",
+                "sequences",
+                ":sequence_id",
+                "contacts",
+                ":contact_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flow_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sequence_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contact_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "{{version}}",
+                  "key": "version"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "v1",
+      "key": "version"
+    },
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/flow/{{version}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "42c3e656-ec8e-410d-8760-ffcb78ad445d",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing customer engagement flows and sequences",
+      "type": "text/plain"
+    }
+  }
+}

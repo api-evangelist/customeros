@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get organization's invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/billing/v1/organizations/:id/invoices",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID or COS ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all non-dry-run invoices for a specific organization, sorted by due date descending"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

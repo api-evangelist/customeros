@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: https://customeros.ai/updates
+description: >-
+  CustomerOS publishes a dated product-updates feed. It is a PRODUCT changelog, not an API changelog:
+  entries are written for buyers, carry no version number, and never mention an endpoint, a schema
+  change or a deprecation. Nothing in it would let an API consumer detect a breaking change.
+scheme: dated-entries
+versioned: false
+current_version: null
+api_changelog: false
+feed:
+  url: https://customeros.ai/updates
+  format: html
+  rss: false
+  http_status: 200
+  paging: '"Load More" button; the entries below are the first page as served on 2026-08-13.'
+latest_entry_date: '2025-11-07'
+staleness_note: >-
+  The newest entry is dated 2025-11-07, nine months before this probe, and matches the last push to
+  the public monorepo (2025-12-02).
+entries:
+- date: '2025-11-07'
+  type: Feature Release
+  title: Fathom Integration
+  highlights: Pull marketing insight from Fathom meeting-transcript recordings into lead profiles and scoring.
+  breaking: false
+- date: '2025-10-30'
+  type: Feature Release
+  title: Pipedrive Integration
+  highlights: Sync Pipedrive deals, stages and owners; overlay web intent on synced deals.
+  breaking: false
+- date: '2025-10-22'
+  type: Product Update
+  title: Improved Content Coverage & Targeting Analysis
+  highlights: Content Performance dashboard by persona and buying stage; coverage gaps and broken-link flags.
+  breaking: false
+- date: '2025-10-12'
+  type: Feature Release
+  title: Push Leads to Clay
+  highlights: >-
+    Use CustomerOS webhooks to push ICP-fit leads and arbitrary metadata into Clay.
+  breaking: false
+  note: >-
+    The only public evidence CustomerOS has an outbound webhook surface. No webhook catalogue, event
+    list, payload schema, signing scheme or retry policy is published anywhere in the docs, so the
+    surface is announced but not specified. Recorded as a gap rather than wired as a Webhooks
+    pointer.
+- date: '2025-10-08'
+  type: Feature Release
+  title: Apollo Integration
+  highlights: Push Ready-to-Buy leads into Apollo.io, with CRM owner lookup and SDR-pool assignment.
+  breaking: false
+- date: '2025-10-02'
+  type: Product Update
+  title: Company Overview
+  highlights: Funding, industry, growth outlook and opportunities consolidated on the lead record.
+  breaking: false
+- date: '2025-10-01'
+  type: Product Update
+  title: Lead Owners
+  highlights: Automatic SDR assignment on new leads, with notification and CRM sync-back.
+  breaking: false
+- date: '2025-09-21'
+  type: Feature Release
+  title: HubSpot Integration
+  highlights: One-click sync of accounts, customers and deals for ICP matching and expansion/churn signals.
+  breaking: false
+- date: '2025-09-14'
+  type: Feature Release
+  title: Salesforce Integration
+  highlights: Sync leads, accounts and opportunities into CustomerOS.
+  breaking: false
+- date: '2025-09-08'
+  type: Breaking Change
+  title: Web Tracker Reverse Proxy
+  highlights: >-
+    "We now only support using a reverse proxy situated on your own domain, not ours."
+  breaking: true
+  note: >-
+    The one genuinely breaking entry in the feed, and it is not labelled as one. Any existing tracker
+    installation loading the script from a CustomerOS-hosted domain stopped being supported on this
+    date. See components/customeros-components.yml.
+unannounced_changes:
+  note: >-
+    Changes found by probe that never appeared in this feed — see lifecycle/customeros-lifecycle.yml
+    for evidence.
+  items:
+  - api.customeros.ai lost its DNS address record
+  - docs.customeros.ai/api-overview and /api-descriptions were removed
+  - the openline-ai GitHub organization was deleted

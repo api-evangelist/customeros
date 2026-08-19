@@ -1,0 +1,38 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/customeros/mailsherpa, https://github.com/customeros/mailwatcher
+description: >-
+  CustomerOS ships no CLI for its own API. It does ship two standalone first-party Go command-line
+  tools that solve adjacent email-infrastructure problems. They are recorded here because they are
+  genuinely published and installable, and explicitly flagged `api_cli: false` because neither
+  authenticates to, or calls, the CustomerOS REST or GraphQL API.
+api_cli: false
+pointer_withheld:
+  type: CLI
+  reason: >-
+    The `cli_present` ergonomics check asks whether a developer can drive THIS API from a terminal.
+    Neither tool does, so wiring a CLI pointer would credit CustomerOS for a developer surface it
+    does not offer. Recorded rather than claimed.
+tools:
+- name: mailsherpa
+  repository: https://github.com/customeros/mailsherpa
+  language: go
+  version: v0.3.9
+  released: '2025-03-10'
+  install:
+  - go install github.com/customeros/mailsherpa@latest
+  purpose: >-
+    Verify whether an email address is deliverable, using SMTP conversation only — no email is sent.
+  calls_customeros_api: false
+- name: mailwatcher
+  repository: https://github.com/customeros/mailwatcher
+  language: go
+  version: v0.1.6
+  released: '2024-12-07'
+  install:
+  - go install github.com/customeros/mailwatcher@latest
+  purpose: Monitor the sending reputation of email domains and IP addresses.
+  calls_customeros_api: false
+note: >-
+  Command-by-command surfaces are not transcribed here: neither repository publishes a command
+  reference in its docs, and inventing one from source would not be a searched artifact.

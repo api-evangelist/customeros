@@ -1,0 +1,87 @@
+generated: '2026-08-13'
+method: searched
+source: https://status.customeros.ai/, https://customeros.ai/updates, https://github.com/customeros/customeros
+description: >-
+  Lifecycle posture for CustomerOS. A live status page and a dated product-updates feed exist. What
+  does not exist is anything an API consumer can plan against: no versioning policy, no deprecation
+  policy, no Sunset/Deprecation header support, and no published SLA. The most consequential
+  lifecycle event in the company's history — the Openline-to-CustomerOS rename, the deletion of the
+  openline-ai GitHub organization, and the removal of the API reference pages from the docs — was
+  never announced on any of these surfaces.
+versioning:
+  scheme: uri-path
+  current: v1
+  policy_url: null
+  documented: false
+  note: See conventions/customeros-conventions.yml — five surfaces version in the path, one via a
+    server variable, one not at all, with no policy reconciling them.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  documented: false
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: https://status.customeros.ai/
+  provider: Better Stack
+  http_status: 200
+  observed: '2026-08-13'
+  linked_from: [https://customeros.ai/ footer, https://customeros.ai/pricing footer]
+changelog:
+  url: https://customeros.ai/updates
+  detail: changelog/customeros-changelog.yml
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in any of the seven published specs carries `deprecated: true`.
+observed_decay:
+  description: >-
+    Undocumented lifecycle events found by probe on 2026-08-13. Each is a breaking change to a
+    surface CustomerOS previously published, and none appears on the status page or the updates feed.
+  events:
+  - event: API host has no DNS address record
+    detail: >-
+      api.customeros.ai — the servers[] host of all seven published OpenAPI documents and the
+      apis.yml baseURL — returns NOERROR with an empty answer section from both 1.1.1.1 and 8.8.8.8.
+      Only MX records exist (inbound.postmarkapp.com). Every published REST and GraphQL operation is
+      therefore unreachable at its documented address.
+    evidence: {probe: 'dig api.customeros.ai', result: 'NOERROR / no A / no AAAA', checked: '2026-08-13'}
+  - event: API reference pages removed from the docs
+    detail: >-
+      docs.customeros.ai/api-overview and docs.customeros.ai/api-descriptions — both recorded as
+      Documentation and APIReference properties in this repo since 2026-06-20 — now return 404, and
+      neither appears in the current sitemap.xml or llms.txt.
+    evidence:
+    - {url: 'https://docs.customeros.ai/api-overview', status: 404}
+    - {url: 'https://docs.customeros.ai/api-descriptions', status: 404}
+  - event: Published OpenAPI reachable only through the agent surface
+    detail: >-
+      docs llms.txt advertises an "OpenAPI Specs" section pointing at
+      https://docs.customeros.ai/flowApiSpec.yaml, which 404s over HTTP. The same document is mounted
+      and readable at /openapi/flowApiSpec.yaml inside the docs MCP server's virtual filesystem.
+    evidence:
+    - {url: 'https://docs.customeros.ai/flowApiSpec.yaml', status: 404}
+    - {url: 'https://docs.customeros.ai/openapi/flowApiSpec.yaml', status: 404}
+    - {url: 'https://docs.customeros.ai/mcp', status: 200, note: 'tools/call query_docs_filesystem — cat /openapi/flowApiSpec.yaml returns the spec'}
+  - event: GitHub organization deleted
+    detail: >-
+      github.com/openline-ai returns 404. Its repositories were transferred: openline-customer-os now
+      301s to github.com/customeros/customeros. The two npm packages published under the
+      @openline-ai scope remain on the registry with no maintaining organization behind them.
+    evidence:
+    - {url: 'https://github.com/openline-ai', status: 404}
+    - {url: 'https://github.com/openline-ai/openline-customer-os', status: 301, redirect: 'https://github.com/customeros/customeros'}
+  - event: Application host serving a TLS error
+    detail: app.customeros.ai returns Cloudflare 526 (invalid origin certificate) on every path probed.
+    evidence:
+    - {url: 'https://app.customeros.ai/', status: 526}
+source_repository:
+  url: https://github.com/customeros/customeros
+  default_branch: otter
+  last_push: '2025-12-02'
+  license: NOASSERTION
+  note: >-
+    The monorepo that publishes the six REST OpenAPI documents. Last pushed 2025-12-02, eight months
+    before this probe.

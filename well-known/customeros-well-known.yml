@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: searched
+source: live probes of every CustomerOS host on 2026-08-13
+description: >-
+  /.well-known/ discovery probe across every host named in apis.yml and in the OpenAPI servers[]
+  blocks. Two paths return real documents, both on the documentation host and both emitted by the
+  docs platform (Mintlify): an MCP descriptor and an A2A agent card. The marketing host and the API
+  host serve nothing — and api.customeros.ai has no address record at all, so it could not be probed.
+control_check:
+  note: >-
+    Soft-404 control run before crediting any 200. Unknown paths return real 404s on both hosts, so
+    the 200s below are genuine documents rather than SPA catch-alls.
+  probes:
+  - {url: 'https://docs.customeros.ai/zzz-control-nonsense-xyz789', status: 404}
+  - {url: 'https://customeros.ai/zzz-control-nonsense-xyz789', status: 404}
+hosts:
+- host: https://docs.customeros.ai
+  documents:
+  - path: /.well-known/mcp.json
+    status: 200
+    content_type: application/json
+    file: customeros-mcp.json
+    note: MCP server descriptor — transport http, authentication none.
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: customeros-agent-card.json
+    note: A2A agent card; graded in a2a/customeros-a2a.yml (flavored).
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-skills/, status: 404}
+- host: https://customeros.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://api.customeros.ai
+  unreachable: true
+  reason: >-
+    No A or AAAA record. dig against 1.1.1.1 and 8.8.8.8 returns NOERROR with an empty answer
+    section (MX records only), so no /.well-known/ path on the published API host could be probed.
+- host: https://app.customeros.ai
+  unreachable: true
+  reason: Cloudflare HTTP 526 (origin TLS certificate invalid) on every path probed.
+summary:
+  paths_probed: 21
+  documents_found: 2
+  security_txt: false
+  openid_configuration: false
+  api_catalog: false

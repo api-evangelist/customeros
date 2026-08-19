@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify single email address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/verify/v1/email",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Email address to verify"
+              },
+              {
+                "name": "verifyCatchAll",
+                "value": "",
+                "type": "query",
+                "description": "Verify catch-all domain"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Performs comprehensive validation of a single email address"
+        },
+        {
+          "info": {
+            "name": "Upload emails for bulk verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/verify/v1/email/bulk",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "emailColumn",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "verifyCatchAll",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiates bulk verification process for emails from CSV file"
+        },
+        {
+          "info": {
+            "name": "Get bulk verification results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/verify/v1/email/bulk/results/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Bulk verification job ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves results or status of bulk verification job"
+        },
+        {
+          "info": {
+            "name": "Download bulk verification results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/verify/v1/email/bulk/results/:requestId/download",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Bulk verification job ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads CSV file containing detailed verification results"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IP Intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get IP intelligence data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/verify/v1/ip",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "IP address to analyze"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves comprehensive information about an IP address including threats, geolocation, and network details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

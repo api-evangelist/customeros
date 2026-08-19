@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CustomerOS API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomerBASE API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/customerbase/v1/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a contact from either JSON or CSV upload"
+        },
+        {
+          "info": {
+            "name": "Create multiple contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/customerbase/v1/contacts/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates multiple contacts from JSON input"
+        },
+        {
+          "info": {
+            "name": "Import contacts from CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/customerbase/v1/contacts/import",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates multiple contacts from CSV file upload"
+        },
+        {
+          "info": {
+            "name": "Create a new organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.customeros.ai/customerbase/v1/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates an organization if it doesn't exist based on website, custom ID, or LinkedIn URL. Returns existing organization if found."
+        },
+        {
+          "info": {
+            "name": "Get organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.customeros.ai/customerbase/v1/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID or COS ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves detailed organization information by ID or COS ID"
+        },
+        {
+          "info": {
+            "name": "Set primary external system ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.customeros.ai/customerbase/v1/organizations/:id/links/:externalSystem/primary",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID or COS ID"
+              },
+              {
+                "name": "externalSystem",
+                "value": "",
+                "type": "path",
+                "description": "External system name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-CUSTOMER-OS-API-KEY",
+              "value": "{{X-CUSTOMER-OS-API-KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sets or updates the primary external system identifier for an organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

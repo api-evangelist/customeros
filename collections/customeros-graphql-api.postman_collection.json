@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "d9a97bef-9b21-4fac-9260-a15243a7e85a",
+      "name": "GraphQL",
+      "description": {
+        "content": "Single GraphQL endpoint for all CustomerOS operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2a18765-2ed2-454e-ae6f-37c07decb024",
+          "name": "Execute a GraphQL query or mutation.",
+          "request": {
+            "name": "Execute a GraphQL query or mutation.",
+            "description": {
+              "content": "Single GraphQL endpoint served by gqlgen. Accepts a standard GraphQL POST body (query, optional operationName, optional variables) and returns a GraphQL response envelope with `data` and/or `errors`. Authenticated per tenant with an API key header. Most fields are protected by @hasRole and @hasTenant directives in the schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Openline-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"operationName\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4209e56-7535-4fa8-96cd-05aa572126ac",
+              "name": "GraphQL response. Note that GraphQL returns HTTP 200 even when the response contains field-level `errors`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Openline-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"query($id: ID!) {\\n  organization(id: $id) {\\n    metadata { id }\\n    name\\n    website\\n  }\\n}\\n\",\n  \"variables\": {\n    \"id\": \"org-123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": true,\n    \"key_1\": false\n  },\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": false,\n        \"key_1\": 7696\n      }\n    },\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": 5405.687400826947,\n        \"key_1\": 9583.599322458895\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87eb0f23-c9b7-4af3-bcfc-451e10d637a3",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Openline-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"query($id: ID!) {\\n  organization(id: $id) {\\n    metadata { id }\\n    name\\n    website\\n  }\\n}\\n\",\n  \"variables\": {\n    \"id\": \"org-123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e43a5809-1814-4214-ba7e-f7402fb11c88",
+              "name": "Authenticated but not authorized for the requested tenant or role.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Openline-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"query($id: ID!) {\\n  organization(id: $id) {\\n    metadata { id }\\n    name\\n    website\\n  }\\n}\\n\",\n  \"variables\": {\n    \"id\": \"org-123\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "994715c2-830d-440b-9cbe-a33abed5e8da",
+          "name": "GraphQL Playground UI.",
+          "request": {
+            "name": "GraphQL Playground UI.",
+            "description": {
+              "content": "Interactive GraphQL Playground served by the customer-os-api server when enabled in configuration. Returns an HTML page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playground"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c40ab468-dcf8-409b-bef4-24efeaf98aad",
+              "name": "Playground HTML page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playground"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "79d7eed1-9eb5-44a2-9c1b-15ecbecf0ba9",
+    "name": "CustomerOS GraphQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HTTP transport definition for the CustomerOS (formerly Openline) customer-os-api GraphQL server. CustomerOS exposes a single GraphQL endpoint - POST /query - that handles all queries and mutations across organizations, contacts, opportunities, contracts, invoices, and interactions. This OpenAPI document models the HTTP envelope (request/response of the /query endpoint); the field-level operation surface is defined by the GraphQL schema, not by per-resource REST paths. See graphql/customeros-graphql.md and graphql/customeros-schema.graphql for the operation and type surface. The server is open source under Apache-2.0 (https://github.com/openline-ai/openline-customer-os).\n\nContact Support:\n Name: CustomerOS",
+      "type": "text/plain"
+    }
+  }
+}

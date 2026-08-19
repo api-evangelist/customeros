@@ -1,6 +1,29 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: derived
-source: openapi/customeros-openapi.yml
+source: openapi/customeros-billing-openapi.yml, openapi/customeros-customerbase-openapi.yml,
+  openapi/customeros-domains-openapi.yml, openapi/customeros-enrich-openapi.yml, openapi/customeros-graphql-api-openapi.yml,
+  openapi/customeros-outreach-openapi.yml, openapi/customeros-verify-openapi.yml
+docs_searched: true
+docs_url: null
+docs_note: >-
+  The CustomerOS documentation pages that used to describe API authentication —
+  docs.customeros.ai/api-overview and /api-descriptions — now return 404 and no longer appear in
+  the docs sitemap or llms.txt. The whole docs corpus was searched for "api key" through the
+  provider's own docs MCP filesystem and returned no match. So this profile stays DERIVED from the
+  published specs: the specs are now the only place CustomerOS documents API authentication at all.
+  docs.customeros.ai/security-and-compliance covers workspace SIGN-IN (magic link, Google/Microsoft
+  SSO, customer-supplied OpenID Connect) — user identity, not API authorization.
+key_issuance:
+  self_serve: false
+  note: >-
+    No key-issuance flow is published. Access to each REST endpoint group is granted per customer,
+    on request, by the CustomerOS team.
+defect:
+  operation: POST /customerbase/v1/contacts/import
+  spec: openapi/customeros-customerbase-openapi.yml
+  issue: >-
+    Security requirement declares `ApiKeyAutl`, a typo for `ApiKeyAuth`, referencing a scheme that
+    is not defined in components.securitySchemes. Present in the provider's own published document.
 summary:
   types:
   - apiKey
@@ -10,10 +33,21 @@ schemes:
 - name: ApiKeyAuth
   type: apiKey
   in: header
+  parameter: X-CUSTOMER-OS-API-KEY
+  sources:
+  - openapi/customeros-billing-openapi.yml
+  - openapi/customeros-customerbase-openapi.yml
+  - openapi/customeros-domains-openapi.yml
+  - openapi/customeros-enrich-openapi.yml
+  - openapi/customeros-outreach-openapi.yml
+  - openapi/customeros-verify-openapi.yml
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
   parameter: X-Openline-API-KEY
   description: Per-tenant API key. The open-source customer-os-api validates an API key header
     and resolves the tenant before applying @hasRole / @hasTenant directives. Header name and
     exact auth flow depend on deployment; the documented customeros.ai cloud REST surface uses
     X-CUSTOMER-OS-API-KEY.
   sources:
-  - openapi/customeros-openapi.yml
+  - openapi/customeros-graphql-api-openapi.yml

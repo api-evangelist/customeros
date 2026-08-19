@@ -1,0 +1,135 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/customeros-customerbase-openapi.yml (61 shared component schemas),
+  openapi/customeros-flow-api-openapi.yml, grpc/ (proto3 event messages),
+  https://docs.customeros.ai/data-structure
+description: >-
+  Entity-relationship graph derived from the id-reference fields and $ref links in the published
+  OpenAPI, cross-read against the documented conceptual model. Two important caveats: the REST specs
+  expose a narrow slice of a much wider GraphQL core, and the conceptual model the docs describe
+  (global company graph → workspace lead → touchpoints → briefs → contacts) is almost entirely
+  ABSENT from the REST contracts — leads, briefs and touchpoints have no REST representation at all.
+domains:
+- name: CustomerBASE
+  spec: openapi/customeros-customerbase-openapi.yml
+  entities: [Organization, Contact, ExternalSystem]
+- name: Mailstack
+  spec: openapi/customeros-domains-openapi.yml
+  entities: [Domain, Mailbox]
+- name: Billing
+  spec: openapi/customeros-billing-openapi.yml
+  entities: [Invoice]
+- name: Enrichment
+  spec: openapi/customeros-enrich-openapi.yml
+  entities: [EnrichOrganization, EnrichPerson]
+- name: Flow / outbound sequencing
+  spec: openapi/customeros-flow-api-openapi.yml
+  entities: [Flow, Sequence, Step, Sender, SequenceContact, Schedule, Config]
+- name: Web tracking (event vocabulary)
+  spec: grpc/
+  entities: [WebTracker, WebTrackerSession, WebTrackerEvent, Visitor, Webpage, Company, Tenant]
+entities:
+- name: Organization
+  schema: customerbase.OrganizationRecord
+  fields: [id, cosId, customId, name, website, domains, externalLinks, icpFit, leadSource, relationship, stage]
+  id_field: id
+  note: >-
+    Carries three distinct identifiers — the CustomerOS id, a cosId, and a customer-assigned customId
+    — plus a list of external-system links. Multi-identifier by design because organizations arrive
+    from CRM syncs.
+- name: Contact
+  schema: customerbase.ContactRecord
+  fields: [contactId, email, linkedinUrl]
+  id_field: contactId
+- name: ExternalSystem
+  schema: customerbase.ExternalSystemRecord
+  fields: [externalId, externalSystem, organizationId, primary]
+  id_field: externalId
+  note: The join record between a CustomerOS organization and a record in HubSpot/Salesforce/Pipedrive.
+- name: Invoice
+  schema: billing.InvoiceRecord
+  fields: [id, number, amount, currency, dueDate, invoiceStatus, paymentLink, publicUrl]
+  id_field: id
+- name: Domain
+  schema: restmailstack.DomainRecord
+  fields: [domain, createdDate, expiredDate, nameservers]
+  id_field: domain
+- name: Mailbox
+  schema: restmailstack.MailboxRecord
+  fields: [email, forwardingEnabled, forwardingTo, password, webmailEnabled]
+  id_field: email
+  note: >-
+    The record includes a `password` property. Any client logging responses verbatim will log mailbox
+    credentials.
+- name: Flow
+  schema: Flow
+  fields: [id, name, description, status, sequenceCount, createdAt, updatedAt]
+  id_field: id
+- name: Sequence
+  schema: Sequence
+  fields: [id, name, description, status, personas, stepCount, createdAt, updatedAt]
+  id_field: id
+- name: Step
+  schema: Step
+  fields: [id, type, order, status, details, waitTime]
+  id_field: id
+  variants: [EmailStepDetails, LinkedInStepDetails, ManualStepDetails]
+  note: Polymorphic via oneOf on `details`, discriminated by `type` (email | linkedin | manual).
+- name: Sender
+  schema: Sender
+  fields: [id, name, email, replyTo, bcc, status, dailySendLimit, warmingStatus, emailSignature]
+  id_field: id
+- name: SequenceContact
+  schema: Contact (Flow API)
+  fields: [id, email, firstName, lastName, company, status, currentStep, addedAt, lastUpdated]
+  id_field: id
+  note: >-
+    A DIFFERENT Contact than customerbase.ContactRecord — same concept name, different shape, in a
+    different spec, with no shared identifier. Recorded because it is a real modelling collision an
+    integrator will hit.
+relationships:
+- {from: Organization, to: ExternalSystem, type: has_many, via: externalLinks}
+- {from: ExternalSystem, to: Organization, type: belongs_to, via: organizationId}
+- {from: Organization, to: Invoice, type: has_many, via: 'path /billing/v1/organizations/{id}/invoices'}
+- {from: Domain, to: Mailbox, type: has_many, via: 'path /domains/{domain}/mailboxes'}
+- {from: Flow, to: Sequence, type: has_many, via: 'path /flows/{flow_id}/sequences'}
+- {from: Flow, to: Sender, type: has_many, via: 'path /flows/{flow_id}/senders'}
+- {from: Flow, to: Schedule, type: has_one, via: 'path /flows/{flow_id}/schedule'}
+- {from: Flow, to: Config, type: has_one, via: 'path /flows/{flow_id}/config'}
+- {from: Sequence, to: Step, type: has_many, via: 'path /flows/{flow_id}/sequences/{sequence_id}/steps'}
+- {from: Sequence, to: SequenceContact, type: has_many, via: 'path /flows/{flow_id}/sequences/{sequence_id}/contacts'}
+- {from: Schedule, to: Flow, type: belongs_to, via: flowId}
+- {from: Config, to: Flow, type: belongs_to, via: flowId}
+- {from: WebTrackerSession, to: WebTrackerEvent, type: has_many, via: session_id}
+- {from: WebTrackerEvent, to: Visitor, type: belongs_to, via: visitor_id}
+event_vocabulary:
+  source: grpc/
+  note: >-
+    proto3 message schemas published in the monorepo describe an internal event stream, not a
+    customer-facing one. They are the only machine-readable description of the tracking data model.
+  messages:
+  - CompanyCreated
+  - TenantCreated
+  - WebTrackerCreated
+  - WebTrackerSessionCreated
+  - WebTrackerSessionClosed
+  - WebTrackerEvent
+  - WebTrackerVisitorIdentified
+  - ProxyWebTrackerCnameConfigured
+  - WebsiteCrawled
+  - WebpageScraped
+  - WebpageClassified
+  - WebpageProfiled
+  - IcpFitDetermined
+  - RequestIcpFitAnalysis
+  - RequestIdentifyIpaddress
+  - RequestVerifyIpaddress
+  - RequestWebpageClassification
+  - RequestWebpageIntent
+documented_but_unmodelled:
+  note: >-
+    Concepts the documentation presents as the core of the product that have NO representation in any
+    published contract.
+  entities: [Lead, Touchpoint, Brief, ICP definition, Buying stage, Workspace, Insight]
+  source: https://docs.customeros.ai/data-structure

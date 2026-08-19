@@ -1,0 +1,100 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/ (all seven specs), docs.customeros.ai/security-and-compliance, errors/customeros-problem-types.yml
+description: >-
+  Cross-cutting request/response semantics for the CustomerOS APIs, derived from the published specs
+  and the docs. The picture is a young REST surface: one clean idea it does well (a requestId on
+  every envelope, success or error), and three conventions an agent needs that are simply absent —
+  idempotency, pagination controls, and rate-limit signalling.
+authentication:
+  style: api-key-header
+  header: X-CUSTOMER-OS-API-KEY
+  scope: per-tenant
+  applied: >-
+    Declared as `ApiKeyAuth` in every REST spec and applied per operation. See
+    authentication/customeros-authentication.yml.
+  defect: >-
+    POST /customerbase/v1/contacts/import declares its security requirement as `ApiKeyAutl` — a typo
+    for `ApiKeyAuth` that references an undefined scheme. A strict validator reads that operation as
+    having no resolvable security requirement. Present in the provider's own published spec.
+  legacy_header: >-
+    The open-source customer-os-api GraphQL server historically validated X-Openline-API-KEY; the
+    cloud REST surface uses X-CUSTOMER-OS-API-KEY.
+  user_auth:
+    note: >-
+      Distinct from API auth. Workspace sign-in supports magic link, Google/Microsoft SSO, and
+      customer-supplied OpenID Connect (discovery URL + client id + secret, enabled by support
+      request). Documented at docs.customeros.ai/security-and-compliance.
+idempotency:
+  supported: false
+  header: null
+  evidence: >-
+    No Idempotency-Key header, parameter or extension appears anywhere in the seven published specs
+    or in the documentation. Duplicate suppression is expressed only as HTTP 409 on POST
+    /customerbase/v1/organizations, POST /domains and POST /domains/{domain}/mailboxes.
+  agent_impact: >-
+    A retried POST after a network timeout may create a duplicate contact or a second bulk import.
+    Clients must dedupe client-side.
+pagination:
+  style: none-documented
+  request_params: []
+  response_fields:
+    schema: Pagination
+    fields: [totalCount, page, perPage, totalPages]
+    used_by: [FlowList, SequenceList, SenderList, ContactList]
+  gap: >-
+    The Flow API returns a pagination envelope but declares no page/perPage/cursor QUERY parameter on
+    any list operation, so the spec describes a paginated response that a client has no documented
+    way to page through. The six CustomerBASE/enrich/verify/domains/billing specs declare no
+    pagination at all.
+field_expansion: {supported: false}
+sparse_fieldsets: {supported: false}
+metadata: {supported: false, note: No customer-defined metadata/custom-field surface in the REST specs.}
+request_tracing:
+  field: requestId
+  location: response body
+  header: null
+  present_on: [success, error]
+  example: 1234567890abcdef
+  note: >-
+    Carried by both rest.BaseResponse and rest.ErrorResponse, which makes it the one reliable support
+    correlation handle. It is a body field, not a response header, so proxies and log pipelines that
+    only record headers will not capture it.
+versioning:
+  scheme: uri-path
+  forms:
+  - {surface: CustomerBASE, form: /customerbase/v1/...}
+  - {surface: Enrichment, form: /enrich/v1/...}
+  - {surface: Verification, form: /verify/v1/...}
+  - {surface: Billing, form: /billing/v1/...}
+  - {surface: Outreach, form: /outreach/v1/...}
+  - {surface: Flow, form: 'templated server variable — https://api.customeros.ai/flow/{version}, default v1'}
+  - {surface: Mailstack domains, form: 'unversioned — /domains, /domains/{domain}/mailboxes'}
+  inconsistency: >-
+    Five surfaces version in the path, one versions through a server variable, and one is not
+    versioned at all. There is no published policy reconciling them.
+error_envelope:
+  format: custom-json
+  rfc9457: false
+  media_type: application/json
+  detail: errors/customeros-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers: []
+  exhaustion_status: null
+  detail: rate-limits/customeros-rate-limits.yml
+content_types:
+  request: [application/json, multipart/form-data, text/csv]
+  response: [application/json, text/csv]
+  note: CSV appears on the contact import and on the bulk email-verification results download.
+bulk_semantics:
+  partial_success_statuses: [206, 207]
+  note: >-
+    Bulk operations can succeed partially. See errors/customeros-problem-types.yml — a client that
+    branches only on 2xx will mis-read a partial failure as success.
+cross_links:
+  errors: errors/customeros-problem-types.yml
+  lifecycle: lifecycle/customeros-lifecycle.yml
+  authentication: authentication/customeros-authentication.yml
+  rate_limits: rate-limits/customeros-rate-limits.yml

@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for CustomerOS Flow
+  version: 1.0.0
+extends: openapi/customeros-flow-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provenance:
+      harvested: '2026-08-13'
+      method: searched
+      source: docs MCP virtual filesystem /openapi/flowApiSpec.yaml (https://docs.customeros.ai/mcp)
+      note: Saved verbatim. This overlay carries API Evangelist observations; the underlying document
+        is unmodified.
+    x-apievangelist-surface: Flow
+- target: $.servers[0]
+  update:
+    x-apievangelist-host-check:
+      host: api.customeros.ai
+      resolves: false
+      checked: '2026-08-13'
+      note: dig against 1.1.1.1 and 8.8.8.8 returns NOERROR with an empty answer section (MX records only).
+        No A or AAAA record exists, so this server URL is not reachable as published.
+- target: $.paths
+  update:
+    x-apievangelist-operationid-gap:
+      operations: 34
+      with_operation_id: 0
+      note: No operation in this document declares an operationId. Tooling and agent skills must address
+        these operations by METHOD + path.

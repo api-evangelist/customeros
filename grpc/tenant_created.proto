@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./pb";
+
+import "google/protobuf/timestamp.proto";
+
+message TenantCreated {
+  google.protobuf.Timestamp timestamp = 1;
+  string tenant = 2;
+  string domain = 3;
+}

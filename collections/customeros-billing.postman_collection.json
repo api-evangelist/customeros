@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "b78920ff-ce5c-4540-819a-14415efb3926",
+      "name": "Billing API",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a32690e6-e7c1-411d-a39f-c77d4aee2e8a",
+          "name": "Get organization's invoices",
+          "request": {
+            "name": "Get organization's invoices",
+            "description": {
+              "content": "Retrieves all non-dry-run invoices for a specific organization, sorted by due date descending",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "v1",
+                "organizations",
+                ":id",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Organization ID or COS ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-CUSTOMER-OS-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad967328-c0f5-4d19-926c-96ddbb03d10a",
+              "name": "List of invoices retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoices\": [\n    {\n      \"amount\": 3995.2657043607896,\n      \"currency\": \"string\",\n      \"dueDate\": \"string\",\n      \"id\": \"string\",\n      \"invoiceStatus\": \"string\",\n      \"number\": \"string\",\n      \"paymentLink\": \"string\",\n      \"publicUrl\": \"string\"\n    },\n    {\n      \"amount\": 2736.6389800080246,\n      \"currency\": \"string\",\n      \"dueDate\": \"string\",\n      \"id\": \"string\",\n      \"invoiceStatus\": \"string\",\n      \"number\": \"string\",\n      \"paymentLink\": \"string\",\n      \"publicUrl\": \"string\"\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4707033-5eb9-446e-9499-d627fee7214c",
+              "name": "Invoices retrieved with some errors fetching public URLs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoices\": [\n    {\n      \"amount\": 5778.128839403347,\n      \"currency\": \"string\",\n      \"dueDate\": \"string\",\n      \"id\": \"string\",\n      \"invoiceStatus\": \"string\",\n      \"number\": \"string\",\n      \"paymentLink\": \"string\",\n      \"publicUrl\": \"string\"\n    },\n    {\n      \"amount\": 369.2384951533878,\n      \"currency\": \"string\",\n      \"dueDate\": \"string\",\n      \"id\": \"string\",\n      \"invoiceStatus\": \"string\",\n      \"number\": \"string\",\n      \"paymentLink\": \"string\",\n      \"publicUrl\": \"string\"\n    }\n  ],\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f736eb6d-3a78-4386-b612-ee2d11e693e5",
+              "name": "Invalid organization ID format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee12b052-c6f9-4284-9eb9-5f223aa49890",
+              "name": "Unauthorized - Invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee8b67ab-11cb-49aa-b943-d8011469f5b3",
+              "name": "Organization not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4c92a0c-1f3b-4f34-b163-df756dc4e57a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "v1",
+                    "organizations",
+                    ":id",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Organization ID or COS ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-CUSTOMER-OS-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890abcdef\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.customeros.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "39e93861-fbea-45e2-9009-9ad91ce01ab6",
+    "name": "CustomerOS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CustomerOS API for multiple services (Verify, Enrich, Orgs)",
+      "type": "text/plain"
+    }
+  }
+}
