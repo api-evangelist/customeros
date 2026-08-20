@@ -37,6 +37,17 @@ tags:
 - Email Verification
 - Enrichment
 - GraphQL
+- Open-Source
+tags_raw:
+- CRM
+- Revenue
+- Go-To-Market
+- Lead Intelligence
+- Visitor Identification
+- Attribution
+- Email Verification
+- Enrichment
+- GraphQL
 - Open Source
 created: '2026-06-20'
 modified: '2026-08-13'
@@ -45,6 +56,14 @@ apis:
 - aid: customeros:customeros-customerbase-rest-api
   name: CustomerOS REST API
   tags:
+  - REST
+  - CustomerBase
+  - Organization
+  - Enrichment
+  - Email Verification
+  - Mailstack
+  - Billing
+  tags_raw:
   - REST
   - CustomerBase
   - Organizations
