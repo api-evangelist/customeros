@@ -53,87 +53,6 @@ created: '2026-06-20'
 modified: '2026-08-13'
 specificationVersion: '0.23'
 apis:
-- aid: customeros:customeros-customerbase-rest-api
-  name: CustomerOS REST API
-  tags:
-  - REST
-  - CustomerBase
-  - Organization
-  - Enrichment
-  - Email Verification
-  - Mailstack
-  - Billing
-  tags_raw:
-  - REST
-  - CustomerBase
-  - Organizations
-  - Enrichment
-  - Email Verification
-  - Mailstack
-  - Billing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
-  baseURL: https://api.customeros.ai
-  properties:
-  - url: openapi/customeros-customerbase-openapi.yml
-    type: OpenAPI
-    name: CustomerBASE (contacts + organizations)
-  - url: openapi/customeros-enrich-openapi.yml
-    type: OpenAPI
-    name: Enrichment
-  - url: openapi/customeros-verify-openapi.yml
-    type: OpenAPI
-    name: Email verification + IP intelligence
-  - url: openapi/customeros-domains-openapi.yml
-    type: OpenAPI
-    name: Mailstack domains + mailboxes
-  - url: openapi/customeros-billing-openapi.yml
-    type: OpenAPI
-    name: Billing invoices
-  - url: openapi/customeros-outreach-openapi.yml
-    type: OpenAPI
-    name: Outreach email tracking
-  - url: openapi/_original/customeros-swagger.json
-    type: Swagger
-    name: Source Swagger 2.0 (verbatim)
-  - url: https://github.com/customeros/customeros
-    type: SourceCode
-  - url: https://docs.customeros.ai
-    type: Documentation
-  description: >-
-    Key-authenticated REST surface for the customeros.ai cloud, published as six OpenAPI 3.0.1
-    documents (one per tag) plus the source Swagger 2.0 in github.com/customeros/customeros. All
-    six declare the same ApiKeyAuth scheme, an X-CUSTOMER-OS-API-KEY header, and the same
-    servers[] host https://api.customeros.ai. Access to each endpoint group is granted on a
-    per-request basis by the CustomerOS team. NOTE: as of 2026-08-13 api.customeros.ai has no DNS
-    address record, and the docs pages that used to document this API (docs.customeros.ai/api-overview
-    and /api-descriptions) now return 404 — see lifecycle/customeros-lifecycle.yml.
-- aid: customeros:customeros-flow-api
-  name: CustomerOS Flow API
-  tags:
-  - REST
-  - Outbound
-  - Sequences
-  - Email
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.customeros.ai
-  baseURL: https://api.customeros.ai/flow/{version}
-  properties:
-  - url: openapi/customeros-flow-api-openapi.yml
-    type: OpenAPI
-    name: Flow API
-  - url: openapi/_original/customeros-flow-openapi.json
-    type: OpenAPI
-    name: Flow API (verbatim, as served)
-  - url: https://docs.customeros.ai
-    type: Documentation
-  description: >-
-    34-operation REST API for outbound sequencing — flows, sequences, steps (email, LinkedIn or
-    manual), senders with warming state and daily send limits, sending schedules, opt-out and
-    analytics config, and per-sequence contacts. Server is templated as
-    https://api.customeros.ai/flow/{version} with version defaulting to v1. The spec is advertised
-    in the docs llms.txt as flowApiSpec.yaml but every HTTP path for it 404s; it was harvested from
-    the documentation MCP server's virtual filesystem, which is the only surface that serves it.
 - aid: customeros:customeros-website-tracker
   name: CustomerOS Website Tracker
   tags:
@@ -152,19 +71,19 @@ apis:
   - url: components/customeros-components.yml
     type: Components
   description: >-
-    Client-side JavaScript tracker that captures page views and custom events, exposes
-    window.cos.identify() for attaching identity and properties, and matches visitor IPs to
-    companies. Since the 2025-09-08 change CustomerOS supports it ONLY when served from a
-    reverse proxy on the customer's own domain, so the base URL is templated by design — there
-    is no CustomerOS-hosted CDN URL to record and no version-pinned build.
+    Client-side JavaScript tracker that captures page views and custom events, exposes window.cos.identify()
+    for attaching identity and properties, and matches visitor IPs to companies. Since the 2025-09-08
+    change CustomerOS supports it ONLY when served from a reverse proxy on the customer's own domain,
+    so the base URL is templated by design — there is no CustomerOS-hosted CDN URL to record and no version-pinned
+    build.
 - aid: customeros:customeros-graphql-api
   name: CustomerOS GraphQL API
   description: >-
-    Single GraphQL endpoint served by the open-source customer-os-api (Go, gqlgen) covering
-    organizations, contacts, opportunities, contracts, invoices, interactions and timeline
-    events. The repository moved with the rename: github.com/openline-ai/openline-customer-os
-    now 301s to github.com/customeros/customeros, where 69 .graphqls schema files are published.
-    Introspection could not be run — the published endpoint host does not resolve.
+    Single GraphQL endpoint served by the open-source customer-os-api (Go, gqlgen) covering organizations,
+    contacts, opportunities, contracts, invoices, interactions and timeline events. The repository moved
+    with the rename: github.com/openline-ai/openline-customer-os now 301s to github.com/customeros/customeros,
+    where 69 .graphqls schema files are published. Introspection could not be run — the published endpoint
+    host does not resolve.
   humanURL: https://github.com/customeros/customeros
   baseURL: https://api.customeros.ai/query
   tags:
@@ -184,6 +103,150 @@ apis:
     url: https://docs.customeros.ai/data-structure
   - type: Documentation
     url: https://docs.customeros.ai/contacts
+- aid: customeros:customeros-billing-api-api
+  name: CustomerOS Billing API
+  description: The Billing API API from CustomerOS — 1 operation(s) for billing api.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Billing API
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-billing-api-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-customerbase-api-api
+  name: CustomerOS CustomerBASE API
+  description: The CustomerBASE API API from CustomerOS — 6 operation(s) for customerbase api.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - CustomerBASE API
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-customerbase-api-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-domains-api
+  name: CustomerOS Domains API
+  description: The Domains API from CustomerOS — 2 operation(s) for domains.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-domains-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-email-verification-api
+  name: CustomerOS Email Verification API
+  description: The Email Verification API from CustomerOS — 4 operation(s) for email verification.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Email Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-email-verification-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-enrichment-api-api
+  name: CustomerOS Enrichment API
+  description: The Enrichment API API from CustomerOS — 3 operation(s) for enrichment api.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Enrichment API
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-enrichment-api-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-flows-api
+  name: CustomerOS Flows API
+  description: The Flows API from CustomerOS — 18 operation(s) for flows.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-flows-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-ip-intelligence-api
+  name: CustomerOS IP Intelligence API
+  description: The IP Intelligence API from CustomerOS — 1 operation(s) for ip intelligence.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - IP Intelligence
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-ip-intelligence-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-mailboxes-api
+  name: CustomerOS Mailboxes API
+  description: The Mailboxes API from CustomerOS — 1 operation(s) for mailboxes.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Mailboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-mailboxes-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
+- aid: customeros:customeros-outreach-api
+  name: CustomerOS Outreach API
+  description: The Outreach API from CustomerOS — 1 operation(s) for outreach.
+  humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
+  baseURL: https://api.customeros.ai
+  tags:
+  - Outreach
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-outreach-api-openapi.yml
+  - type: Swagger
+    url: openapi/_original/customeros-swagger.json
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai
 common:
 - type: Website
   url: https://customeros.ai
