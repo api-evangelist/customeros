@@ -13,6 +13,19 @@ description: CustomerOS (formerly Openline) is a London-based revenue-intelligen
   Flow API for outbound sequencing, and the open-source customer-os-api GraphQL server that
   predates the pivot. CustomerOS also runs a live anonymous MCP server and serves an A2A agent
   card from its documentation host.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: sales-assisted
