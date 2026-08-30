@@ -1,0 +1,277 @@
+openapi: 3.2.0
+info:
+  title: CustomerOS Domains API
+  description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://api.customeros.ai/
+tags:
+- name: Domains
+paths:
+  /domains:
+    get:
+      tags:
+      - Domains
+      summary: List active domains
+      description: Retrieves all active domains for the authenticated tenant
+      responses:
+        '200':
+          description: Successfully retrieved domain list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restmailstack.DomainsResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error - Unable to retrieve domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+    post:
+      tags:
+      - Domains
+      summary: Register new domain
+      description: Registers and configures a new domain for mail services, including DNS setup
+      requestBody:
+        description: Domain registration details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/restmailstack.RegisterNewDomainRequest'
+        required: true
+      responses:
+        '201':
+          description: Domain registered and configured successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restmailstack.DomainResponse'
+        '400':
+          description: Invalid request - Missing required fields or invalid format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '406':
+          description: Not Acceptable - Domain TLD not supported or premium domain
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '409':
+          description: Conflict - Domain already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error - Configuration failed or service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      x-codegen-request-body-name: body
+  /domains/configure:
+    post:
+      tags:
+      - Domains
+      summary: Configure domain DNS
+      description: Sets up DNS records and mail services for an existing domain
+      requestBody:
+        description: Domain configuration details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/restmailstack.ConfigureDomainRequest'
+        required: true
+      responses:
+        '201':
+          description: Domain configured successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restmailstack.DomainResponse'
+        '400':
+          description: Invalid request - Missing required fields or invalid format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '404':
+          description: Not Found - Domain not found or not owned by tenant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error - Configuration failed or service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+    restmailstack.DomainsResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          description: 'List of domains
+
+            required: true'
+          items:
+            $ref: '#/components/schemas/restmailstack.DomainRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Response containing list of domains and status
+    restmailstack.DomainRecord:
+      type: object
+      properties:
+        createdDate:
+          type: string
+          description: 'Domain registration date
+
+            required: true
+
+            format: date
+
+            example: 2024-09-14'
+        domain:
+          type: string
+          description: 'Registered domain name
+
+            required: true
+
+            example: example.com'
+        expiredDate:
+          type: string
+          description: 'Domain expiration date
+
+            required: true
+
+            format: date
+
+            example: 2025-09-14'
+        nameservers:
+          type: array
+          description: 'List of assigned nameservers
+
+            required: true
+
+            minItems: 2
+
+            example: ["ns1.example.com","ns2.example.com"]'
+          items:
+            type: string
+      description: Comprehensive domain record information
+    restmailstack.DomainResponse:
+      type: object
+      properties:
+        domain:
+          type: object
+          description: 'Domain information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restmailstack.DomainRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Response containing domain details and status
+    restmailstack.RegisterNewDomainRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: 'Domain name to register
+
+            required: true
+
+            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
+
+            example: example.com'
+        website:
+          type: string
+          description: 'Website URL for domain configuration
+
+            required: true
+
+            format: uri
+
+            example: https://www.example.com'
+      description: Request payload for registering a new domain for mail services
+    restmailstack.ConfigureDomainRequest:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: 'Domain name to configure
+
+            required: true
+
+            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
+
+            example: example.com'
+        website:
+          type: string
+          description: 'Website URL for domain configuration
+
+            required: true
+
+            format: uri
+
+            example: https://www.example.com'
+      description: Request payload for configuring domain DNS and mail services
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-CUSTOMER-OS-API-KEY
+      in: header
+x-original-swagger-version: '2.0'

@@ -1,0 +1,272 @@
+openapi: 3.2.0
+info:
+  title: CustomerOS Mailboxes API
+  description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://api.customeros.ai/
+tags:
+- name: Mailboxes
+paths:
+  /domains/{domain}/mailboxes:
+    get:
+      tags:
+      - Mailboxes
+      summary: List mailboxes
+      description: Retrieves all mailboxes configured for the specified domain
+      parameters:
+      - name: domain
+        in: path
+        description: Domain name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved mailboxes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restmailstack.MailboxesResponse'
+        '400':
+          description: Missing domain parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '404':
+          description: Domain not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+    post:
+      tags:
+      - Mailboxes
+      summary: Create mailbox
+      description: Creates a new mailbox for the specified domain with optional forwarding and webmail access
+      parameters:
+      - name: domain
+        in: path
+        description: Domain name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Mailbox configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/restmailstack.MailboxRequest'
+        required: true
+      responses:
+        '200':
+          description: Mailbox created successfully with generated password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restmailstack.MailboxResponse'
+        '400':
+          description: Invalid request - Missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '404':
+          description: Domain not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '409':
+          description: Mailbox already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    restmailstack.MailboxRequest:
+      type: object
+      properties:
+        forwardingTo:
+          type: array
+          description: 'List of email addresses to forward to
+
+            required: false
+
+            maxItems: 10
+
+            example: ["user1@example.com","user2@example.com"]'
+          items:
+            type: string
+        linkedUser:
+          type: string
+          description: 'Associated user''s email address
+
+            required: false
+
+            format: email
+
+            example: john.doe@mycompany.com'
+        password:
+          type: string
+          description: 'Password for mailbox access
+
+            required: false
+
+            minLength: 8
+
+            maxLength: 64
+
+            example: SecurePassword123!'
+        username:
+          type: string
+          description: 'Username for the mailbox
+
+            required: true
+
+            pattern: ^[a-zA-Z0-9._%+-]+$
+
+            minLength: 3
+
+            maxLength: 64
+
+            example: john.doe'
+        webmailEnabled:
+          type: boolean
+          description: 'Enable webmail access
+
+            required: false
+
+            default: false'
+      description: Request payload for creating and configuring a new mailbox
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+    restmailstack.MailboxRecord:
+      type: object
+      properties:
+        email:
+          type: string
+          description: 'Email address for the mailbox
+
+            required: true
+
+            format: email
+
+            example: user@example.com'
+        forwardingEnabled:
+          type: boolean
+          description: 'Email forwarding status
+
+            required: true
+
+            default: false'
+        forwardingTo:
+          type: array
+          description: 'List of forwarding email addresses
+
+            required: false
+
+            maxItems: 10'
+          items:
+            type: string
+        password:
+          type: string
+          description: 'Mailbox password (only included in specific responses)
+
+            required: false
+
+            minLength: 8
+
+            maxLength: 64'
+        webmailEnabled:
+          type: boolean
+          description: 'Webmail access status
+
+            required: true
+
+            default: false'
+      description: Comprehensive mailbox configuration and status
+    restmailstack.MailboxResponse:
+      type: object
+      properties:
+        mailbox:
+          type: object
+          description: 'Mailbox information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restmailstack.MailboxRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Response containing mailbox details and status
+    restmailstack.MailboxesResponse:
+      type: object
+      properties:
+        mailboxes:
+          type: array
+          description: 'List of mailboxes
+
+            required: false'
+          items:
+            $ref: '#/components/schemas/restmailstack.MailboxRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Response containing list of mailboxes and status
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-CUSTOMER-OS-API-KEY
+      in: header
+x-original-swagger-version: '2.0'

@@ -1,0 +1,628 @@
+openapi: 3.2.0
+info:
+  title: CustomerOS Enrichment API
+  description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://api.customeros.ai/
+tags:
+- name: Enrichment API
+paths:
+  /enrich/v1/organization:
+    get:
+      tags:
+      - Enrichment API
+      summary: Enrich organization information
+      description: Enriches organization information using either domain or LinkedIn URL
+      parameters:
+      - name: linkedinUrl
+        in: query
+        description: Organization's LinkedIn URL
+        schema:
+          type: string
+      - name: domain
+        in: query
+        description: Organization's domain
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 'Organization not found (status: warning)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '400':
+          description: Missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+      security:
+      - ApiKeyAuth: []
+  /enrich/v1/person:
+    get:
+      tags:
+      - Enrichment API
+      summary: Enrich person information
+      description: Enriches person information using LinkedIn URL, email, and other optional details
+      parameters:
+      - name: linkedinUrl
+        in: query
+        description: LinkedIn profile URL
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Email address
+        schema:
+          type: string
+          format: email
+      - name: firstName
+        in: query
+        description: First name
+        schema:
+          minLength: 1
+          type: string
+      - name: lastName
+        in: query
+        description: Last name
+        schema:
+          minLength: 1
+          type: string
+      - name: includeMobileNumber
+        in: query
+        description: Include mobile number in results
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: 'Person not found (status: warning)'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '202':
+          description: Processing initiated, check ResultURL for final data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restenrich.EnrichPersonResponse'
+        '400':
+          description: Missing linkedinUrl or email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+      security:
+      - ApiKeyAuth: []
+  /enrich/v1/person/results/{id}:
+    get:
+      tags:
+      - Enrichment API
+      summary: Retrieve enrichment results
+      description: Retrieves the results of an asynchronous person enrichment operation
+      parameters:
+      - name: id
+        in: path
+        description: Result ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successfully retrieved enriched data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restenrich.EnrichPersonResponse'
+        '202':
+          description: Still processing, check again later
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restenrich.EnrichPersonResponse'
+        '400':
+          description: Invalid result ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '404':
+          description: Result not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.BaseResponse'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    restenrich.EnrichPersonGithub:
+      type: object
+      properties:
+        url:
+          type: string
+          description: 'Full GitHub profile URL
+
+            required: false
+
+            format: uri'
+          example: https://github.com/johndoe
+        username:
+          type: string
+          description: 'GitHub username
+
+            required: true'
+          example: johndoe
+      description: GitHub profile details
+    restenrich.EnrichPersonLocation:
+      type: object
+      properties:
+        city:
+          type: string
+          description: 'City name
+
+            required: false'
+          example: San Francisco
+        country:
+          type: string
+          description: 'Country name
+
+            required: false'
+          example: United States
+        region:
+          type: string
+          description: 'State or region
+
+            required: false'
+          example: California
+        timezone:
+          type: string
+          description: 'Timezone identifier
+
+            required: false
+
+            example: America/Los_Angeles'
+          example: PST
+      description: Geographic and timezone information about a person
+    restenrich.EnrichPersonResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: 'Enriched person data
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonData'
+        isComplete:
+          type: boolean
+          description: 'Indicates if all enrichment operations are complete
+
+            required: true'
+          example: true
+        message:
+          type: string
+          description: 'Optional message providing additional information
+
+            required: false'
+          example: Enrichment completed
+        pendingFields:
+          type: array
+          description: 'List of fields still being processed
+
+            required: false'
+          example:
+          - email
+          - phone number
+          items:
+            type: string
+        resultUrl:
+          type: string
+          description: 'URL to check the final result when processing is incomplete
+
+            required: false
+
+            format: uri'
+          example: https://api.customeros.ai/enrich/v1/person/results/550e8400-e29b-41d4-a716-446655440000
+        status:
+          type: string
+          description: 'Operation status
+
+            required: true
+
+            enum: success,error,warning'
+          example: success
+      description: Response structure for person enrichment operations
+    restenrich.EnrichPersonPhoneNumber:
+      type: object
+      properties:
+        number:
+          type: string
+          description: 'Phone number in E.164 format
+
+            required: true
+
+            pattern: ^\+[1-9]\d{1,14}$'
+          example: '+14155552671'
+        type:
+          type: string
+          description: 'Type of phone number
+
+            required: true
+
+            enum: mobile,work,home,other'
+          example: mobile
+      description: Phone number with type classification
+    restenrich.EnrichPersonData:
+      type: object
+      properties:
+        emails:
+          type: array
+          description: 'List of email addresses associated with the person
+
+            required: false'
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonEmail'
+        jobs:
+          type: array
+          description: 'Employment history
+
+            required: false'
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonJob'
+        location:
+          type: object
+          description: 'Geographic location information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonLocation'
+        name:
+          type: object
+          description: 'Person''s name information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonName'
+        phoneNumbers:
+          type: array
+          description: 'List of phone numbers
+
+            required: false'
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonPhoneNumber'
+        profilePic:
+          type: string
+          description: 'URL to person''s profile picture
+
+            required: false
+
+            format: uri'
+          example: https://example.com/profile.jpg
+        social:
+          type: object
+          description: 'Social media presence
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonSocial'
+      description: Comprehensive enriched information about a person
+    restenrich.EnrichPersonJob:
+      type: object
+      properties:
+        company:
+          type: string
+          description: 'Company name
+
+            required: true'
+          example: Tech Corp
+        companyLinkedin:
+          type: string
+          description: 'Company''s LinkedIn URL
+
+            required: false
+
+            format: uri'
+          example: https://linkedin.com/company/techcorp
+        companyWebsite:
+          type: string
+          description: 'Company''s website
+
+            required: false
+
+            format: uri'
+          example: https://techcorp.com
+        duration:
+          type: object
+          description: 'Employment duration
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonJobDuration'
+        isCurrent:
+          type: boolean
+          description: 'Indicates if this is the current position
+
+            required: true'
+          example: true
+        seniority:
+          type: string
+          description: 'Seniority level
+
+            required: false
+
+            enum: Junior,Mid-Level,Senior,Lead,Manager,Director,VP,C-Level'
+          example: Senior
+        title:
+          type: string
+          description: 'Job title
+
+            required: true'
+          example: Software Engineer
+      description: Details about a person's job position
+    restenrich.EnrichPersonLinkedIn:
+      type: object
+      properties:
+        followerCount:
+          type: integer
+          description: 'Number of LinkedIn followers
+
+            required: false
+
+            minimum: 0'
+          example: 500
+        id:
+          type: string
+          description: 'LinkedIn internal ID
+
+            required: false'
+          example: '123456789'
+        publicId:
+          type: string
+          description: 'LinkedIn public identifier
+
+            required: false'
+          example: john-doe
+        url:
+          type: string
+          description: 'Full LinkedIn profile URL
+
+            required: false
+
+            format: uri'
+          example: https://linkedin.com/in/john-doe
+      description: LinkedIn specific profile details
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+    rest.BaseResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Standard response structure for API operations
+    restenrich.EnrichPersonX:
+      type: object
+      properties:
+        handle:
+          type: string
+          description: 'X handle (without @)
+
+            required: true'
+          example: johndoe
+        url:
+          type: string
+          description: 'Full X profile URL
+
+            required: false
+
+            format: uri'
+          example: https://x.com/johndoe
+      description: X (formerly Twitter) profile details
+    restenrich.EnrichPersonJobDuration:
+      type: object
+      properties:
+        endMonth:
+          type: integer
+          description: 'Ending month (1-12)
+
+            required: false
+
+            minimum: 1
+
+            maximum: 12'
+          example: 12
+        endYear:
+          type: integer
+          description: 'Ending year
+
+            required: false
+
+            minimum: 1900
+
+            maximum: 2100'
+          example: 2023
+        startMonth:
+          type: integer
+          description: 'Starting month (1-12)
+
+            required: false
+
+            minimum: 1
+
+            maximum: 12'
+          example: 1
+        startYear:
+          type: integer
+          description: 'Starting year
+
+            required: false
+
+            minimum: 1900
+
+            maximum: 2100'
+          example: 2020
+      description: Time period of employment
+    restenrich.EnrichPersonEmail:
+      type: object
+      properties:
+        address:
+          type: string
+          description: 'Email address
+
+            required: true
+
+            format: email'
+          example: john.doe@example.com
+        deliverable:
+          type: string
+          description: 'Indicates if the email is deliverable
+
+            required: false'
+          example: 'true'
+        isRisky:
+          type: boolean
+          description: 'Indicates if the email is considered risky
+
+            required: false'
+          example: false
+        type:
+          type: string
+          description: 'Type of email address
+
+            required: false
+
+            enum: personal,work'
+          example: work
+      description: Email address with validation details
+    restenrich.EnrichPersonDiscord:
+      type: object
+      properties:
+        username:
+          type: string
+          description: 'Discord username with discriminator
+
+            required: true
+
+            pattern: ^.{3,32}#[0-9]{4}$'
+          example: johndoe#1234
+      description: Discord profile details
+    restenrich.EnrichPersonSocial:
+      type: object
+      properties:
+        discord:
+          type: object
+          description: 'Discord profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonDiscord'
+        github:
+          type: object
+          description: 'GitHub profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonGithub'
+        linkedin:
+          type: object
+          description: 'LinkedIn profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonLinkedIn'
+        x:
+          type: object
+          description: 'X (Twitter) profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonX'
+      description: Collection of social media profile information
+    restenrich.EnrichPersonName:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: 'First name
+
+            required: true
+
+            minLength: 1'
+          example: John
+        fullName:
+          type: string
+          description: 'Full name (typically firstName + lastName)
+
+            required: false'
+          example: John Doe
+        lastName:
+          type: string
+          description: 'Last name
+
+            required: true
+
+            minLength: 1'
+          example: Doe
+      description: Person's name details
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-CUSTOMER-OS-API-KEY
+      in: header
+x-original-swagger-version: '2.0'

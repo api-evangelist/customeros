@@ -1,0 +1,316 @@
+openapi: 3.2.0
+info:
+  title: CustomerOS IP Intelligence API
+  description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://api.customeros.ai/
+tags:
+- name: IP Intelligence
+paths:
+  /verify/v1/ip:
+    get:
+      tags:
+      - IP Intelligence
+      summary: Get IP intelligence data
+      description: Retrieves comprehensive information about an IP address including threats, geolocation, and network details
+      parameters:
+      - name: address
+        in: query
+        description: IP address to analyze
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: IP intelligence data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restverify.IpIntelligenceResponse'
+        '400':
+          description: Invalid IP address format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '401':
+          description: Unauthorized - Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rest.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    restverify.IpIntelligenceResponse:
+      type: object
+      properties:
+        ip:
+          type: object
+          description: 'IP intelligence details
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+      description: Response containing IP intelligence data including threats, geolocation, and network information
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          type: string
+          description: Status indicates the result of the operation ("success" or "error")
+          example: success
+    restverify.IpIntelligenceOrganization:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: 'Organization domain
+
+            required: false'
+          example: company.com
+        linkedin:
+          type: string
+          description: 'LinkedIn profile URL
+
+            required: false
+
+            format: uri'
+          example: https://linkedin.com/company/company
+        name:
+          type: string
+          description: 'Organization name
+
+            required: false'
+          example: Company Name
+      description: Organization information associated with the IP address
+    restverify.IpIntelligenceGeolocation:
+      type: object
+      properties:
+        city:
+          type: string
+          description: 'City name
+
+            required: false'
+          example: Berlin
+        country:
+          type: string
+          description: 'Country name
+
+            required: true'
+          example: Germany
+        countryIso:
+          type: string
+          description: 'ISO 3166-1 alpha-2 country code
+
+            required: true
+
+            pattern: ^[A-Z]{2}$'
+          example: DE
+        isEuropeanUnion:
+          type: boolean
+          description: 'Indicates if country is in the European Union
+
+            required: true'
+          example: true
+      description: Geographic location information for the IP address
+    restverify.IpIntelligenceThreats:
+      type: object
+      properties:
+        isCloudRelay:
+          type: boolean
+          description: 'Indicates if IP is a cloud relay
+
+            required: true'
+          example: false
+        isDatacenter:
+          type: boolean
+          description: 'Indicates if IP belongs to a datacenter
+
+            required: true'
+          example: false
+        isMobile:
+          type: boolean
+          description: 'Indicates if IP belongs to a mobile network
+
+            required: true'
+          example: false
+        isProxy:
+          type: boolean
+          description: 'Indicates if IP is a proxy
+
+            required: true'
+          example: false
+        isTor:
+          type: boolean
+          description: 'Indicates if IP is a TOR exit node
+
+            required: true'
+          example: false
+        isUnallocated:
+          type: boolean
+          description: 'Indicates if IP is unallocated
+
+            required: true'
+          example: false
+        isVpn:
+          type: boolean
+          description: 'Indicates if IP is a VPN
+
+            required: true'
+          example: false
+      description: Threat intelligence indicators for the IP address
+    restverify.IpIntelligenceTimeZone:
+      type: object
+      properties:
+        abbr:
+          type: string
+          description: 'Timezone abbreviation
+
+            required: true
+
+            example: CET'
+        current_time:
+          type: string
+          description: 'Current time in the timezone
+
+            required: true
+
+            format: date-time'
+          example: '2024-09-10T14:00:00+01:00'
+        is_dst:
+          type: boolean
+          description: 'Indicates if daylight saving time is active
+
+            required: true'
+          example: true
+        name:
+          type: string
+          description: 'IANA timezone name
+
+            required: true
+
+            example: Europe/Berlin'
+        offset:
+          type: string
+          description: 'UTC offset
+
+            required: true
+
+            pattern: ^[+-]\d{4}$'
+          example: '+0100'
+      description: Timezone information for the IP address location
+    restverify.IpIntelligenceNetwork:
+      type: object
+      properties:
+        asn:
+          type: string
+          description: 'Autonomous System Number
+
+            required: true
+
+            pattern: ^AS\d+$'
+          example: AS12345
+        domain:
+          type: string
+          description: 'Network domain
+
+            required: false'
+          example: isp.com
+        name:
+          type: string
+          description: 'Network name
+
+            required: true'
+          example: ISP Name
+        route:
+          type: string
+          description: 'Network route (CIDR notation)
+
+            required: true
+
+            pattern: ^(\d{1,3}\.){3}\d{1,3}/\d{1,2}$'
+          example: 192.168.0.0/16
+        type:
+          type: string
+          description: 'Network type
+
+            required: true
+
+            enum: business,hosting,isp,education,government'
+          example: business
+      description: Network information for the IP address
+    restverify.IpIntelligenceRecord:
+      type: object
+      properties:
+        geolocation:
+          type: object
+          description: 'Geolocation information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceGeolocation'
+        ipAddress:
+          type: string
+          description: 'IP address being analyzed
+
+            required: true
+
+            pattern: ^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$'
+          example: 192.168.1.1
+        network:
+          type: object
+          description: 'Network information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceNetwork'
+        organization:
+          type: object
+          description: 'Organization information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceOrganization'
+        threats:
+          type: object
+          description: 'Threat intelligence information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceThreats'
+        time_zone:
+          type: object
+          description: 'Timezone information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.IpIntelligenceTimeZone'
+      description: Comprehensive information about an IP address
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-CUSTOMER-OS-API-KEY
+      in: header
+x-original-swagger-version: '2.0'
