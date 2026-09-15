@@ -347,6 +347,8 @@ common:
   url: overlays/customeros-flow-api-overlay.yaml
 - type: Overlay
   url: overlays/customeros-graphql-api-overlay.yaml
+- type: Support
+  url: mailto:help@customeros.ai
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
