@@ -89,33 +89,6 @@ apis:
     change CustomerOS supports it ONLY when served from a reverse proxy on the customer's own domain,
     so the base URL is templated by design — there is no CustomerOS-hosted CDN URL to record and no version-pinned
     build.
-- aid: customeros:customeros-graphql-api
-  name: CustomerOS GraphQL API
-  description: >-
-    Single GraphQL endpoint served by the open-source customer-os-api (Go, gqlgen) covering organizations,
-    contacts, opportunities, contracts, invoices, interactions and timeline events. The repository moved
-    with the rename: github.com/openline-ai/openline-customer-os now 301s to github.com/customeros/customeros,
-    where 69 .graphqls schema files are published. Introspection could not be run — the published endpoint
-    host does not resolve.
-  humanURL: https://github.com/customeros/customeros
-  baseURL: https://api.customeros.ai/query
-  tags:
-  - GraphQL
-  properties:
-  - type: OpenAPI
-    url: openapi/customeros-graphql-api-openapi.yml
-    name: HTTP envelope for POST /query
-  - type: GraphQL
-    url: graphql/customeros-graphql.md
-  - type: GraphQL
-    url: graphql/customeros-schema.graphql
-    name: Representative schema
-  - type: SourceCode
-    url: https://github.com/customeros/customeros
-  - type: Documentation
-    url: https://docs.customeros.ai/data-structure
-  - type: Documentation
-    url: https://docs.customeros.ai/contacts
 - aid: customeros:customeros-billing-api-api
   name: CustomerOS Billing API
   description: The Billing API API from CustomerOS — 1 operation(s) for billing api.
@@ -260,6 +233,26 @@ apis:
     url: https://github.com/customeros/customeros
   - type: Documentation
     url: https://docs.customeros.ai
+- aid: customeros:customeros-graph-ql-api
+  name: CustomerOS Graph QL API
+  description: Single GraphQL endpoint for all CustomerOS operations.
+  humanURL: https://docs.customeros.ai/website-tracker
+  baseURL: https://{customer-reverse-proxy-domain}/analytics-0.1.js
+  tags:
+  - Graph QL
+  properties:
+  - type: OpenAPI
+    url: openapi/customeros-graph-ql-api-openapi.yml
+  - type: GraphQL
+    url: graphql/customeros-graphql.md
+  - type: GraphQL
+    url: graphql/customeros-schema.graphql
+  - type: SourceCode
+    url: https://github.com/customeros/customeros
+  - type: Documentation
+    url: https://docs.customeros.ai/data-structure
+  - type: Documentation
+    url: https://docs.customeros.ai/contacts
 common:
 - type: Website
   url: https://customeros.ai
