@@ -175,6 +175,8 @@ apis:
   humanURL: https://github.com/customeros/customeros/tree/otter/packages/server/customer-os-api/docs
   baseURL: https://api.customeros.ai
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
@@ -239,6 +241,8 @@ apis:
   humanURL: https://docs.customeros.ai/website-tracker
   baseURL: https://{customer-reverse-proxy-domain}/analytics-0.1.js
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
