@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: CustomerOS Outreach API
   description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  title: CustomerOS Outreach API
   contact: {}
   version: '1.0'
 servers:
@@ -11,17 +11,12 @@ tags:
 paths:
   /outreach/v1/email/tracking:
     post:
+      security:
+      - ApiKeyAuth: []
+      description: Generates tracking pixels, click tracking URLs, and unsubscribe links for email campaigns
       tags:
       - Outreach
       summary: Generate email tracking URLs
-      description: Generates tracking pixels, click tracking URLs, and unsubscribe links for email campaigns
-      requestBody:
-        description: Tracking URL generation configuration
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/restoutreach.EmailTrackingRequest'
-        required: true
       responses:
         '200':
           description: Tracking URLs generated successfully
@@ -47,11 +42,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rest.ErrorResponse'
-      security:
-      - ApiKeyAuth: []
-      x-codegen-request-body-name: body
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/restoutreach.EmailTrackingRequest'
+        description: Tracking URL generation configuration
+        required: true
+      operationId: postOutreachV1EmailTracking
+      x-operation-id-source: derived
 components:
   schemas:
+    restoutreach.EmailTrackingRequest:
+      description: Request payload for generating email tracking URLs and pixels
+      type: object
+      properties:
+        campaignId:
+          description: 'Unique identifier for the email campaign
+
+            required: true
+
+            example: camp_123456'
+          type: string
+        generateUnsubscribeLink:
+          description: 'Enable unsubscribe link generation
+
+            required: false
+
+            default: false'
+          type: boolean
+        links:
+          description: 'List of URLs to be tracked
+
+            required: false
+
+            example: ["https://example.com/page1", "https://example.com/page2"]'
+          type: array
+          items:
+            type: string
+        messageId:
+          description: 'Unique identifier for the message (optional, generated if not provided)
+
+            required: false
+
+            example: msg_123456'
+          type: string
+        recipientId:
+          description: 'Unique identifier for the recipient
+
+            required: true
+
+            example: recipient_123456'
+          type: string
+        trackClicks:
+          description: 'Enable click tracking for links
+
+            required: false
+
+            default: false'
+          type: boolean
+        trackOpens:
+          description: 'Enable open tracking via pixel
+
+            required: false
+
+            default: false'
+          type: boolean
+        trackerDomain:
+          description: 'Domain to use for tracking URLs (optional, system default used if not provided)
+
+            required: false
+
+            format: hostname
+
+            example: track.example.com'
+          type: string
+        unsubscribeLink:
+          description: 'URL for unsubscribe page
+
+            required: false
+
+            format: uri
+
+            example: https://example.com/unsubscribe'
+          type: string
     rest.ErrorResponse:
       type: object
       properties:
@@ -61,146 +135,72 @@ components:
           type: string
           example: 1234567890abcdef
         status:
-          type: string
           description: Status indicates the result of the operation ("success" or "error")
+          type: string
           example: success
-    restoutreach.EmailTrackingRequest:
-      type: object
-      properties:
-        campaignId:
-          type: string
-          description: 'Unique identifier for the email campaign
-
-            required: true
-
-            example: camp_123456'
-        generateUnsubscribeLink:
-          type: boolean
-          description: 'Enable unsubscribe link generation
-
-            required: false
-
-            default: false'
-        links:
-          type: array
-          description: 'List of URLs to be tracked
-
-            required: false
-
-            example: ["https://example.com/page1", "https://example.com/page2"]'
-          items:
-            type: string
-        messageId:
-          type: string
-          description: 'Unique identifier for the message (optional, generated if not provided)
-
-            required: false
-
-            example: msg_123456'
-        recipientId:
-          type: string
-          description: 'Unique identifier for the recipient
-
-            required: true
-
-            example: recipient_123456'
-        trackClicks:
-          type: boolean
-          description: 'Enable click tracking for links
-
-            required: false
-
-            default: false'
-        trackOpens:
-          type: boolean
-          description: 'Enable open tracking via pixel
-
-            required: false
-
-            default: false'
-        trackerDomain:
-          type: string
-          description: 'Domain to use for tracking URLs (optional, system default used if not provided)
-
-            required: false
-
-            format: hostname
-
-            example: track.example.com'
-        unsubscribeLink:
-          type: string
-          description: 'URL for unsubscribe page
-
-            required: false
-
-            format: uri
-
-            example: https://example.com/unsubscribe'
-      description: Request payload for generating email tracking URLs and pixels
     restoutreach.TrackedLink:
+      description: Pair of original and tracking-enabled URLs
       type: object
       properties:
         original:
-          type: string
           description: 'Original URL before tracking
 
             required: true
 
             format: uri'
+          type: string
           example: https://example.com/page1
         tracked:
-          type: string
           description: 'Generated tracking URL
 
             required: true
 
             format: uri'
+          type: string
           example: https://track.example.com/r/abc123
-      description: Pair of original and tracking-enabled URLs
     restoutreach.EmailTrackingResponse:
+      description: Response containing generated tracking URLs and pixel
       type: object
       properties:
         status:
-          type: string
           description: 'Operation status
 
             required: true
 
             enum: success'
+          type: string
           example: success
         trackedLinks:
-          type: array
           description: 'List of original and tracked URLs (only if TrackClicks is true)
 
             required: false'
+          type: array
           items:
             $ref: '#/components/schemas/restoutreach.TrackedLink'
         trackingId:
-          type: string
           description: 'Generated or provided message ID
 
             required: true'
+          type: string
           example: msg_123456
         trackingPixel:
-          type: string
           description: 'URL for tracking pixel (only if TrackOpens is true)
 
             required: false
 
             format: uri'
+          type: string
           example: https://track.example.com/p/abc123
         unsubscribeLink:
-          type: string
           description: 'Generated unsubscribe link (only if GenerateUnsubscribeLink is true)
 
             required: false
 
             format: uri'
+          type: string
           example: https://track.example.com/u/abc123
-      description: Response containing generated tracking URLs and pixel
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       name: X-CUSTOMER-OS-API-KEY
       in: header
-x-original-swagger-version: '2.0'

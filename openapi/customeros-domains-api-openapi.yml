@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: CustomerOS Domains API
   description: CustomerOS API for multiple services (Verify, Enrich, Orgs)
+  title: CustomerOS Domains API
   contact: {}
   version: '1.0'
 servers:
@@ -11,10 +11,12 @@ tags:
 paths:
   /domains:
     get:
+      security:
+      - ApiKeyAuth: []
+      description: Retrieves all active domains for the authenticated tenant
       tags:
       - Domains
       summary: List active domains
-      description: Retrieves all active domains for the authenticated tenant
       responses:
         '200':
           description: Successfully retrieved domain list
@@ -34,20 +36,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rest.ErrorResponse'
+      operationId: getDomains
+      x-operation-id-source: derived
+    post:
       security:
       - ApiKeyAuth: []
-    post:
+      description: Registers and configures a new domain for mail services, including DNS setup
       tags:
       - Domains
       summary: Register new domain
-      description: Registers and configures a new domain for mail services, including DNS setup
-      requestBody:
-        description: Domain registration details
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/restmailstack.RegisterNewDomainRequest'
-        required: true
       responses:
         '201':
           description: Domain registered and configured successfully
@@ -85,22 +82,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rest.ErrorResponse'
-      security:
-      - ApiKeyAuth: []
-      x-codegen-request-body-name: body
-  /domains/configure:
-    post:
-      tags:
-      - Domains
-      summary: Configure domain DNS
-      description: Sets up DNS records and mail services for an existing domain
       requestBody:
-        description: Domain configuration details
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/restmailstack.ConfigureDomainRequest'
+              $ref: '#/components/schemas/restmailstack.RegisterNewDomainRequest'
+        description: Domain registration details
         required: true
+      operationId: postDomains
+      x-operation-id-source: derived
+  /domains/configure:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Sets up DNS records and mail services for an existing domain
+      tags:
+      - Domains
+      summary: Configure domain DNS
       responses:
         '201':
           description: Domain configured successfully
@@ -132,11 +130,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/rest.ErrorResponse'
-      security:
-      - ApiKeyAuth: []
-      x-codegen-request-body-name: body
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/restmailstack.ConfigureDomainRequest'
+        description: Domain configuration details
+        required: true
+      operationId: postDomainsConfigure
+      x-operation-id-source: derived
 components:
   schemas:
+    restmailstack.ConfigureDomainRequest:
+      description: Request payload for configuring domain DNS and mail services
+      type: object
+      properties:
+        domain:
+          description: 'Domain name to configure
+
+            required: true
+
+            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
+
+            example: example.com'
+          type: string
+        website:
+          description: 'Website URL for domain configuration
+
+            required: true
+
+            format: uri
+
+            example: https://www.example.com'
+          type: string
     rest.ErrorResponse:
       type: object
       properties:
@@ -146,32 +172,14 @@ components:
           type: string
           example: 1234567890abcdef
         status:
-          type: string
           description: Status indicates the result of the operation ("success" or "error")
-          example: success
-    restmailstack.DomainsResponse:
-      type: object
-      properties:
-        domains:
-          type: array
-          description: 'List of domains
-
-            required: true'
-          items:
-            $ref: '#/components/schemas/restmailstack.DomainRecord'
-        requestId:
           type: string
-          example: 1234567890abcdef
-        status:
-          type: string
-          description: Status indicates the result of the operation ("success" or "error")
           example: success
-      description: Response containing list of domains and status
     restmailstack.DomainRecord:
+      description: Comprehensive domain record information
       type: object
       properties:
         createdDate:
-          type: string
           description: 'Domain registration date
 
             required: true
@@ -179,15 +187,15 @@ components:
             format: date
 
             example: 2024-09-14'
-        domain:
           type: string
+        domain:
           description: 'Registered domain name
 
             required: true
 
             example: example.com'
-        expiredDate:
           type: string
+        expiredDate:
           description: 'Domain expiration date
 
             required: true
@@ -195,8 +203,8 @@ components:
             format: date
 
             example: 2025-09-14'
+          type: string
         nameservers:
-          type: array
           description: 'List of assigned nameservers
 
             required: true
@@ -204,14 +212,54 @@ components:
             minItems: 2
 
             example: ["ns1.example.com","ns2.example.com"]'
+          type: array
           items:
             type: string
-      description: Comprehensive domain record information
-    restmailstack.DomainResponse:
+    restmailstack.RegisterNewDomainRequest:
+      description: Request payload for registering a new domain for mail services
       type: object
       properties:
         domain:
-          type: object
+          description: 'Domain name to register
+
+            required: true
+
+            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
+
+            example: example.com'
+          type: string
+        website:
+          description: 'Website URL for domain configuration
+
+            required: true
+
+            format: uri
+
+            example: https://www.example.com'
+          type: string
+    restmailstack.DomainsResponse:
+      description: Response containing list of domains and status
+      type: object
+      properties:
+        domains:
+          description: 'List of domains
+
+            required: true'
+          type: array
+          items:
+            $ref: '#/components/schemas/restmailstack.DomainRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    restmailstack.DomainResponse:
+      description: Response containing domain details and status
+      type: object
+      properties:
+        domain:
           description: 'Domain information
 
             required: true'
@@ -221,57 +269,11 @@ components:
           type: string
           example: 1234567890abcdef
         status:
-          type: string
           description: Status indicates the result of the operation ("success" or "error")
+          type: string
           example: success
-      description: Response containing domain details and status
-    restmailstack.RegisterNewDomainRequest:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: 'Domain name to register
-
-            required: true
-
-            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
-
-            example: example.com'
-        website:
-          type: string
-          description: 'Website URL for domain configuration
-
-            required: true
-
-            format: uri
-
-            example: https://www.example.com'
-      description: Request payload for registering a new domain for mail services
-    restmailstack.ConfigureDomainRequest:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: 'Domain name to configure
-
-            required: true
-
-            pattern: ^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$
-
-            example: example.com'
-        website:
-          type: string
-          description: 'Website URL for domain configuration
-
-            required: true
-
-            format: uri
-
-            example: https://www.example.com'
-      description: Request payload for configuring domain DNS and mail services
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       name: X-CUSTOMER-OS-API-KEY
       in: header
-x-original-swagger-version: '2.0'
