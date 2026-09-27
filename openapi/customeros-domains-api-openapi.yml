@@ -141,12 +141,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    restmailstack.ConfigureDomainRequest:
-      description: Request payload for configuring domain DNS and mail services
+    restmailstack.RegisterNewDomainRequest:
+      description: Request payload for registering a new domain for mail services
       type: object
       properties:
         domain:
-          description: 'Domain name to configure
+          description: 'Domain name to register
 
             required: true
 
@@ -163,18 +163,6 @@ components:
 
             example: https://www.example.com'
           type: string
-    rest.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
     restmailstack.DomainRecord:
       description: Comprehensive domain record information
       type: object
@@ -215,12 +203,12 @@ components:
           type: array
           items:
             type: string
-    restmailstack.RegisterNewDomainRequest:
-      description: Request payload for registering a new domain for mail services
+    restmailstack.ConfigureDomainRequest:
+      description: Request payload for configuring domain DNS and mail services
       type: object
       properties:
         domain:
-          description: 'Domain name to register
+          description: 'Domain name to configure
 
             required: true
 
@@ -237,6 +225,23 @@ components:
 
             example: https://www.example.com'
           type: string
+    restmailstack.DomainResponse:
+      description: Response containing domain details and status
+      type: object
+      properties:
+        domain:
+          description: 'Domain information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restmailstack.DomainRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
     restmailstack.DomainsResponse:
       description: Response containing list of domains and status
       type: object
@@ -255,16 +260,11 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
-    restmailstack.DomainResponse:
-      description: Response containing domain details and status
+    rest.ErrorResponse:
       type: object
       properties:
-        domain:
-          description: 'Domain information
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restmailstack.DomainRecord'
+        message:
+          type: string
         requestId:
           type: string
           example: 1234567890abcdef

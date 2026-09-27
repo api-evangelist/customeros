@@ -15,6 +15,10 @@ description: CustomerOS (formerly Openline) is a London-based revenue-intelligen
   card from its documentation host.
 deliveryModel:
   model: unknown
+  license_evidence:
+    repo: customeros/customeros
+    spdx: NOASSERTION
+    stars: 118
   open_source: unknown
   commercial: true
   callable_host: false
@@ -24,7 +28,7 @@ deliveryModel:
   - openapi
   - pricing
   - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -40,6 +44,10 @@ accessModel:
   generated: '2026-08-13'
   method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/customeros.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
+x-docs-hosting: vercel
 tags:
 - CRM
 - Revenue
@@ -50,7 +58,8 @@ tags:
 - Email Verification
 - Enrichment
 - GraphQL
-- Open-Source
+- Open Source
+- A2A
 tags_raw:
 - CRM
 - Revenue
@@ -62,6 +71,8 @@ tags_raw:
 - Enrichment
 - GraphQL
 - Open Source
+- Open-Source
+- A2A
 created: '2026-06-20'
 modified: '2026-08-13'
 specificationVersion: '0.23'
@@ -241,8 +252,6 @@ apis:
   humanURL: https://docs.customeros.ai/website-tracker
   baseURL: https://{customer-reverse-proxy-domain}/analytics-0.1.js
   tags:
-  - GraphQL
-  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -354,3 +363,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 32
   pass: local-v1
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://docs.customeros.ai/.well-known/agent-card.json"
+  grade: "conformant"
+  protocol_version: "0.3"
+  control: 404

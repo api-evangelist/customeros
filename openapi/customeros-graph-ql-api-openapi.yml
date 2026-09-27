@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: CustomerOS Graph QL API
+  title: CustomerOS GraphQL API
   description: HTTP transport definition for the CustomerOS (formerly Openline) customer-os-api GraphQL server.
   termsOfService: https://customeros.ai
   contact:
@@ -89,6 +89,20 @@ components:
         extensions:
           type: object
           additionalProperties: true
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+          description: Result data keyed by the requested root fields.
+        errors:
+          type: array
+          description: Field- or request-level errors, if any.
+          items:
+            $ref: '#/components/schemas/GraphQLError'
     GraphQLRequest:
       type: object
       required:
@@ -104,20 +118,6 @@ components:
           type: object
           additionalProperties: true
           description: Variable values for the operation.
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type:
-          - object
-          - 'null'
-          additionalProperties: true
-          description: Result data keyed by the requested root fields.
-        errors:
-          type: array
-          description: Field- or request-level errors, if any.
-          items:
-            $ref: '#/components/schemas/GraphQLError'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

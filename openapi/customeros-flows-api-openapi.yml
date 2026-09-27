@@ -574,16 +574,60 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FlowUpdate:
+    Flow:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
         status:
           type: string
           enum:
           - active
           - draft
+        sequenceCount:
+          type: integer
+    ManualStepDetails:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+    SequenceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        personas:
+          type: array
+          items:
+            type: string
+    ContactList:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Step:
       type: object
       properties:
@@ -618,103 +662,6 @@ components:
               - minutes
               - hours
               - days
-    Sequence:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        personas:
-          type: array
-          items:
-            type: string
-        stepCount:
-          type: integer
-    SenderList:
-      type: object
-      properties:
-        flowId:
-          type: string
-        senders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sender'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Config:
-      type: object
-      properties:
-        flowId:
-          type: string
-        config:
-          type: object
-          properties:
-            optOut:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                text:
-                  type: string
-            analytics:
-              type: object
-              properties:
-                trackEmailOpens:
-                  type: boolean
-                trackLinkClicks:
-                  type: object
-                  properties:
-                    enabled:
-                      type: boolean
-                    useCustomDomain:
-                      type: boolean
-                    customDomain:
-                      type: string
-        lastUpdated:
-          type: string
-          format: date-time
-    Contact:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        company:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - paused
-          - completed
-          - unsubscribed
-        currentStep:
-          type: integer
-        addedAt:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
     SenderCreate:
       type: object
       required:
@@ -748,6 +695,32 @@ components:
               type: boolean
             content:
               type: string
+    Sequence:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        personas:
+          type: array
+          items:
+            type: string
+        stepCount:
+          type: integer
     Schedule:
       type: object
       properties:
@@ -796,167 +769,6 @@ components:
         lastUpdated:
           type: string
           format: date-time
-    ScheduleUpdate:
-      type: object
-      properties:
-        schedule:
-          $ref: '#/components/schemas/Schedule/properties/schedule'
-    SequenceList:
-      type: object
-      properties:
-        sequences:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sequence'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ContactCreate:
-      type: object
-      required:
-      - email
-      properties:
-        email:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        company:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - paused
-    ConfigUpdate:
-      type: object
-      properties:
-        config:
-          $ref: '#/components/schemas/Config/properties/config'
-    StepCreate:
-      type: object
-      required:
-      - type
-      - order
-      - details
-      - waitTime
-      properties:
-        type:
-          type: string
-          enum:
-          - email
-          - linkedin
-          - manual
-        order:
-          type: integer
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        details:
-          oneOf:
-          - $ref: '#/components/schemas/EmailStepDetails'
-          - $ref: '#/components/schemas/LinkedInStepDetails'
-          - $ref: '#/components/schemas/ManualStepDetails'
-        waitTime:
-          $ref: '#/components/schemas/Step/properties/waitTime'
-    EmailStepDetails:
-      type: object
-      properties:
-        subject:
-          type: string
-        body:
-          type: string
-    StepUpdate:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - email
-          - linkedin
-          - manual
-        order:
-          type: integer
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        details:
-          oneOf:
-          - $ref: '#/components/schemas/EmailStepDetails'
-          - $ref: '#/components/schemas/LinkedInStepDetails'
-          - $ref: '#/components/schemas/ManualStepDetails'
-        waitTime:
-          $ref: '#/components/schemas/Step/properties/waitTime'
-    FlowList:
-      type: object
-      properties:
-        flows:
-          type: array
-          items:
-            $ref: '#/components/schemas/Flow'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    StepList:
-      type: object
-      properties:
-        sequenceId:
-          type: string
-        sequenceName:
-          type: string
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/Step'
-    ManualStepDetails:
-      type: object
-      properties:
-        title:
-          type: string
-        body:
-          type: string
-    LinkedInStepDetails:
-      type: object
-      properties:
-        actionType:
-          type: string
-          enum:
-          - connection request
-          - message
-        message:
-          type: string
-        linkedinUrl:
-          type: string
-    SequenceCreate:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-        personas:
-          type: array
-          items:
-            type: string
-    ContactList:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Sender:
       type: object
       properties:
@@ -995,6 +807,188 @@ components:
               type: boolean
             content:
               type: string
+    LinkedInStepDetails:
+      type: object
+      properties:
+        actionType:
+          type: string
+          enum:
+          - connection request
+          - message
+        message:
+          type: string
+        linkedinUrl:
+          type: string
+    StepCreate:
+      type: object
+      required:
+      - type
+      - order
+      - details
+      - waitTime
+      properties:
+        type:
+          type: string
+          enum:
+          - email
+          - linkedin
+          - manual
+        order:
+          type: integer
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/EmailStepDetails'
+          - $ref: '#/components/schemas/LinkedInStepDetails'
+          - $ref: '#/components/schemas/ManualStepDetails'
+        waitTime:
+          $ref: '#/components/schemas/Step/properties/waitTime'
+    ContactCreate:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - paused
+    SequenceList:
+      type: object
+      properties:
+        sequences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sequence'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    FlowList:
+      type: object
+      properties:
+        flows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StepUpdate:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - email
+          - linkedin
+          - manual
+        order:
+          type: integer
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        details:
+          oneOf:
+          - $ref: '#/components/schemas/EmailStepDetails'
+          - $ref: '#/components/schemas/LinkedInStepDetails'
+          - $ref: '#/components/schemas/ManualStepDetails'
+        waitTime:
+          $ref: '#/components/schemas/Step/properties/waitTime'
+    SequenceCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        personas:
+          type: array
+          items:
+            type: string
+    Config:
+      type: object
+      properties:
+        flowId:
+          type: string
+        config:
+          type: object
+          properties:
+            optOut:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                text:
+                  type: string
+            analytics:
+              type: object
+              properties:
+                trackEmailOpens:
+                  type: boolean
+                trackLinkClicks:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    useCustomDomain:
+                      type: boolean
+                    customDomain:
+                      type: string
+        lastUpdated:
+          type: string
+          format: date-time
+    ScheduleUpdate:
+      type: object
+      properties:
+        schedule:
+          $ref: '#/components/schemas/Schedule/properties/schedule'
+    Contact:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - paused
+          - completed
+          - unsubscribed
+        currentStep:
+          type: integer
+        addedAt:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
     FlowCreate:
       type: object
       required:
@@ -1010,28 +1004,6 @@ components:
           enum:
           - active
           - draft
-    Flow:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - active
-          - draft
-        sequenceCount:
-          type: integer
     Pagination:
       type: object
       properties:
@@ -1043,25 +1015,53 @@ components:
           type: integer
         totalPages:
           type: integer
-    SequenceUpdate:
+    EmailStepDetails:
+      type: object
+      properties:
+        subject:
+          type: string
+        body:
+          type: string
+    SenderList:
+      type: object
+      properties:
+        flowId:
+          type: string
+        senders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sender'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    FlowUpdate:
       type: object
       properties:
         name:
           type: string
-        description:
-          type: string
         status:
           type: string
           enum:
-          - enabled
-          - disabled
-        personas:
+          - active
+          - draft
+    ConfigUpdate:
+      type: object
+      properties:
+        config:
+          $ref: '#/components/schemas/Config/properties/config'
+    StepList:
+      type: object
+      properties:
+        sequenceId:
+          type: string
+        sequenceName:
+          type: string
+        steps:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Step'
   parameters:
-    contact_id:
-      name: contact_id
+    flow_id:
+      name: flow_id
       in: path
       required: true
       schema:
@@ -1084,8 +1084,8 @@ components:
       required: true
       schema:
         type: string
-    flow_id:
-      name: flow_id
+    contact_id:
+      name: contact_id
       in: path
       required: true
       schema:

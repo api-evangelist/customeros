@@ -121,6 +121,86 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    restmailstack.MailboxRecord:
+      description: Comprehensive mailbox configuration and status
+      type: object
+      properties:
+        email:
+          description: 'Email address for the mailbox
+
+            required: true
+
+            format: email
+
+            example: user@example.com'
+          type: string
+        forwardingEnabled:
+          description: 'Email forwarding status
+
+            required: true
+
+            default: false'
+          type: boolean
+        forwardingTo:
+          description: 'List of forwarding email addresses
+
+            required: false
+
+            maxItems: 10'
+          type: array
+          items:
+            type: string
+        password:
+          description: 'Mailbox password (only included in specific responses)
+
+            required: false
+
+            minLength: 8
+
+            maxLength: 64'
+          type: string
+        webmailEnabled:
+          description: 'Webmail access status
+
+            required: true
+
+            default: false'
+          type: boolean
+    restmailstack.MailboxResponse:
+      description: Response containing mailbox details and status
+      type: object
+      properties:
+        mailbox:
+          description: 'Mailbox information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restmailstack.MailboxRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    restmailstack.MailboxesResponse:
+      description: Response containing list of mailboxes and status
+      type: object
+      properties:
+        mailboxes:
+          description: 'List of mailboxes
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/restmailstack.MailboxRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
     restmailstack.MailboxRequest:
       description: Request payload for creating and configuring a new mailbox
       type: object
@@ -188,86 +268,6 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
-    restmailstack.MailboxResponse:
-      description: Response containing mailbox details and status
-      type: object
-      properties:
-        mailbox:
-          description: 'Mailbox information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restmailstack.MailboxRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    restmailstack.MailboxesResponse:
-      description: Response containing list of mailboxes and status
-      type: object
-      properties:
-        mailboxes:
-          description: 'List of mailboxes
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/restmailstack.MailboxRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    restmailstack.MailboxRecord:
-      description: Comprehensive mailbox configuration and status
-      type: object
-      properties:
-        email:
-          description: 'Email address for the mailbox
-
-            required: true
-
-            format: email
-
-            example: user@example.com'
-          type: string
-        forwardingEnabled:
-          description: 'Email forwarding status
-
-            required: true
-
-            default: false'
-          type: boolean
-        forwardingTo:
-          description: 'List of forwarding email addresses
-
-            required: false
-
-            maxItems: 10'
-          type: array
-          items:
-            type: string
-        password:
-          description: 'Mailbox password (only included in specific responses)
-
-            required: false
-
-            minLength: 8
-
-            maxLength: 64'
-          type: string
-        webmailEnabled:
-          description: 'Webmail access status
-
-            required: true
-
-            default: false'
-          type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

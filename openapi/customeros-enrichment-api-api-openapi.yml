@@ -189,68 +189,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    restenrich.EnrichPersonGithub:
-      description: GitHub profile details
-      type: object
-      properties:
-        url:
-          description: 'Full GitHub profile URL
-
-            required: false
-
-            format: uri'
-          type: string
-          example: https://github.com/johndoe
-        username:
-          description: 'GitHub username
-
-            required: true'
-          type: string
-          example: johndoe
-    restenrich.EnrichPersonEmail:
-      description: Email address with validation details
-      type: object
-      properties:
-        address:
-          description: 'Email address
-
-            required: true
-
-            format: email'
-          type: string
-          example: john.doe@example.com
-        deliverable:
-          description: 'Indicates if the email is deliverable
-
-            required: false'
-          type: string
-          example: 'true'
-        isRisky:
-          description: 'Indicates if the email is considered risky
-
-            required: false'
-          type: boolean
-          example: false
-        type:
-          description: 'Type of email address
-
-            required: false
-
-            enum: personal,work'
-          type: string
-          example: work
-    rest.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
     restenrich.EnrichPersonData:
       description: Comprehensive enriched information about a person
       type: object
@@ -302,84 +240,50 @@ components:
             required: false'
           allOf:
           - $ref: '#/components/schemas/restenrich.EnrichPersonSocial'
-    restenrich.EnrichPersonPhoneNumber:
-      description: Phone number with type classification
+    restenrich.EnrichPersonJobDuration:
+      description: Time period of employment
       type: object
       properties:
-        number:
-          description: 'Phone number in E.164 format
-
-            required: true
-
-            pattern: ^\+[1-9]\d{1,14}$'
-          type: string
-          example: '+14155552671'
-        type:
-          description: 'Type of phone number
-
-            required: true
-
-            enum: mobile,work,home,other'
-          type: string
-          example: mobile
-    restenrich.EnrichPersonLinkedIn:
-      description: LinkedIn specific profile details
-      type: object
-      properties:
-        followerCount:
-          description: 'Number of LinkedIn followers
+        endMonth:
+          description: 'Ending month (1-12)
 
             required: false
 
-            minimum: 0'
+            minimum: 1
+
+            maximum: 12'
           type: integer
-          example: 500
-        id:
-          description: 'LinkedIn internal ID
-
-            required: false'
-          type: string
-          example: '123456789'
-        publicId:
-          description: 'LinkedIn public identifier
-
-            required: false'
-          type: string
-          example: john-doe
-        url:
-          description: 'Full LinkedIn profile URL
+          example: 12
+        endYear:
+          description: 'Ending year
 
             required: false
 
-            format: uri'
-          type: string
-          example: https://linkedin.com/in/john-doe
-    restenrich.EnrichPersonName:
-      description: Person's name details
-      type: object
-      properties:
-        firstName:
-          description: 'First name
+            minimum: 1900
 
-            required: true
+            maximum: 2100'
+          type: integer
+          example: 2023
+        startMonth:
+          description: 'Starting month (1-12)
 
-            minLength: 1'
-          type: string
-          example: John
-        fullName:
-          description: 'Full name (typically firstName + lastName)
+            required: false
 
-            required: false'
-          type: string
-          example: John Doe
-        lastName:
-          description: 'Last name
+            minimum: 1
 
-            required: true
+            maximum: 12'
+          type: integer
+          example: 1
+        startYear:
+          description: 'Starting year
 
-            minLength: 1'
-          type: string
-          example: Doe
+            required: false
+
+            minimum: 1900
+
+            maximum: 2100'
+          type: integer
+          example: 2020
     restenrich.EnrichPersonSocial:
       description: Collection of social media profile information
       type: object
@@ -419,6 +323,32 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
+    restenrich.EnrichPersonName:
+      description: Person's name details
+      type: object
+      properties:
+        firstName:
+          description: 'First name
+
+            required: true
+
+            minLength: 1'
+          type: string
+          example: John
+        fullName:
+          description: 'Full name (typically firstName + lastName)
+
+            required: false'
+          type: string
+          example: John Doe
+        lastName:
+          description: 'Last name
+
+            required: true
+
+            minLength: 1'
+          type: string
+          example: Doe
     restenrich.EnrichPersonLocation:
       description: Geographic and timezone information about a person
       type: object
@@ -501,50 +431,150 @@ components:
             required: true'
           type: string
           example: Software Engineer
-    restenrich.EnrichPersonJobDuration:
-      description: Time period of employment
+    restenrich.EnrichPersonLinkedIn:
+      description: LinkedIn specific profile details
       type: object
       properties:
-        endMonth:
-          description: 'Ending month (1-12)
+        followerCount:
+          description: 'Number of LinkedIn followers
 
             required: false
 
-            minimum: 1
-
-            maximum: 12'
+            minimum: 0'
           type: integer
-          example: 12
-        endYear:
-          description: 'Ending year
+          example: 500
+        id:
+          description: 'LinkedIn internal ID
+
+            required: false'
+          type: string
+          example: '123456789'
+        publicId:
+          description: 'LinkedIn public identifier
+
+            required: false'
+          type: string
+          example: john-doe
+        url:
+          description: 'Full LinkedIn profile URL
 
             required: false
 
-            minimum: 1900
+            format: uri'
+          type: string
+          example: https://linkedin.com/in/john-doe
+    restenrich.EnrichPersonPhoneNumber:
+      description: Phone number with type classification
+      type: object
+      properties:
+        number:
+          description: 'Phone number in E.164 format
 
-            maximum: 2100'
-          type: integer
-          example: 2023
-        startMonth:
-          description: 'Starting month (1-12)
+            required: true
+
+            pattern: ^\+[1-9]\d{1,14}$'
+          type: string
+          example: '+14155552671'
+        type:
+          description: 'Type of phone number
+
+            required: true
+
+            enum: mobile,work,home,other'
+          type: string
+          example: mobile
+    restenrich.EnrichPersonGithub:
+      description: GitHub profile details
+      type: object
+      properties:
+        url:
+          description: 'Full GitHub profile URL
 
             required: false
 
-            minimum: 1
+            format: uri'
+          type: string
+          example: https://github.com/johndoe
+        username:
+          description: 'GitHub username
 
-            maximum: 12'
-          type: integer
-          example: 1
-        startYear:
-          description: 'Starting year
+            required: true'
+          type: string
+          example: johndoe
+    restenrich.EnrichPersonDiscord:
+      description: Discord profile details
+      type: object
+      properties:
+        username:
+          description: 'Discord username with discriminator
+
+            required: true
+
+            pattern: ^.{3,32}#[0-9]{4}$'
+          type: string
+          example: johndoe#1234
+    restenrich.EnrichPersonX:
+      description: X (formerly Twitter) profile details
+      type: object
+      properties:
+        handle:
+          description: 'X handle (without @)
+
+            required: true'
+          type: string
+          example: johndoe
+        url:
+          description: 'Full X profile URL
 
             required: false
 
-            minimum: 1900
+            format: uri'
+          type: string
+          example: https://x.com/johndoe
+    restenrich.EnrichPersonEmail:
+      description: Email address with validation details
+      type: object
+      properties:
+        address:
+          description: 'Email address
 
-            maximum: 2100'
-          type: integer
-          example: 2020
+            required: true
+
+            format: email'
+          type: string
+          example: john.doe@example.com
+        deliverable:
+          description: 'Indicates if the email is deliverable
+
+            required: false'
+          type: string
+          example: 'true'
+        isRisky:
+          description: 'Indicates if the email is considered risky
+
+            required: false'
+          type: boolean
+          example: false
+        type:
+          description: 'Type of email address
+
+            required: false
+
+            enum: personal,work'
+          type: string
+          example: work
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
     restenrich.EnrichPersonResponse:
       description: Response structure for person enrichment operations
       type: object
@@ -593,36 +623,6 @@ components:
             enum: success,error,warning'
           type: string
           example: success
-    restenrich.EnrichPersonDiscord:
-      description: Discord profile details
-      type: object
-      properties:
-        username:
-          description: 'Discord username with discriminator
-
-            required: true
-
-            pattern: ^.{3,32}#[0-9]{4}$'
-          type: string
-          example: johndoe#1234
-    restenrich.EnrichPersonX:
-      description: X (formerly Twitter) profile details
-      type: object
-      properties:
-        handle:
-          description: 'X handle (without @)
-
-            required: true'
-          type: string
-          example: johndoe
-        url:
-          description: 'Full X profile URL
-
-            required: false
-
-            format: uri'
-          type: string
-          example: https://x.com/johndoe
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

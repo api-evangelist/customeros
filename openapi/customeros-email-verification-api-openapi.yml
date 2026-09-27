@@ -214,99 +214,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    restverify.EmailVerificationResponse:
-      description: Response for single email verification including detailed validation results
-      type: object
-      properties:
-        email:
-          description: 'Email verification details
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restverify.EmailVerificationRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    rest.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    restverify.EmailVerificationRecord:
-      description: Detailed validation results for an email address
-      type: object
-      properties:
-        alternateEmail:
-          description: 'Alternative email address if available
-
-            required: false
-
-            format: email'
-          type: string
-          example: alternate@example.com
-        deliverable:
-          description: 'Deliverability status
-
-            required: true
-
-            enum: true,false,unknown'
-          type: string
-          example: 'true'
-        emailAddress:
-          description: 'Email address that was verified
-
-            required: true
-
-            format: email'
-          type: string
-          example: example@example.com
-        isCatchAll:
-          description: 'Indicates if domain is catch-all
-
-            required: true'
-          type: boolean
-          example: false
-        isRisky:
-          description: 'Indicates if email is considered risky
-
-            required: true'
-          type: boolean
-          example: false
-        provider:
-          description: 'Email service provider
-
-            required: false'
-          type: string
-          example: gmail
-        risk:
-          description: 'Risk assessment details
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restverify.EmailVerificationRisk'
-        secureGatewayProvider:
-          description: 'Security gateway provider
-
-            required: false'
-          type: string
-          example: Proofpoint
-        syntax:
-          description: 'Syntax validation details
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restverify.EmailVerificationSyntax'
     restverify.BulkResultsResponse:
       description: Response containing bulk verification results or status
       type: object
@@ -351,6 +258,77 @@ components:
             enum: processing,completed'
           type: string
           example: completed
+    restverify.BulkUploadResponse:
+      description: Response after initiating bulk email verification
+      type: object
+      properties:
+        estimatedCompletionTs:
+          description: 'Estimated completion timestamp
+
+            required: true'
+          type: number
+          example: 1694030400
+        jobId:
+          description: 'Unique job identifier
+
+            required: true
+
+            format: uuid'
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+        message:
+          description: 'Status message
+
+            required: true'
+          type: string
+          example: File uploaded successfully
+        resultUrl:
+          description: 'URL to check verification results
+
+            required: true
+
+            format: uri'
+          type: string
+          example: https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000
+    restverify.EmailVerificationSyntax:
+      description: Email syntax validation details
+      type: object
+      properties:
+        domain:
+          description: 'Domain part of email
+
+            required: true'
+          type: string
+          example: example.com
+        isValid:
+          description: 'Indicates if email syntax is valid
+
+            required: true'
+          type: boolean
+          example: true
+        user:
+          description: 'Local part of email
+
+            required: true'
+          type: string
+          example: example
+    restverify.EmailVerificationResponse:
+      description: Response for single email verification including detailed validation results
+      type: object
+      properties:
+        email:
+          description: 'Email verification details
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.EmailVerificationRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
     restverify.EmailVerificationRisk:
       description: Risk factors associated with the email address
       type: object
@@ -427,60 +405,82 @@ components:
             minimum: 0'
           type: integer
           example: 45
-    restverify.EmailVerificationSyntax:
-      description: Email syntax validation details
+    rest.ErrorResponse:
       type: object
       properties:
-        domain:
-          description: 'Domain part of email
-
-            required: true'
+        message:
           type: string
-          example: example.com
-        isValid:
-          description: 'Indicates if email syntax is valid
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    restverify.EmailVerificationRecord:
+      description: Detailed validation results for an email address
+      type: object
+      properties:
+        alternateEmail:
+          description: 'Alternative email address if available
+
+            required: false
+
+            format: email'
+          type: string
+          example: alternate@example.com
+        deliverable:
+          description: 'Deliverability status
+
+            required: true
+
+            enum: true,false,unknown'
+          type: string
+          example: 'true'
+        emailAddress:
+          description: 'Email address that was verified
+
+            required: true
+
+            format: email'
+          type: string
+          example: example@example.com
+        isCatchAll:
+          description: 'Indicates if domain is catch-all
 
             required: true'
           type: boolean
-          example: true
-        user:
-          description: 'Local part of email
+          example: false
+        isRisky:
+          description: 'Indicates if email is considered risky
 
             required: true'
+          type: boolean
+          example: false
+        provider:
+          description: 'Email service provider
+
+            required: false'
           type: string
-          example: example
-    restverify.BulkUploadResponse:
-      description: Response after initiating bulk email verification
-      type: object
-      properties:
-        estimatedCompletionTs:
-          description: 'Estimated completion timestamp
+          example: gmail
+        risk:
+          description: 'Risk assessment details
 
             required: true'
-          type: number
-          example: 1694030400
-        jobId:
-          description: 'Unique job identifier
+          allOf:
+          - $ref: '#/components/schemas/restverify.EmailVerificationRisk'
+        secureGatewayProvider:
+          description: 'Security gateway provider
 
-            required: true
-
-            format: uuid'
+            required: false'
           type: string
-          example: 550e8400-e29b-41d4-a716-446655440000
-        message:
-          description: 'Status message
+          example: Proofpoint
+        syntax:
+          description: 'Syntax validation details
 
             required: true'
-          type: string
-          example: File uploaded successfully
-        resultUrl:
-          description: 'URL to check verification results
-
-            required: true
-
-            format: uri'
-          type: string
-          example: https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000
+          allOf:
+          - $ref: '#/components/schemas/restverify.EmailVerificationSyntax'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

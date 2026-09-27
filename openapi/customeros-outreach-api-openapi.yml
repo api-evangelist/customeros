@@ -126,18 +126,6 @@ components:
 
             example: https://example.com/unsubscribe'
           type: string
-    rest.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
     restoutreach.TrackedLink:
       description: Pair of original and tracking-enabled URLs
       type: object
@@ -199,6 +187,18 @@ components:
             format: uri'
           type: string
           example: https://track.example.com/u/abc123
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
