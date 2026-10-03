@@ -189,196 +189,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    restenrich.EnrichPersonData:
-      description: Comprehensive enriched information about a person
+    restenrich.EnrichPersonEmail:
+      description: Email address with validation details
       type: object
       properties:
-        emails:
-          description: 'List of email addresses associated with the person
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/restenrich.EnrichPersonEmail'
-        jobs:
-          description: 'Employment history
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/restenrich.EnrichPersonJob'
-        location:
-          description: 'Geographic location information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonLocation'
-        name:
-          description: 'Person''s name information
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonName'
-        phoneNumbers:
-          description: 'List of phone numbers
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/restenrich.EnrichPersonPhoneNumber'
-        profilePic:
-          description: 'URL to person''s profile picture
-
-            required: false
-
-            format: uri'
-          type: string
-          example: https://example.com/profile.jpg
-        social:
-          description: 'Social media presence
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonSocial'
-    restenrich.EnrichPersonJobDuration:
-      description: Time period of employment
-      type: object
-      properties:
-        endMonth:
-          description: 'Ending month (1-12)
-
-            required: false
-
-            minimum: 1
-
-            maximum: 12'
-          type: integer
-          example: 12
-        endYear:
-          description: 'Ending year
-
-            required: false
-
-            minimum: 1900
-
-            maximum: 2100'
-          type: integer
-          example: 2023
-        startMonth:
-          description: 'Starting month (1-12)
-
-            required: false
-
-            minimum: 1
-
-            maximum: 12'
-          type: integer
-          example: 1
-        startYear:
-          description: 'Starting year
-
-            required: false
-
-            minimum: 1900
-
-            maximum: 2100'
-          type: integer
-          example: 2020
-    restenrich.EnrichPersonSocial:
-      description: Collection of social media profile information
-      type: object
-      properties:
-        discord:
-          description: 'Discord profile information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonDiscord'
-        github:
-          description: 'GitHub profile information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonGithub'
-        linkedin:
-          description: 'LinkedIn profile information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonLinkedIn'
-        x:
-          description: 'X (Twitter) profile information
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restenrich.EnrichPersonX'
-    rest.BaseResponse:
-      description: Standard response structure for API operations
-      type: object
-      properties:
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    restenrich.EnrichPersonName:
-      description: Person's name details
-      type: object
-      properties:
-        firstName:
-          description: 'First name
+        address:
+          description: 'Email address
 
             required: true
 
-            minLength: 1'
+            format: email'
           type: string
-          example: John
-        fullName:
-          description: 'Full name (typically firstName + lastName)
+          example: john.doe@example.com
+        deliverable:
+          description: 'Indicates if the email is deliverable
 
             required: false'
           type: string
-          example: John Doe
-        lastName:
-          description: 'Last name
-
-            required: true
-
-            minLength: 1'
-          type: string
-          example: Doe
-    restenrich.EnrichPersonLocation:
-      description: Geographic and timezone information about a person
-      type: object
-      properties:
-        city:
-          description: 'City name
+          example: 'true'
+        isRisky:
+          description: 'Indicates if the email is considered risky
 
             required: false'
-          type: string
-          example: San Francisco
-        country:
-          description: 'Country name
-
-            required: false'
-          type: string
-          example: United States
-        region:
-          description: 'State or region
-
-            required: false'
-          type: string
-          example: California
-        timezone:
-          description: 'Timezone identifier
+          type: boolean
+          example: false
+        type:
+          description: 'Type of email address
 
             required: false
 
-            example: America/Los_Angeles'
+            enum: personal,work'
           type: string
-          example: PST
+          example: work
     restenrich.EnrichPersonJob:
       description: Details about a person's job position
       type: object
@@ -431,6 +273,217 @@ components:
             required: true'
           type: string
           example: Software Engineer
+    restenrich.EnrichPersonName:
+      description: Person's name details
+      type: object
+      properties:
+        firstName:
+          description: 'First name
+
+            required: true
+
+            minLength: 1'
+          type: string
+          example: John
+        fullName:
+          description: 'Full name (typically firstName + lastName)
+
+            required: false'
+          type: string
+          example: John Doe
+        lastName:
+          description: 'Last name
+
+            required: true
+
+            minLength: 1'
+          type: string
+          example: Doe
+    restenrich.EnrichPersonPhoneNumber:
+      description: Phone number with type classification
+      type: object
+      properties:
+        number:
+          description: 'Phone number in E.164 format
+
+            required: true
+
+            pattern: ^\+[1-9]\d{1,14}$'
+          type: string
+          example: '+14155552671'
+        type:
+          description: 'Type of phone number
+
+            required: true
+
+            enum: mobile,work,home,other'
+          type: string
+          example: mobile
+    restenrich.EnrichPersonData:
+      description: Comprehensive enriched information about a person
+      type: object
+      properties:
+        emails:
+          description: 'List of email addresses associated with the person
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonEmail'
+        jobs:
+          description: 'Employment history
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonJob'
+        location:
+          description: 'Geographic location information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonLocation'
+        name:
+          description: 'Person''s name information
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonName'
+        phoneNumbers:
+          description: 'List of phone numbers
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/restenrich.EnrichPersonPhoneNumber'
+        profilePic:
+          description: 'URL to person''s profile picture
+
+            required: false
+
+            format: uri'
+          type: string
+          example: https://example.com/profile.jpg
+        social:
+          description: 'Social media presence
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonSocial'
+    restenrich.EnrichPersonDiscord:
+      description: Discord profile details
+      type: object
+      properties:
+        username:
+          description: 'Discord username with discriminator
+
+            required: true
+
+            pattern: ^.{3,32}#[0-9]{4}$'
+          type: string
+          example: johndoe#1234
+    restenrich.EnrichPersonJobDuration:
+      description: Time period of employment
+      type: object
+      properties:
+        endMonth:
+          description: 'Ending month (1-12)
+
+            required: false
+
+            minimum: 1
+
+            maximum: 12'
+          type: integer
+          example: 12
+        endYear:
+          description: 'Ending year
+
+            required: false
+
+            minimum: 1900
+
+            maximum: 2100'
+          type: integer
+          example: 2023
+        startMonth:
+          description: 'Starting month (1-12)
+
+            required: false
+
+            minimum: 1
+
+            maximum: 12'
+          type: integer
+          example: 1
+        startYear:
+          description: 'Starting year
+
+            required: false
+
+            minimum: 1900
+
+            maximum: 2100'
+          type: integer
+          example: 2020
+    rest.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    restenrich.EnrichPersonGithub:
+      description: GitHub profile details
+      type: object
+      properties:
+        url:
+          description: 'Full GitHub profile URL
+
+            required: false
+
+            format: uri'
+          type: string
+          example: https://github.com/johndoe
+        username:
+          description: 'GitHub username
+
+            required: true'
+          type: string
+          example: johndoe
+    restenrich.EnrichPersonSocial:
+      description: Collection of social media profile information
+      type: object
+      properties:
+        discord:
+          description: 'Discord profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonDiscord'
+        github:
+          description: 'GitHub profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonGithub'
+        linkedin:
+          description: 'LinkedIn profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonLinkedIn'
+        x:
+          description: 'X (Twitter) profile information
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restenrich.EnrichPersonX'
     restenrich.EnrichPersonLinkedIn:
       description: LinkedIn specific profile details
       type: object
@@ -463,56 +516,6 @@ components:
             format: uri'
           type: string
           example: https://linkedin.com/in/john-doe
-    restenrich.EnrichPersonPhoneNumber:
-      description: Phone number with type classification
-      type: object
-      properties:
-        number:
-          description: 'Phone number in E.164 format
-
-            required: true
-
-            pattern: ^\+[1-9]\d{1,14}$'
-          type: string
-          example: '+14155552671'
-        type:
-          description: 'Type of phone number
-
-            required: true
-
-            enum: mobile,work,home,other'
-          type: string
-          example: mobile
-    restenrich.EnrichPersonGithub:
-      description: GitHub profile details
-      type: object
-      properties:
-        url:
-          description: 'Full GitHub profile URL
-
-            required: false
-
-            format: uri'
-          type: string
-          example: https://github.com/johndoe
-        username:
-          description: 'GitHub username
-
-            required: true'
-          type: string
-          example: johndoe
-    restenrich.EnrichPersonDiscord:
-      description: Discord profile details
-      type: object
-      properties:
-        username:
-          description: 'Discord username with discriminator
-
-            required: true
-
-            pattern: ^.{3,32}#[0-9]{4}$'
-          type: string
-          example: johndoe#1234
     restenrich.EnrichPersonX:
       description: X (formerly Twitter) profile details
       type: object
@@ -531,43 +534,10 @@ components:
             format: uri'
           type: string
           example: https://x.com/johndoe
-    restenrich.EnrichPersonEmail:
-      description: Email address with validation details
+    rest.BaseResponse:
+      description: Standard response structure for API operations
       type: object
       properties:
-        address:
-          description: 'Email address
-
-            required: true
-
-            format: email'
-          type: string
-          example: john.doe@example.com
-        deliverable:
-          description: 'Indicates if the email is deliverable
-
-            required: false'
-          type: string
-          example: 'true'
-        isRisky:
-          description: 'Indicates if the email is considered risky
-
-            required: false'
-          type: boolean
-          example: false
-        type:
-          description: 'Type of email address
-
-            required: false
-
-            enum: personal,work'
-          type: string
-          example: work
-    rest.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
         requestId:
           type: string
           example: 1234567890abcdef
@@ -575,6 +545,36 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
+    restenrich.EnrichPersonLocation:
+      description: Geographic and timezone information about a person
+      type: object
+      properties:
+        city:
+          description: 'City name
+
+            required: false'
+          type: string
+          example: San Francisco
+        country:
+          description: 'Country name
+
+            required: false'
+          type: string
+          example: United States
+        region:
+          description: 'State or region
+
+            required: false'
+          type: string
+          example: California
+        timezone:
+          description: 'Timezone identifier
+
+            required: false
+
+            example: America/Los_Angeles'
+          type: string
+          example: PST
     restenrich.EnrichPersonResponse:
       description: Response structure for person enrichment operations
       type: object

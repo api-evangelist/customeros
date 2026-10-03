@@ -342,14 +342,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    customerbase.ExternalSystemResponse:
-      description: Response structure for external system operations
+    customerbase.OrganizationResponse:
+      description: Response structure for single organization operations
       type: object
       properties:
         organization:
-          description: The external system information
+          description: The organization information
           allOf:
-          - $ref: '#/components/schemas/customerbase.ExternalSystemRecord'
+          - $ref: '#/components/schemas/customerbase.OrganizationRecord'
         requestId:
           type: string
           example: 1234567890abcdef
@@ -357,86 +357,6 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
-    rest.BaseResponse:
-      description: Standard response structure for API operations
-      type: object
-      properties:
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    customerbase.BulkResponseMultipleErrors:
-      description: Response structure for bulk operations with multiple error details
-      type: object
-      properties:
-        details:
-          description: List of error details
-          type: array
-          items:
-            $ref: '#/components/schemas/customerbase.BulkErrorDetails'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-        summary:
-          description: Summary of the bulk operation
-          allOf:
-          - $ref: '#/components/schemas/customerbase.BulkSummary'
-    customerbase.ExternalLink:
-      description: External system link information
-      type: object
-      properties:
-        id:
-          description: 'External system identifier
-
-            example: cos-12345'
-          type: string
-        name:
-          description: 'External system name
-
-            example: stripe'
-          type: string
-        primary:
-          description: 'Indicates if this is the primary link
-
-            example: true'
-          type: boolean
-    customerbase.SetPrimaryExternalSystemIdRequest:
-      description: Request to set or replace the primary external system ID
-      type: object
-      properties:
-        externalId:
-          description: 'The ID of the external system to be set as primary
-
-            required: true
-
-            example: stripe-1234'
-          type: string
-    customerbase.BulkSummary:
-      description: Summary statistics for bulk operations
-      type: object
-      properties:
-        failed:
-          description: 'Number of failed records
-
-            example: 5'
-          type: integer
-        success:
-          description: 'Number of successfully processed records
-
-            example: 95'
-          type: integer
-        total:
-          description: 'Total number of records processed
-
-            example: 100'
-          type: integer
     customerbase.BulkErrorDetails:
       description: Error details for failed operations in bulk processing
       type: object
@@ -450,6 +370,17 @@ components:
           description: 'The value that caused the error
 
             example: invalid@email..com'
+          type: string
+    customerbase.SetPrimaryExternalSystemIdRequest:
+      description: Request to set or replace the primary external system ID
+      type: object
+      properties:
+        externalId:
+          description: 'The ID of the external system to be set as primary
+
+            required: true
+
+            example: stripe-1234'
           type: string
     customerbase.OrganizationRecord:
       description: Detailed organization information returned by API operations
@@ -512,6 +443,84 @@ components:
 
             example: https://customeros.ai'
           type: string
+    customerbase.ExternalSystemRecord:
+      description: External system information and its relationship to an organization
+      type: object
+      properties:
+        externalId:
+          description: 'External system identifier
+
+            example: stripe-1234'
+          type: string
+        externalSystem:
+          description: 'Name of the external system
+
+            example: stripe'
+          type: string
+        organizationId:
+          description: 'Associated organization ID
+
+            example: org-789'
+          type: string
+        primary:
+          description: 'Indicates if this is the primary link
+
+            example: true'
+          type: boolean
+    customerbase.SingleContactResponse:
+      description: Response structure for single contact operations
+      type: object
+      properties:
+        contact:
+          description: The contact information
+          allOf:
+          - $ref: '#/components/schemas/customerbase.ContactRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    customerbase.BulkSummary:
+      description: Summary statistics for bulk operations
+      type: object
+      properties:
+        failed:
+          description: 'Number of failed records
+
+            example: 5'
+          type: integer
+        success:
+          description: 'Number of successfully processed records
+
+            example: 95'
+          type: integer
+        total:
+          description: 'Total number of records processed
+
+            example: 100'
+          type: integer
+    customerbase.BulkResponseMultipleErrors:
+      description: Response structure for bulk operations with multiple error details
+      type: object
+      properties:
+        details:
+          description: List of error details
+          type: array
+          items:
+            $ref: '#/components/schemas/customerbase.BulkErrorDetails'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+        summary:
+          description: Summary of the bulk operation
+          allOf:
+          - $ref: '#/components/schemas/customerbase.BulkSummary'
     customerbase.ContactRecord:
       description: Request to create a contact
       type: object
@@ -566,6 +575,32 @@ components:
           description: Summary of the bulk operation
           allOf:
           - $ref: '#/components/schemas/customerbase.BulkSummary'
+    rest.BaseResponse:
+      description: Standard response structure for API operations
+      type: object
+      properties:
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    customerbase.ExternalSystemResponse:
+      description: Response structure for external system operations
+      type: object
+      properties:
+        organization:
+          description: The external system information
+          allOf:
+          - $ref: '#/components/schemas/customerbase.ExternalSystemRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
     customerbase.CreateOrganizationRequest:
       description: Request to create an organization
       type: object
@@ -607,60 +642,25 @@ components:
 
             example: https://customeros.ai'
           type: string
-    customerbase.ExternalSystemRecord:
-      description: External system information and its relationship to an organization
+    customerbase.ExternalLink:
+      description: External system link information
       type: object
       properties:
-        externalId:
+        id:
           description: 'External system identifier
 
-            example: stripe-1234'
+            example: cos-12345'
           type: string
-        externalSystem:
-          description: 'Name of the external system
+        name:
+          description: 'External system name
 
             example: stripe'
-          type: string
-        organizationId:
-          description: 'Associated organization ID
-
-            example: org-789'
           type: string
         primary:
           description: 'Indicates if this is the primary link
 
             example: true'
           type: boolean
-    customerbase.OrganizationResponse:
-      description: Response structure for single organization operations
-      type: object
-      properties:
-        organization:
-          description: The organization information
-          allOf:
-          - $ref: '#/components/schemas/customerbase.OrganizationRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    customerbase.SingleContactResponse:
-      description: Response structure for single contact operations
-      type: object
-      properties:
-        contact:
-          description: The contact information
-          allOf:
-          - $ref: '#/components/schemas/customerbase.ContactRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

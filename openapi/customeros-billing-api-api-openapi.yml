@@ -66,24 +66,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    billing.InvoicesResponse:
-      description: Response containing multiple invoices
-      type: object
-      properties:
-        invoices:
-          description: 'List of invoices
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/billing.InvoiceRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
     rest.BaseResponse:
       description: Standard response structure for API operations
       type: object
@@ -171,6 +153,24 @@ components:
 
             format: uri'
           type: string
+    billing.InvoicesResponse:
+      description: Response containing multiple invoices
+      type: object
+      properties:
+        invoices:
+          description: 'List of invoices
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/billing.InvoiceRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

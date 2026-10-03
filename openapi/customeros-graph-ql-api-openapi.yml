@@ -77,18 +77,6 @@ paths:
                 type: string
 components:
   schemas:
-    GraphQLError:
-      type: object
-      properties:
-        message:
-          type: string
-        path:
-          type: array
-          items:
-            type: string
-        extensions:
-          type: object
-          additionalProperties: true
     GraphQLResponse:
       type: object
       properties:
@@ -103,6 +91,18 @@ components:
           description: Field- or request-level errors, if any.
           items:
             $ref: '#/components/schemas/GraphQLError'
+    GraphQLError:
+      type: object
+      properties:
+        message:
+          type: string
+        path:
+          type: array
+          items:
+            type: string
+        extensions:
+          type: object
+          additionalProperties: true
     GraphQLRequest:
       type: object
       required:
