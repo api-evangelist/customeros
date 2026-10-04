@@ -53,47 +53,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    restoutreach.EmailTrackingResponse:
-      description: Response containing generated tracking URLs and pixel
+    restoutreach.TrackedLink:
+      description: Pair of original and tracking-enabled URLs
       type: object
       properties:
-        status:
-          description: 'Operation status
+        original:
+          description: 'Original URL before tracking
 
             required: true
 
-            enum: success'
+            format: uri'
           type: string
-          example: success
-        trackedLinks:
-          description: 'List of original and tracked URLs (only if TrackClicks is true)
+          example: https://example.com/page1
+        tracked:
+          description: 'Generated tracking URL
 
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/restoutreach.TrackedLink'
-        trackingId:
-          description: 'Generated or provided message ID
-
-            required: true'
-          type: string
-          example: msg_123456
-        trackingPixel:
-          description: 'URL for tracking pixel (only if TrackOpens is true)
-
-            required: false
+            required: true
 
             format: uri'
           type: string
-          example: https://track.example.com/p/abc123
-        unsubscribeLink:
-          description: 'Generated unsubscribe link (only if GenerateUnsubscribeLink is true)
-
-            required: false
-
-            format: uri'
-          type: string
-          example: https://track.example.com/u/abc123
+          example: https://track.example.com/r/abc123
     restoutreach.EmailTrackingRequest:
       description: Request payload for generating email tracking URLs and pixels
       type: object
@@ -179,26 +158,47 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
-    restoutreach.TrackedLink:
-      description: Pair of original and tracking-enabled URLs
+    restoutreach.EmailTrackingResponse:
+      description: Response containing generated tracking URLs and pixel
       type: object
       properties:
-        original:
-          description: 'Original URL before tracking
+        status:
+          description: 'Operation status
 
             required: true
 
+            enum: success'
+          type: string
+          example: success
+        trackedLinks:
+          description: 'List of original and tracked URLs (only if TrackClicks is true)
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/restoutreach.TrackedLink'
+        trackingId:
+          description: 'Generated or provided message ID
+
+            required: true'
+          type: string
+          example: msg_123456
+        trackingPixel:
+          description: 'URL for tracking pixel (only if TrackOpens is true)
+
+            required: false
+
             format: uri'
           type: string
-          example: https://example.com/page1
-        tracked:
-          description: 'Generated tracking URL
+          example: https://track.example.com/p/abc123
+        unsubscribeLink:
+          description: 'Generated unsubscribe link (only if GenerateUnsubscribeLink is true)
 
-            required: true
+            required: false
 
             format: uri'
           type: string
-          example: https://track.example.com/r/abc123
+          example: https://track.example.com/u/abc123
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

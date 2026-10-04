@@ -214,6 +214,67 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    restverify.EmailVerificationResponse:
+      description: Response for single email verification including detailed validation results
+      type: object
+      properties:
+        email:
+          description: 'Email verification details
+
+            required: true'
+          allOf:
+          - $ref: '#/components/schemas/restverify.EmailVerificationRecord'
+        requestId:
+          type: string
+          example: 1234567890abcdef
+        status:
+          description: Status indicates the result of the operation ("success" or "error")
+          type: string
+          example: success
+    restverify.BulkResultsResponse:
+      description: Response containing bulk verification results or status
+      type: object
+      properties:
+        estimatedCompletionTs:
+          description: 'Estimated completion timestamp
+
+            required: true'
+          type: integer
+          example: 1694030400
+        fileName:
+          description: 'Original filename
+
+            required: true'
+          type: string
+          example: emails.csv
+        jobId:
+          description: 'Unique job identifier
+
+            required: true
+
+            format: uuid'
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+        message:
+          description: 'Progress message
+
+            required: true'
+          type: string
+          example: Completed 1000 of 1000 emails
+        results:
+          description: 'Verification results if completed
+
+            required: false'
+          allOf:
+          - $ref: '#/components/schemas/restverify.BulkResultsDetails'
+        status:
+          description: 'Processing status
+
+            required: true
+
+            enum: processing,completed'
+          type: string
+          example: completed
     restverify.EmailVerificationRecord:
       description: Detailed validation results for an email address
       type: object
@@ -278,50 +339,6 @@ components:
             required: true'
           allOf:
           - $ref: '#/components/schemas/restverify.EmailVerificationSyntax'
-    restverify.BulkResultsResponse:
-      description: Response containing bulk verification results or status
-      type: object
-      properties:
-        estimatedCompletionTs:
-          description: 'Estimated completion timestamp
-
-            required: true'
-          type: integer
-          example: 1694030400
-        fileName:
-          description: 'Original filename
-
-            required: true'
-          type: string
-          example: emails.csv
-        jobId:
-          description: 'Unique job identifier
-
-            required: true
-
-            format: uuid'
-          type: string
-          example: 550e8400-e29b-41d4-a716-446655440000
-        message:
-          description: 'Progress message
-
-            required: true'
-          type: string
-          example: Completed 1000 of 1000 emails
-        results:
-          description: 'Verification results if completed
-
-            required: false'
-          allOf:
-          - $ref: '#/components/schemas/restverify.BulkResultsDetails'
-        status:
-          description: 'Processing status
-
-            required: true
-
-            enum: processing,completed'
-          type: string
-          example: completed
     restverify.EmailVerificationRisk:
       description: Risk factors associated with the email address
       type: object
@@ -374,6 +391,60 @@ components:
           description: Status indicates the result of the operation ("success" or "error")
           type: string
           example: success
+    restverify.EmailVerificationSyntax:
+      description: Email syntax validation details
+      type: object
+      properties:
+        domain:
+          description: 'Domain part of email
+
+            required: true'
+          type: string
+          example: example.com
+        isValid:
+          description: 'Indicates if email syntax is valid
+
+            required: true'
+          type: boolean
+          example: true
+        user:
+          description: 'Local part of email
+
+            required: true'
+          type: string
+          example: example
+    restverify.BulkUploadResponse:
+      description: Response after initiating bulk email verification
+      type: object
+      properties:
+        estimatedCompletionTs:
+          description: 'Estimated completion timestamp
+
+            required: true'
+          type: number
+          example: 1694030400
+        jobId:
+          description: 'Unique job identifier
+
+            required: true
+
+            format: uuid'
+          type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
+        message:
+          description: 'Status message
+
+            required: true'
+          type: string
+          example: File uploaded successfully
+        resultUrl:
+          description: 'URL to check verification results
+
+            required: true
+
+            format: uri'
+          type: string
+          example: https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000
     restverify.BulkResultsDetails:
       description: Detailed statistics for bulk verification results
       type: object
@@ -410,77 +481,6 @@ components:
             minimum: 0'
           type: integer
           example: 45
-    restverify.EmailVerificationResponse:
-      description: Response for single email verification including detailed validation results
-      type: object
-      properties:
-        email:
-          description: 'Email verification details
-
-            required: true'
-          allOf:
-          - $ref: '#/components/schemas/restverify.EmailVerificationRecord'
-        requestId:
-          type: string
-          example: 1234567890abcdef
-        status:
-          description: Status indicates the result of the operation ("success" or "error")
-          type: string
-          example: success
-    restverify.BulkUploadResponse:
-      description: Response after initiating bulk email verification
-      type: object
-      properties:
-        estimatedCompletionTs:
-          description: 'Estimated completion timestamp
-
-            required: true'
-          type: number
-          example: 1694030400
-        jobId:
-          description: 'Unique job identifier
-
-            required: true
-
-            format: uuid'
-          type: string
-          example: 550e8400-e29b-41d4-a716-446655440000
-        message:
-          description: 'Status message
-
-            required: true'
-          type: string
-          example: File uploaded successfully
-        resultUrl:
-          description: 'URL to check verification results
-
-            required: true
-
-            format: uri'
-          type: string
-          example: https://api.customeros.ai/verify/v1/email/bulk/results/550e8400-e29b-41d4-a716-446655440000
-    restverify.EmailVerificationSyntax:
-      description: Email syntax validation details
-      type: object
-      properties:
-        domain:
-          description: 'Domain part of email
-
-            required: true'
-          type: string
-          example: example.com
-        isValid:
-          description: 'Indicates if email syntax is valid
-
-            required: true'
-          type: boolean
-          example: true
-        user:
-          description: 'Local part of email
-
-            required: true'
-          type: string
-          example: example
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

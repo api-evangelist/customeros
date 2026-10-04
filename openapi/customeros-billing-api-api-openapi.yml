@@ -66,10 +66,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    rest.BaseResponse:
-      description: Standard response structure for API operations
+    billing.InvoicesResponse:
+      description: Response containing multiple invoices
       type: object
       properties:
+        invoices:
+          description: 'List of invoices
+
+            required: false'
+          type: array
+          items:
+            $ref: '#/components/schemas/billing.InvoiceRecord'
         requestId:
           type: string
           example: 1234567890abcdef
@@ -153,17 +160,10 @@ components:
 
             format: uri'
           type: string
-    billing.InvoicesResponse:
-      description: Response containing multiple invoices
+    rest.BaseResponse:
+      description: Standard response structure for API operations
       type: object
       properties:
-        invoices:
-          description: 'List of invoices
-
-            required: false'
-          type: array
-          items:
-            $ref: '#/components/schemas/billing.InvoiceRecord'
         requestId:
           type: string
           example: 1234567890abcdef
