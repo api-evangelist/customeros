@@ -252,6 +252,8 @@ apis:
   humanURL: https://docs.customeros.ai/website-tracker
   baseURL: https://{customer-reverse-proxy-domain}/analytics-0.1.js
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
@@ -267,6 +269,9 @@ apis:
   - type: Documentation
     url: https://docs.customeros.ai/contacts
 common:
+- type: CapabilityMap
+  url: capabilities/customeros-capability-edges.yml
+  name: CustomerOS Business Capability Map
 - type: Website
   url: https://customeros.ai
 - type: Documentation
