@@ -1,4 +1,4 @@
-# CustomerOS (customeros)
+# CustomerOS
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,180 +64,170 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CustomerOS (formerly Openline) is an open-source go-to-market / revenue platform for B2B SaaS. Its core open-source application server, customer-os-api, exposes a single GraphQL endpoint (POST /query) covering organizations, contacts, opportunities, contracts, invoices, interactions, and timeline events. The commercial cloud (customeros.ai) adds a documented REST "Customerbase" API and a JavaScript website visitor tracker, with broader access granted on a per-request basis.
+CustomerOS (formerly Openline) is a London-based revenue-intelligence platform for B2B go-to-market teams. It identifies anonymous website visitors, scores them against an ideal customer profile, infers buying stage from page engagement, and attributes content and ad spend to real pipeline. The developer surface spans a first-party JavaScript website tracker installed behind a customer-owned reverse-proxy CNAME, a set of key-authenticated REST APIs published as OpenAPI in the company monorepo (CustomerBASE contacts and organizations, person and organization enrichment, email verification and IP intelligence, Mailstack sending domains and mailboxes, billing invoices, outreach tracking), a 34-operation Flow API for outbound sequencing, and the open-source customer-os-api GraphQL server that predates the pivot. CustomerOS also runs a live anonymous MCP server and serves an A2A agent card from its documentation host.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/customeros/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/customeros/refs/heads/main/apis.yml)
+**Areas:** CRM · Revenue · Go-To-Market · Lead Intelligence · Visitor Identification · Attribution · Email Verification · Data Enrichment · GraphQL · Open Source · A2A
 
-## Tags
+## CustomerOS on APIs.io
 
-- CRM
-- Revenue
-- Go-To-Market
-- GraphQL
-- Open Source
+Everything profiled for CustomerOS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/customeros/](https://apis.io/providers/customeros/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (11)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [CustomerOS Website Tracker](https://apis.io/apis/customeros/customeros-website-tracker/) — Client-side JavaScript tracker that captures page views and custom events, exposes window.cos.identify() for attaching identity and properties, and matches…
+- [CustomerOS Billing API](https://apis.io/apis/customeros/customeros-billing-api-api/) — The Billing API API from CustomerOS — 1 operation(s) for billing api.
+- [CustomerOS CustomerBASE API](https://apis.io/apis/customeros/customeros-customerbase-api-api/) — The CustomerBASE API API from CustomerOS — 6 operation(s) for customerbase api.
+- [CustomerOS Domains API](https://apis.io/apis/customeros/customeros-domains-api/) — The Domains API from CustomerOS — 2 operation(s) for domains.
+- [CustomerOS Email Verification API](https://apis.io/apis/customeros/customeros-email-verification-api/) — The Email Verification API from CustomerOS — 4 operation(s) for email verification.
+- [CustomerOS Enrichment API](https://apis.io/apis/customeros/customeros-enrichment-api-api/) — The Enrichment API API from CustomerOS — 3 operation(s) for enrichment api.
+- [CustomerOS Flows API](https://apis.io/apis/customeros/customeros-flows-api/) — The Flows API from CustomerOS — 18 operation(s) for flows.
+- [CustomerOS IP Intelligence API](https://apis.io/apis/customeros/customeros-ip-intelligence-api/) — The IP Intelligence API from CustomerOS — 1 operation(s) for ip intelligence.
+- [CustomerOS Mailboxes API](https://apis.io/apis/customeros/customeros-mailboxes-api/) — The Mailboxes API from CustomerOS — 1 operation(s) for mailboxes.
+- [CustomerOS Outreach API](https://apis.io/apis/customeros/customeros-outreach-api/) — The Outreach API from CustomerOS — 1 operation(s) for outreach.
+- [CustomerOS Graph QL API](https://apis.io/apis/customeros/customeros-graph-ql-api/) — Single GraphQL endpoint for all CustomerOS operations.
 
-## APIs
+### Published properties
 
-### CustomerOS GraphQL Core API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Single-endpoint GraphQL API (POST /query) served by the open-source customer-os-api server. Exposes Query and Mutation operations across organizations, contacts, opportunities, contracts, invoices, interactions, and timeline events, authenticated per tenant with an API key. A GraphQL playground is exposed at /playground when enabled.
+#### GraphQL (1)
 
-- **Human URL:** [https://github.com/openline-ai/openline-customer-os](https://github.com/openline-ai/openline-customer-os)
-- **Base URL:** `https://api.customeros.ai/query`
+GraphQL schemas.
 
-#### Tags
+- [CustomerOS GraphQL Schema](https://apis.io/graphqls/customeros/customeros-graphql/)
 
-- GraphQL
-- Organizations
-- Contacts
-- Opportunities
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.customeros.ai)
-- [GitHub](https://github.com/openline-ai/openline-customer-os)
-- [GraphQL](graphql/customeros-graphql.md) — [GraphQL Specification](https://spec.graphql.org/)
-- [OpenAPI](openapi/customeros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/customeros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/customeros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [customer_os_docs](https://apis.io/servers/customeros/customer-os-docs/)
 
-### CustomerOS Organizations API
+#### Agentic access (1)
 
-GraphQL queries and mutations for company / organization records - organization, organizations, organization_Save, organization_Merge, subsidiaries, domains, social media, and onboarding status - over the customer-os-api /query endpoint.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.customeros.ai/data-structure](https://docs.customeros.ai/data-structure)
-- **Base URL:** `https://api.customeros.ai/query`
+- [Customeros Agentic Access](https://apis.io/agentic-access/customeros/customeros-agentic-access/)
 
-#### Tags
+#### Collections (9)
 
-- GraphQL
-- Organizations
-- Companies
+Postman and Open Collection request collections.
 
-#### Properties
+- [CustomerOS GraphQL API](https://apis.io/collections/customeros/open-customeros/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-billing/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-customerbase/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-domains/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-enrich/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-flow-api/)
+- [CustomerOS GraphQL API](https://apis.io/collections/customeros/open-customeros-graphql-api/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-outreach/)
+- [CustomerOS API](https://apis.io/collections/customeros/open-customeros-verify/)
 
-- [Documentation](https://docs.customeros.ai/data-structure)
-- [GraphQL](graphql/customeros-graphql.md) — [GraphQL Specification](https://spec.graphql.org/)
-- [OpenAPI](openapi/customeros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/customeros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/customeros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (8)
 
-### CustomerOS Contacts API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-GraphQL queries and mutations for contacts (people) - contact, contacts, contact_ByEmail, contact_ByLinkedIn, contact_Create, contact_CreateForOrganization, job roles, emails, phone numbers, and social profiles - over the customer-os-api /query endpoint.
+- [Customeros Billing Overlay](https://apis.io/overlays/customeros/customeros-billing-overlay/)
+- [Customeros Customerbase Overlay](https://apis.io/overlays/customeros/customeros-customerbase-overlay/)
+- [Customeros Domains Overlay](https://apis.io/overlays/customeros/customeros-domains-overlay/)
+- [Customeros Enrich Overlay](https://apis.io/overlays/customeros/customeros-enrich-overlay/)
+- [Customeros Flow Api Overlay](https://apis.io/overlays/customeros/customeros-flow-api-overlay/)
+- [Customeros Graphql Api Overlay](https://apis.io/overlays/customeros/customeros-graphql-api-overlay/)
+- [Customeros Outreach Overlay](https://apis.io/overlays/customeros/customeros-outreach-overlay/)
+- [Customeros Verify Overlay](https://apis.io/overlays/customeros/customeros-verify-overlay/)
 
-- **Human URL:** [https://docs.customeros.ai/contacts](https://docs.customeros.ai/contacts)
-- **Base URL:** `https://api.customeros.ai/query`
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- GraphQL
-- Contacts
-- People
+- [Customeros Authentication](https://apis.io/security/customeros/customeros-authentication/)
+- [Customeros Domain Security](https://apis.io/security/customeros/customeros-domain-security/)
+- [Customeros Trust Center](https://apis.io/security/customeros/customeros-trust-center/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.customeros.ai/contacts)
-- [GraphQL](graphql/customeros-graphql.md) — [GraphQL Specification](https://spec.graphql.org/)
-- [OpenAPI](openapi/customeros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/customeros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/customeros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### CustomerOS Opportunities API
+- [Customeros Plans Pricing](https://apis.io/plans/customeros/customeros-plans-pricing/)
 
-GraphQL queries and mutations for sales opportunities and renewals - opportunity, opportunities_LinkedToOrganizations, opportunity_Save, opportunity_Archive, and renewal likelihood / forecast updates - over the customer-os-api /query endpoint.
+#### Rate limits (1)
 
-- **Human URL:** [https://github.com/openline-ai/openline-customer-os](https://github.com/openline-ai/openline-customer-os)
-- **Base URL:** `https://api.customeros.ai/query`
+Published request limits.
 
-#### Tags
+- [Customeros Rate Limits](https://apis.io/rate-limits/customeros/customeros-rate-limits/)
 
-- GraphQL
-- Opportunities
-- Pipeline
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [GitHub](https://github.com/openline-ai/openline-customer-os)
-- [GraphQL](graphql/customeros-graphql.md) — [GraphQL Specification](https://spec.graphql.org/)
-- [OpenAPI](openapi/customeros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/customeros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/customeros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Customeros Finops](https://apis.io/finops/customeros/customeros-finops/)
 
-### CustomerOS Interactions API
+## Where to find this API
 
-GraphQL queries and mutations for interaction events, interaction sessions, meetings, notes, log entries, issues, and the per-organization timeline of touchpoints - over the customer-os-api /query endpoint.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://github.com/openline-ai/openline-customer-os](https://github.com/openline-ai/openline-customer-os)
-- **Base URL:** `https://api.customeros.ai/query`
-
-#### Tags
-
-- GraphQL
-- Interactions
-- Timeline
-
-#### Properties
-
-- [GitHub](https://github.com/openline-ai/openline-customer-os)
-- [GraphQL](graphql/customeros-graphql.md) — [GraphQL Specification](https://spec.graphql.org/)
-- [OpenAPI](openapi/customeros-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/customeros.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/customeros.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### CustomerOS Customerbase REST API
-
-Documented synchronous REST API on the customeros.ai cloud (api.customeros.ai/customerbase/v1), authenticated with the X-CUSTOMER-OS-API-KEY header. Includes organization endpoints such as POST /organizations. Access to each endpoint group is granted on a per-request basis by the CustomerOS team.
-
-- **Human URL:** [https://docs.customeros.ai/api-overview](https://docs.customeros.ai/api-overview)
-- **Base URL:** `https://api.customeros.ai/customerbase/v1`
-
-#### Tags
-
-- REST
-- Customerbase
-- Organizations
-
-#### Properties
-
-- [Documentation](https://docs.customeros.ai/api-overview)
-- [API Reference](https://docs.customeros.ai/api-descriptions)
-
-### CustomerOS Website Tracker
-
-Client-side JavaScript tracker, installed via a script tag behind a customer-hosted reverse-proxy CNAME, that captures page views and custom events and matches visitor IPs to companies. It is a script integration rather than a public REST/GraphQL endpoint; custom events are emitted from the browser.
-
-- **Human URL:** [https://docs.customeros.ai/website-tracker](https://docs.customeros.ai/website-tracker)
-- **Base URL:** `https://docs.customeros.ai/tracker`
-
-#### Tags
-
-- Tracking
-- Visitor Identification
-- JavaScript
-
-#### Properties
-
-- [Documentation](https://docs.customeros.ai/website-tracker)
-- [Documentation](https://docs.customeros.ai/tracker/custom-events)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/openline-ai)
-- [GitHub Organization](https://github.com/customeros)
-- [LinkedIn](https://www.linkedin.com/company/customeros)
 - [Website](https://customeros.ai)
 - [Documentation](https://docs.customeros.ai)
-- [Plans](plans/customeros-plans-pricing.yml)
-- [Rate Limits](rate-limits/customeros-rate-limits.yml)
-- [Fin Ops](finops/customeros-finops.yml)
+- [Getting started](https://docs.customeros.ai/quickstart)
+- [Pricing](https://customeros.ai/pricing)
+- [Changelog](https://customeros.ai/updates)
+- [Blog](https://customeros.ai/gtm-guides)
+- [Compliance](https://docs.customeros.ai/security-and-compliance)
+- [Terms of service](https://customeros.ai/standard-agreement/tos)
+- [Privacy policy](https://customeros.ai/policies/privacy-policy)
+- [GitHub](https://github.com/customeros)
+- [Status](https://status.customeros.ai/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 53.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 50.6 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 75.0 |
+
+**Agent readiness 32.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/customeros/](https://apis.io/providers/customeros/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CustomerOS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/customeros/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
